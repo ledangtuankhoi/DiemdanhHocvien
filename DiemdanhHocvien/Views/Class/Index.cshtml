@@ -35,35 +35,73 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.className)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.codeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.startDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.endDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numPhoneMom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dayOfWeek)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.className)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numPhoneMom)
+            </td>
+            <td>
+
+                @*@Html.DisplayFor(modelItem => item.dayOfWeek)*@
+                @{ List<int> dayof = item.dayOfWeek.Split(',').Select(Int32.Parse).ToList(); }
+                @*@dayof[0]*@
+                @foreach (var day in dayof)
+                {
+
+                    switch (day)
+                    {
+                        case 0:
+                            <span>2</span>
+                            break;
+                        case 1:
+                            <span>3</span>
+                            break;
+                        case 2:
+                            <span>4</span>
+                            break;
+                        case 3:
+                            <span>5</span>
+
+                            break;
+                        case 4:
+                            <span>6</span>
+
+                            break;
+                        case 5:
+                            <span>7</span>
+                            break;
+                        case 6:
+                            <span>CN</span>
+                            break; 
+                        default:
+                            break;
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Add", "Student", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

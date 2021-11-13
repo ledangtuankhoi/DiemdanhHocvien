@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DiemdanhHocvien.CustomAuthentication;
+using DiemdanhHocvien.DataAccess;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DiemdanhHocvien.CustomAuthentication;
-using DiemdanhHocvien.DataAccess;
+using System.Web.Security;
+using System.Web.UI.WebControls;
+
 
 namespace DiemdanhHocvien.Controllers
 {
-    [CustomAuthorize(Roles = "superadmin,user,teacher")]
+    [CustomAuthorize(Roles = "superadmin,admin,user,leader,teacher")]
+
     public class ClassController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
@@ -19,7 +20,6 @@ namespace DiemdanhHocvien.Controllers
         // GET: Class
         public ActionResult Index()
         {
-
             return View(db.classes.ToList());
         }
 
@@ -49,11 +49,13 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,dayOfWeek")] Class @class)
+        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,userId")] Class @class,List<int> dayOfWeek)
         {
             if (ModelState.IsValid)
             {
-                
+                List<string> l2 = dayOfWeek.ConvertAll<string>(x => x.ToString());
+                 
+                @class.dayOfWeek = string.Join(",", l2);
                 db.classes.Add(@class);
                 db.SaveChanges();
                 return RedirectToAction("Index");
