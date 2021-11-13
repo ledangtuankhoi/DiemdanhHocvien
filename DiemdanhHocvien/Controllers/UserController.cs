@@ -12,9 +12,7 @@ using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers
 {
-    [CustomAuthorize(Roles = "User")]
-    [CustomAuthorize(Roles = "admin")]
-    [CustomAuthorize(Roles = "SuperAdmin")] 
+    [CustomAuthorize(Roles = "superadmin,user,admin,")]
     public class UserController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
