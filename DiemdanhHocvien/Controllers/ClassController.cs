@@ -44,6 +44,17 @@ namespace DiemdanhHocvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            //tim hoc vien thuoc hop
+            List<Student> studentsOfClass = new List<Student>();
+            foreach (var item in db.students.ToList())
+            {
+                if(item.classId == id)
+                {
+                    studentsOfClass.Add(item);
+                }
+            }
+            ViewBag.studentsOfClass = studentsOfClass;
             return View(@class);
         }
 
@@ -128,6 +139,15 @@ namespace DiemdanhHocvien.Controllers
             db.classes.Remove(@class);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost] 
+        public ActionResult DeleteStudent(int id)
+        { 
+            db.students.Find(id).classId = 0;
+            db.SaveChanges();
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+             
         }
 
         protected override void Dispose(bool disposing)
