@@ -19,8 +19,26 @@ namespace DiemdanhHocvien.Controllers
         // GET: addStudent/5
         public ActionResult addStudent(int id)
         {
+            var lstStudent = db.students.ToList();
+            List<string> lstnameClass = new List<string>();
+
+            foreach (var item in lstStudent)
+            {
+                var nameClass = db.classes.Where(x => x.id == item.classId).Select(x => x.className).FirstOrDefault();
+                if (nameClass!=null)
+                {
+
+                lstnameClass.Add(nameClass);
+                }
+                else
+                {
+                    lstnameClass.Add("null");
+                }
+            }
+            ViewBag.lstnameClass = lstnameClass;
             ViewBag.classId = id;
-            return View(db.students.ToList());
+
+            return View(lstStudent);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

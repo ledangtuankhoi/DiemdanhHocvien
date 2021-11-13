@@ -38,6 +38,7 @@
         <th></th>
     </tr>
 
+    @{ int key = 0; var lstnameClass = ViewBag.lstnameClass;}
     @foreach (var item in Model)
     {
         <tr>
@@ -64,10 +65,11 @@
                 @Html.DisplayFor(modelItem => item.parentId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.classId)
+                @lstnameClass[key]
             </td>
 
         </tr>
+        key++;
     }
 
 </table>
