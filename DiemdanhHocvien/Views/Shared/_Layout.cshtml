@@ -1,4 +1,4 @@
-﻿@using DiemdanhHocvien.CustomAuthentication
+﻿ @using DiemdanhHocvien.CustomAuthentication
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,14 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+   
+    <link href="~/Assets/dashboard/img/logo/logo.png" rel="icon">
+     <link href="~/Assets/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Assets/dashboard/css/ruang-admin.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +31,13 @@
                 @Html.ActionLink("Account", "Index", "account", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("login", "login", "account", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("  Registration", "Registration", "account", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+ 
+                @Html.ActionLink("class", "index", "class", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("User", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Account", "Index", "account", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("login", "login", "account", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("  Registration", "Registration", "account", new { area = "" }, new { @class = "navbar-brand" })
+             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>
@@ -55,6 +69,18 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script src="~/Assets/dashboard/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Assets/dashboard/js/ruang-admin.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Assets/dashboard/js/demo/chart-area-demo.js"></script>
+
+    @RenderSection("_Header", false)
+
+    @RenderSection("_Footer", false);
     @RenderSection("Scripts", false)
 </body>
 </html>

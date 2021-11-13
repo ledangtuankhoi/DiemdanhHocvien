@@ -15,7 +15,7 @@ namespace DiemdanhHocvien.DataAccess
         public DateTime startDate{ get; set; }
         public DateTime endDate { get; set; }
         public string numPhoneMom { get; set; }
-        public int dayOfWeek { get; set; }
+        public string dayOfWeek { get; set; }
         public int userId { get; set; } 
 
     }
