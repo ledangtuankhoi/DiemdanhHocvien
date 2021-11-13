@@ -1,131 +1,145 @@
-﻿using DiemdanhHocvien.CustomAuthentication;
-using DiemdanhHocvien.DataAccess;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using System.Web.UI.WebControls;
-
+using DiemdanhHocvien.CustomAuthentication;
+using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers
 {
     [CustomAuthorize(Roles = "superadmin,admin,user,leader,teacher")]
-
-    public class ClassController : Controller
+    public class StudentController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
-
-        // GET: Class
-        public ActionResult Index()
+        
+        // GET: addStudent/5
+        public ActionResult addStudent(int id)
         {
-            var lstClass = db.classes.ToList();
-            List<int> soluong = new List<int>();
-            foreach (var item in lstClass)
+            ViewBag.classId = id;
+            return View(db.students.ToList());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult addStudent(List<int> lstStudent,int classId)
+        {
+            if (ModelState.IsValid)
             {
-                var countStud = db.students.Where(x => x.classId == item.id).Count();
-                    soluong.Add(countStud);
+                //db.students.Add(student);
+
+                foreach (var item in lstStudent)
+                {
+                    db.students.Find(item).classId = classId;
+                    db.SaveChanges();
+                }
+
+                ViewBag.quantity = lstStudent.Count;
+                return RedirectToAction("Index","class");
             }
-            //lstClass.AddRange);
-            ViewBag.soluong = soluong;
-            return View(db.classes.ToList());
+
+            return View( );
         }
 
-        // GET: Class/Details/5
+        // GET: Student
+        public ActionResult Index()
+        {
+            return View(db.students.ToList());
+        }
+
+        // GET: Student/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Class @class = db.classes.Find(id);
-            if (@class == null)
+            Student student = db.students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(@class);
+            return View(student);
         }
 
-        // GET: Class/Create
+        // GET: Student/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Class/Create
+        // POST: Student/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,userId")] Class @class,List<int> dayOfWeek)
+        public ActionResult Create([Bind(Include = "id,lastName,firstName,holyName,BOD,numPhone,email,parentId,classId")] Student student)
         {
             if (ModelState.IsValid)
             {
-                List<string> l2 = dayOfWeek.ConvertAll<string>(x => x.ToString());
-                 
-                @class.dayOfWeek = string.Join(",", l2);
-                db.classes.Add(@class);
+                db.students.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(@class);
+            return View(student);
         }
 
-        // GET: Class/Edit/5
+        // GET: Student/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Class @class = db.classes.Find(id);
-            if (@class == null)
+            Student student = db.students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(@class);
+            return View(student);
         }
 
-        // POST: Class/Edit/5
+        // POST: Student/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,dayOfWeek,userId")] Class @class)
+        public ActionResult Edit([Bind(Include = "id,lastName,firstName,holyName,BOD,numPhone,email,parentId,classId")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@class).State = EntityState.Modified;
+                db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(@class);
+            return View(student);
         }
 
-        // GET: Class/Delete/5
+        // GET: Student/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Class @class = db.classes.Find(id);
-            if (@class == null)
+            Student student = db.students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(@class);
+            return View(student);
         }
 
-        // POST: Class/Delete/5
+        // POST: Student/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Class @class = db.classes.Find(id);
-            db.classes.Remove(@class);
+            Student student = db.students.Find(id);
+            db.students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

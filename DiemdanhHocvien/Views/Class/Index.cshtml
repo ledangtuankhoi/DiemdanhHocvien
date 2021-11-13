@@ -29,12 +29,11 @@
         <th>
             @Html.DisplayNameFor(model => model.dayOfWeek)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userId)
-        </th>
+        <th> so luong hoc vien</th>
         <th></th>
     </tr>
-
+    @{ int key = 0;}
+    @{var soluong = ViewBag.soluong; }
     @foreach (var item in Model)
     {
         <tr>
@@ -85,22 +84,22 @@
                             break;
                         case 6:
                             <span>CN</span>
-                            break; 
+                            break;
                         default:
                             break;
                     }
                 }
 
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.userId)
-            </td>
+            <td> @soluong[key]</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                @Html.ActionLink("Add", "Student", new { id = item.id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
+                <a href="/student/addstudent/@item.id">addstudent</a>
             </td>
+            @{key++;}
+
         </tr>
     }
 

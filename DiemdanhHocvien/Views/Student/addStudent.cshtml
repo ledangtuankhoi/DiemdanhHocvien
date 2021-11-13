@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DiemdanhHocvien.DataAccess.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+<form action="#" method="post" id="form" name="form">@Html.AntiForgeryToken()</form>
+
+@*<a  class="btn btn-outline-primary" type="submit"  >content</a>*@
+<input value="@ViewBag.classId" form="form" name="classId" type="number" hidden />
+<button type="submit" value="addStudent" class="btn btn-primary" form="form">  submit  </button>
+<table class="table record_table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.holyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.classId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input type="checkbox" name="lstStudent" form="form" value="@item.id" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.holyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BOD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.classId)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section _Footer{
+    @*click row in table checkbox*@
+    <script>
+        $(document).ready(function () {
+            $('.record_table tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                }
+            });
+        });
+    </script>
+}
