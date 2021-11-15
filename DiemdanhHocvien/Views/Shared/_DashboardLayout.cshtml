@@ -43,7 +43,7 @@
 
             @*buttun action controller*@
             <li class="nav-item" title="Student">
-                <a class="nav-link  " href="@Url.Action("Index","Student")" >
+                <a class="nav-link  " href="@Url.Action("Index","Student")">
                     <i class="fas fa-fw fa-school"></i>
                     <span>Student</span>
                 </a>
@@ -123,6 +123,9 @@
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+                    <div class="navbar-nav m-auto">
+                        <h2 id="actionName" class="text-white">Action Name</h2>
+                    </div>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
@@ -295,8 +298,8 @@
                                     <span class="ml-2 d-none d-lg-inline text-white small">
                                         @Html.Label(string.Format("{0} {1}", identity.FirstName, identity.LastName))
                                     </span>
-                                    
-                                   
+
+
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="#">
@@ -314,23 +317,21 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="@Url.Action("LogOut", "Account")" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                       Log Out
+                                        Log Out
                                     </a>
-                                    
+
                                 </div>
                             </li>
                         }
-                        </ul>
+                    </ul>
                 </nav>
                 <!-- Topbar -->
                 <!-- Container Fluid-->
-                <div class="container-fluid" id="container-wrapper">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                @*<div class="container-fluid" id="container-wrapper">*@
 
-                        @RenderBody()
-                        <!---Container Fluid-->
-                    </div>
-                </div>
+                @RenderBody()
+                <!---Container Fluid-->
+                @*</div>*@
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
@@ -350,7 +351,7 @@
         <!-- Scroll to top -->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
-        </a>
+        </a>  
 
         <script src="~/Assets/dashboard/vendor/jquery/jquery.min.js"></script>
         <script src="~/Assets/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -362,10 +363,10 @@
 
         @RenderSection("_Footer", false);
 
-    <script>
+        <script>
         @*ẩn thanh sidebar*@
         $("#sidebarToggleTop").click()
-    </script>
+        </script>
 </body>
 
 </html>

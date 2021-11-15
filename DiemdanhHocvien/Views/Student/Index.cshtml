@@ -4,72 +4,207 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.lastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.holyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BOD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.parentId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.classId)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.holyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BOD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.parentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.classId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+@section _Header{
+    <link href="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 }
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
+        <script>
+            $("#actionName").text("Student")
+        </script>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active" aria-current="page">DataTables</li>
+        </ol>
+    </div>
 
-</table>
+    
+    <!-- Row -->
+    <div class="row">
+
+        <!-- DataTable with Hover -->
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-start">
+                    <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+                        Create
+                    </a>
+                    <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+                        Create
+                    </a>
+                    <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+                        Create
+                    </a>
+                </div>
+
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.lastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.firstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.holyName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BOD)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.numPhone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.parentId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.classId)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.lastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.firstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.holyName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BOD)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.numPhone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.parentId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.classId)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.firstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.holyName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BOD)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.numPhone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.parentId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.classId)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-fw fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a title="Edit" href="@Url.Action("Edit","Student",new { id = item.id})" class="btn btn-secondary">
+                                                    <i class="fas fa-fw fa-edit"></i>
+                                                </a>
+                                                <a title="Details" href="@Url.Action("details","student",new { id = item.id})" class="btn btn-warning">
+                                                    <i class="fas fa-fw fa-fingerprint"></i>
+                                                </a>
+                                                <a title="Delete" href="@Url.Action("delete","student",new { id = item.id})" class="btn btn-danger">
+                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Row-->
+    <!-- Documentation Link -->
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                DataTables is a third party plugin that is used to generate the demo table below. For more information
+                about DataTables, please visit the official <a href="https://datatables.net/" target="_blank">
+                    DataTables
+                    documentation.
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                    <a href="login.html" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!---Container Fluid-->
+
+@section _Footer{
+
+    <!-- Page level plugins -->
+    <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script>
+        $(document).ready(function () { 
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
+}
