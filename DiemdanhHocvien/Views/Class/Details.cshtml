@@ -1,5 +1,6 @@
 ﻿@model DiemdanhHocvien.DataAccess.Class
 
+
 @{
     ViewBag.Title = "Details";
 }
@@ -72,3 +73,88 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            lastName
+        </th>
+        <th>
+            firstName
+        </th>
+        <th>
+            holyName
+        </th>
+        <th>
+            BOD
+        </th>
+        <th>
+            numPhone
+        </th>
+        <th>
+            email
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.studentsOfClass)
+    {
+        <tr>
+            <td>
+                @item.lastName
+            </td>
+            <td>
+                @item.firstName
+            </td>
+            <td>
+                @item.holyName
+            </td>
+            <td>
+                @item.BOD
+            </td>
+            <td>
+                @item.numPhone
+            </td>
+            <td>
+                @item.email
+            </td>
+            <td>
+                <a data-id="@item.id" class="btn btn-outline-danger DeleteStudent"> <i class="fa fa-trash-alt"></i> </a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section _Footer{
+
+    <script>
+        $(document).delegate('.DeleteStudent', 'click', function (e) {
+
+            e.preventDefault();
+            var id =$(this).data("id");
+            @*@{var id =}id{ ;}*@
+            
+            @*alert($(this).data("id"));*@
+            $.ajax({
+                    type: "post",
+                    url: "@Url.Action("DeleteStudent", "class")",
+                    ajaxasync: true,
+                    data: { id: $(this).data("id") },
+                    success: function () {
+
+                        alert("success");
+                        location.reload();
+                        // Perform redirect
+                        @*window.location.replace("@Html.Action("details","class")");*@
+                    },
+                    error: function (data) {
+                        alert(data.x);
+                    }
+                });
+        });
+    </script>
+}

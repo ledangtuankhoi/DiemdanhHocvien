@@ -1,0 +1,82 @@
+﻿@model DiemdanhHocvien.DataAccess.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.holyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.holyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.parentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.parentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
