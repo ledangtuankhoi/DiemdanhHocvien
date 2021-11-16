@@ -1,6 +1,5 @@
 ﻿using DiemdanhHocvien.DataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -41,10 +40,10 @@ namespace DiemdanhHocvien.CustomAuthentication
                                     where string.Compare(us.Username, username, StringComparison.OrdinalIgnoreCase) == 0
                                     select us).FirstOrDefault();
 
-                
-                if(selectedUser != null)
+
+                if (selectedUser != null)
                 {
-                    userRoles = new[] { selectedUser.Roles.Select(r=>r.RoleName).ToString() };
+                    userRoles = new[] { selectedUser.Roles.Select(r => r.RoleName).ToString() };
                 }
 
                 return userRoles.ToArray();

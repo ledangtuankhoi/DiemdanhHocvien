@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Security;
 using System.Web.UI.WebControls;
 
 
@@ -71,7 +70,7 @@ namespace DiemdanhHocvien.Controllers
             foreach (var item in lstClass)
             {
                 var countStud = db.students.Where(x => x.classId == item.id).Count();
-                    soluong.Add(countStud);
+                soluong.Add(countStud);
             }
             //lstClass.AddRange);
             ViewBag.soluong = soluong;
@@ -95,7 +94,7 @@ namespace DiemdanhHocvien.Controllers
             List<Student> studentsOfClass = new List<Student>();
             foreach (var item in db.students.ToList())
             {
-                if(item.classId == id)
+                if (item.classId == id)
                 {
                     studentsOfClass.Add(item);
                 }
@@ -115,12 +114,12 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,dayOfWeek,userId")] Class @class,List<int> dayOfWeek)
+        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,dayOfWeek,userId")] Class @class, List<int> dayOfWeek)
         {
-            if (ModelState.IsValid && dayOfWeek != null )
+            if (ModelState.IsValid && dayOfWeek != null)
             {
                 List<string> l2 = dayOfWeek.ConvertAll<string>(x => x.ToString());
-                 
+
                 @class.dayOfWeek = string.Join(",", l2);
                 db.classes.Add(@class);
                 db.SaveChanges();
@@ -190,13 +189,13 @@ namespace DiemdanhHocvien.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost] 
+        [HttpPost]
         public ActionResult DeleteStudent(int id)
-        { 
+        {
             db.students.Find(id).classId = 0;
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
-             
+
         }
 
         protected override void Dispose(bool disposing)

@@ -1,8 +1,6 @@
 ﻿using DiemdanhHocvien.DataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Security;
 
 namespace DiemdanhHocvien.CustomAuthentication
@@ -19,7 +17,7 @@ namespace DiemdanhHocvien.CustomAuthentication
         /// <returns></returns>
         public override bool ValidateUser(string username, string password)
         {
-            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 return false;
             }
@@ -67,7 +65,7 @@ namespace DiemdanhHocvien.CustomAuthentication
                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
                             select us).FirstOrDefault();
 
-                if(user == null)
+                if (user == null)
                 {
                     return null;
                 }

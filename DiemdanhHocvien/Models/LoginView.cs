@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace DiemdanhHocvien.Models
 {
@@ -30,7 +28,7 @@ namespace DiemdanhHocvien.Models
     public class RegistrationView
     {
         [Required(ErrorMessage = "User Name required")]
-        [Display(Name ="User Name")]
+        [Display(Name = "User Name")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "First Name required")]
