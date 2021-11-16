@@ -103,10 +103,12 @@
                                     @Html.DisplayFor(modelItem => item.className)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.endDate)
+                                    @item.endDate.ToString("dd-MM-yyy")
+                                    @*@Html.DisplayFor(modelItem => item.endDate)*@
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.startDate)
+                                    @item.startDate.ToString("dd-MM-yyy")
+                                    @*@Html.DisplayFor(modelItem => item.startDate)*@
                                 </td>
                                  
                                 <td>
