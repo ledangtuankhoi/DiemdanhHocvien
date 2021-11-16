@@ -3,123 +3,207 @@
 
 @{
     ViewBag.Title = "Create";
-}
+} 
+<style>
+    /* This is to be able to center the content in the middle of the page; */
 
-<h2>Create</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Class</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.className, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.className, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.className, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.codeName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.codeName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.codeName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2"  })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd-mm-yyyy" } })
-            @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd-mm-yyyy" } })
-            @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-     
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.dayOfWeek, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.dayOfWeek, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.dayOfWeek, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-<div class="form-group">
-    <label>Checkbox</label>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="0" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck2">thu 2</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="1" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu 3</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="2" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu 4</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="3" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu 5</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="4" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu 6</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="5" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu 7</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input"   value="6" name="dayOfWeek">
-        <label class="custom-control-label" for="customCheck3">Thu Chua Nhat</label>
-    </div> 
-
-</div>
-    @using DiemdanhHocvien.CustomAuthentication
-    @if (HttpContext.Current.User.Identity.IsAuthenticated)
-    {
-        var identity = ((CustomPrincipal)HttpContext.Current.User);
-
-        <div class="form-group">
-            <input type="hidden" name="userId" value="@identity.UserId" />
-        </div>
+    .cat {
+        margin: 4px;
+        border-radius: 4px;
+        border: 1px solid #fff;
+        overflow: hidden;
+        float: left;
     }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        .cat label {
+            float: left;
+            line-height: 3.0em;
+            width: 4.0em;
+            height: 2.0em;
+        }
+
+            .cat label span {
+                text-align: center;
+                padding: 2px 1px;
+                display: block;
+            }
+
+            .cat label input {
+                position: absolute;
+                display: none;
+                color: #fff !important;
+            }
+                /* selects all of the text within the input element and changes the color of the text */
+                .cat label input + span {
+                    color: black;
+                }
+
+
+        /* This will declare how a selected input will look giving generic properties */
+        .cat input:checked + span {
+            color: white;
+            background-color: #66bb6a;
+        }
+
+
+    /*
+    This following statements selects each category individually that contains an input element that is a checkbox and is checked (or selected) and chabges the background color of the span element.
+    */
+</style>
+
+
+<div class="container-fluid" id="container-wrapper">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Student</li>
+            <li class="breadcrumb-item active" aria-current="page">Delete</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+
+        <div class="col-6">
+
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Form Basic</h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="@Url.Action("Create")">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">Code Name</label>
+                            <input type="text" class="form-control" placeholder="Holy name" codeName" name="codeName">
+                            @Html.ValidationMessageFor(model => model.codeName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">Class Name</label>
+                            <input type="text" class="form-control" placeholder="last name" className" name="className">
+                            @Html.ValidationMessageFor(model => model.className, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">Start day</label>
+                                    
+                                    <input type="date" class="form-control" name="startDate">
+                                    @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">End Day</label>
+                                    
+                                    <input type="date" class="form-control" name="endDate">
+                                    @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="exampleInputEmail1" class="text-uppercase">Day Of Week</label>
+                        <div class="form-group ">
+                            <div class="cat">
+                                <label>
+                                    <input id="thu2" type="checkbox" value="0" name="dayOfWeek"><span>Thu 2</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu3" type="checkbox" value="1" name="dayOfWeek"><span>Thu 3</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu4" type="checkbox" value="2" name="dayOfWeek"><span>Thu 4</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu5" type="checkbox" value="3" name="dayOfWeek"><span>Thu 5</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu6" type="checkbox" value="4" name="dayOfWeek"><span>Thu 6</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu7" type="checkbox" value="5" name="dayOfWeek"><span>Thu 7</span>
+                                </label>
+                            </div>
+
+                            <div class="cat CN">
+                                <label>
+                                    <input id="CN" type="checkbox" value="6" name="dayOfWeek"><span>CN</span>
+                                </label>
+                            </div>
+
+                        </div>
+                            @Html.ValidationMessageFor(model => model.dayOfWeek, "", new { @class = "text-danger" })
+
+
+                        @using DiemdanhHocvien.CustomAuthentication
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            var identity = ((CustomPrincipal)HttpContext.Current.User);
+
+                            <div class="form-group">
+                                <input type="hidden" name="userId" value="@identity.UserId" />
+                            </div>
+                        }
+
+
+                        <div class="d-inline-flex">
+
+                            <button type="submit" class="btn btn-primary">SAVE</button>
+                            <a href="@Url.Action("index" )" class="btn btn-primary">Back to list</a>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+
         </div>
     </div>
 </div>
+
+
+
+
+@section _Header{
+    <!-- Bootstrap DatePicker -->
+    <link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Bootstrap Touchspin -->
+    <link href="vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet">
+    <!-- ClockPicker -->
+    <link href="vendor/clock-picker/clockpicker.css" rel="stylesheet">
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section _Footer{
 
-    <!-- Scroll to top -->
-    <a class="scroll-to-top rounded" href="~/Areas/admin/Assets/#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+    <script>
+        $("#actionName").text("Student")
+    </script>
+     }
+ 
 
-    <!-- Page level plugins -->
-    <script src="~/Areas/admin/Assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Areas/admin/Assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-     
 
-}
+} 

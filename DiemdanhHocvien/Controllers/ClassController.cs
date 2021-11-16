@@ -115,9 +115,9 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate ,userId")] Class @class,List<int> dayOfWeek)
+        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,dayOfWeek,userId")] Class @class,List<int> dayOfWeek)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && dayOfWeek != null )
             {
                 List<string> l2 = dayOfWeek.ConvertAll<string>(x => x.ToString());
                  

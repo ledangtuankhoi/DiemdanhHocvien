@@ -55,9 +55,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-1">
         @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
-        <script>
-            $("#actionName").text("Student")
-        </script>
+
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
             <li class="breadcrumb-item">Student</li>
@@ -198,7 +196,11 @@
     <link href="vendor/clock-picker/clockpicker.css" rel="stylesheet">
 }
 @section _Footer{
-
+    
+        <script>
+            $("#actionName").text("Student")
+        </script>
+   
     <!-- Scroll to top -->
     <a class="scroll-to-top rounded" href="~/Areas/admin/Assets/#page-top">
         <i class="fas fa-angle-up"></i>
