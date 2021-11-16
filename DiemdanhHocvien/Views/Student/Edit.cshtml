@@ -1,0 +1,101 @@
+﻿@model DiemdanhHocvien.DataAccess.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container-fluid" id="container-wrapper">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
+        <script>
+            $("#actionName").text("Student")
+        </script>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Student</li>
+            <li class="breadcrumb-item active" aria-current="page">Delete</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+
+        <div class="col-6">
+
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Form Basic</h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="@Url.Action("edit","student")">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">Holy Name</label>
+                            <input type="text" class="form-control" placeholder="Holy name" value="@Model.holyName" name="holyname">
+                            @Html.ValidationMessageFor(model => model.holyName, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="last name" value="@Model.lastName" name="lastName">
+                                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">First Name</label>
+                                    <input type="text" class="form-control" placeholder="first name" value="@Model.firstName" name="firstname">
+                                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">birth of day</label>
+                            @{String dateBOD = @Model.BOD.ToString("yyyy-MM-dd");}
+                            <input type="date" class="form-control" value="@dateBOD" name="BOD">
+                            @Html.ValidationMessageFor(model => model.BOD, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">Email address</label>
+                            <input type="email" class="form-control" placeholder="Enter email" value="@Model.email" name="email">
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">Number phone</label>
+                            <input type="tel" " maxlength="13" minlength="10" class="form-control" placeholder="Enter number phone" value="@Model.numPhone" name="numPhone">
+                            @Html.ValidationMessageFor(model => model.numPhone, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="text-uppercase">Parent</label>
+                            <input type="number" class="form-control" placeholder="Parent" value="@Model.parentId" name="parenId">
+                            @Html.ValidationMessageFor(model => model.parentId, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="text-uppercase">Class</label>
+                            <input type="number" class="form-control" placeholder="Class" value="@Model.classId" name="classId">
+                            @Html.ValidationMessageFor(model => model.classId, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">SAVE</button>
+                        <a href="@Url.Action("index","student")" class="btn btn-primary">Back to list</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>

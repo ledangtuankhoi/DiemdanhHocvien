@@ -1,0 +1,199 @@
+﻿@model DiemdanhHocvien.DataAccess.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container-fluid" id="container-wrapper">
+    <div class="row mb-2">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">@Html.DisplayFor(model => model.holyName)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.lastName) @Html.DisplayFor(model => model.firstName)</div>
+                            <div class="mt-2 mb-0 text-muted text-xs">
+                                <span class="text-success mr-2"> @Html.DisplayFor(model => model.BOD)</span>
+
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <a title="Edit" href="@Url.Action("Edit","Student",new { id = Model.id})" class="btn btn-secondary">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Contact</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.numPhone)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.email)</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- New User Card Example -->
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                            <div class="mt-2 mb-0 text-muted text-xs">
+                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                                <span>Since last month</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-info"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+
+                            <img class="img-profile rounded-circle" src="/Assets/dashboard/img/boy.png" style="width: 50%">
+                        </div>
+                        <div class="col-auto">
+                            @*<i class="fas fa-comments fa-2x text-warning"></i>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive p-3">
+            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.lastName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.firstName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.holyName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.BOD)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.numPhone)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.email)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.parentId)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.classId)*@
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.lastName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.firstName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.holyName)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.BOD)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.numPhone)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.email)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.parentId)*@
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.classId)*@
+                        </th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @*@foreach (var item in Model)*@
+                    {
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.lastName)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.firstName)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.holyName)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.BOD)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.numPhone)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.email)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.parentId)*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.classId)*@
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-fw fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @*<a title="Edit" href="@Url.Action("Edit","Student",new { id = item.id})" class="btn btn-secondary">*@
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+                                        @*<a title="Details" href="@Url.Action("details","student",new { id = item.id})" class="btn btn-warning">*@
+                                            <i class="fas fa-fw fa-fingerprint"></i>
+                                        </a>
+                                        @*<a title="Delete" href="@Url.Action("delete","student",new { id = item.id})" class="btn btn-danger">*@
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>    
+</div>
+     

@@ -1,11 +1,8 @@
 namespace DiemdanhHocvien.Migrations
 {
     using DiemdanhHocvien.DataAccess;
-    using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DiemdanhHocvien.DataAccess.AuthenticationDB>
     {
@@ -30,7 +27,7 @@ namespace DiemdanhHocvien.Migrations
             //    );
             //
 
-            
+
 
             context.Users.AddOrUpdate(x => x.UserId,
 
@@ -69,7 +66,7 @@ namespace DiemdanhHocvien.Migrations
                 },
                 new DataAccess.User
                 {
-                    UserId = 4 ,
+                    UserId = 4,
                     FirstName = "Leader",
                     LastName = "admi0",
                     Username = "leader",
@@ -91,7 +88,7 @@ namespace DiemdanhHocvien.Migrations
                 }
                 );
             context.SaveChanges();
-            
+
         }
     }
 }

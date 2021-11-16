@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DiemdanhHocvien.CustomAuthentication;
+using DiemdanhHocvien.DataAccess;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using DiemdanhHocvien.CustomAuthentication;
-using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers
 {
-    [CustomAuthorize(Roles = "superadmin,user,admin,")]
+    [Authorize]
     public class UserController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
 
+        [CustomAuthorize(Roles = "superadmin,user,admin,")]
         // GET: User
         public ActionResult Index()
         {
@@ -38,12 +34,14 @@ namespace DiemdanhHocvien.Controllers
             return View(user);
         }
 
+        [CustomAuthorize(Roles = "superadmin,user,admin,")]
         // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [CustomAuthorize(Roles = "superadmin,user,admin,")]
         // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -81,17 +79,28 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,Email,Password ")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                User a = db.Users.Find(user.UserId);
+                if(a != null)
+                {
+                    a.Username = user.Username;
+                    a.FirstName = user.FirstName;
+                    a.LastName = user.LastName;
+                    a.Email = user.Email;
+                    a.Password = user.Password;
+
+                    db.Entry(a).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Details", new { id = user.UserId });
+                }
             }
             return View(user);
         }
 
+        [CustomAuthorize(Roles = "superadmin,user,admin,")]
         // GET: User/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -107,6 +116,7 @@ namespace DiemdanhHocvien.Controllers
             return View(user);
         }
 
+        [CustomAuthorize(Roles = "superadmin,user,admin,")]
         // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -3,72 +3,115 @@
 @{
     ViewBag.Title = "Details";
 }
+ 
 
-<h2>Details</h2>
+<div class="container-fluid" id="container-wrapper">
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Student</li>
+            <li class="breadcrumb-item active" aria-current="page">Delete</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        <div class="col-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <div class="card mb-4"> 
+                <div class="card-body">
+                    <form method="post" action="@Url.Action("EDIT")">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">user Name</label>
+                            <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.Username" name="codeName">
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                            <div class="col">
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">last Name</label>
+                                    <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.LastName" name="codeName">
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="text-uppercase">first Name</label>
+                                    <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.FirstName" name="codeName">
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">email address</label>
+                            <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.Email" name="codeName">
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">password</label>
+                            <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.Password" name="codeName">
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">is active</label>
+                            <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.IsActive" name="codeName">
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">ActivationCode</label>
+                            <input disabled type="text" class="form-control" placeholder="Holy name" value="@Model.ActivationCode" name="codeName">
+                            @Html.ValidationMessageFor(model => model.ActivationCode, "", new { @class = "text-danger" })
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                        <div class="d-flex justify-content-between ">
+                             
+                            <a href="@Url.Action("index" )" class="btn btn-primary">Back to list</a>
+                            <a href="@Url.Action("Edit",new { id = Model.UserId})" class="btn btn-primary">EDIT</a>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+                    </form>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+                </div>
+            </div>
+        </div>
+        <div class="col">
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ActivationCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ActivationCode)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+@section _Header{
+    <!-- Bootstrap DatePicker -->
+    <link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Bootstrap Touchspin -->
+    <link href="vendor/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet">
+    <!-- ClockPicker -->
+    <link href="vendor/clock-picker/clockpicker.css" rel="stylesheet">
+}
+@section _Footer{
+
+    <script>
+            $("#actionName").text("Student")
+    </script>
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="~/Areas/admin/Assets/#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+     
+     
+
+
+}
+ 

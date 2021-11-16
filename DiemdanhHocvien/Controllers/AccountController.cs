@@ -3,7 +3,6 @@ using DiemdanhHocvien.DataAccess;
 using DiemdanhHocvien.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -69,7 +68,7 @@ namespace DiemdanhHocvien.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index","Home");
                     }
                 }
             }

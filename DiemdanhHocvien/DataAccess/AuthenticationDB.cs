@@ -1,17 +1,11 @@
-﻿using DiemdanhHocvien.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Configuration;
+﻿using System.Data.Entity;
 
 namespace DiemdanhHocvien.DataAccess
 {
     public class AuthenticationDB : DbContext
     {
         public AuthenticationDB()
-            :base("DiemDanhHocVienConnection")
+            : base("DiemDanhHocVienConnection")
         {
 
         }
@@ -30,12 +24,12 @@ namespace DiemdanhHocvien.DataAccess
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }  
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Class> classes { get; set; }
-        public DbSet<Attendence> attendences{ get; set; }
-        public DbSet<Parent> parents{ get; set; }
-        public DbSet<Student> students{ get; set; }
-        public DbSet<Teacher> Teachers { get; set; } 
+        public DbSet<Attendence> attendences { get; set; }
+        public DbSet<Parent> parents { get; set; }
+        public DbSet<Student> students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
 
     }
 }
