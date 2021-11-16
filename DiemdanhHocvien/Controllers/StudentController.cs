@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DiemdanhHocvien.CustomAuthentication;
+using DiemdanhHocvien.DataAccess;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DiemdanhHocvien.CustomAuthentication;
-using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers
 {
@@ -15,8 +11,8 @@ namespace DiemdanhHocvien.Controllers
     public class StudentController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
-        
-       
+
+
 
         // GET: Student
         public ActionResult Index()

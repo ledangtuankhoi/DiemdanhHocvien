@@ -1,8 +1,6 @@
-﻿using System;
-using DiemdanhHocvien.DataAccess;
+﻿using DiemdanhHocvien.DataAccess;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 
 namespace DiemdanhHocvien.CustomAuthentication
@@ -18,7 +16,7 @@ namespace DiemdanhHocvien.CustomAuthentication
 
         #endregion
 
-        public CustomMembershipUser(User user):base("CustomMembership", user.Username, user.UserId, user.Email, string.Empty, string.Empty, true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
+        public CustomMembershipUser(User user) : base("CustomMembership", user.Username, user.UserId, user.Email, string.Empty, string.Empty, true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
         {
             UserId = user.UserId;
             FirstName = user.FirstName;

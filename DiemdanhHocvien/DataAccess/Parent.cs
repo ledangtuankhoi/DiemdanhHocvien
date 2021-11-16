@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DiemdanhHocvien.DataAccess
 {
@@ -15,7 +11,7 @@ namespace DiemdanhHocvien.DataAccess
         public string numPhoneDad { get; set; }
         public string numPhoneMom { get; set; }
         public string emailDad { get; set; }
-        public string emailMon{ get; set; }
+        public string emailMon { get; set; }
         public string address { get; set; }
 
     }
