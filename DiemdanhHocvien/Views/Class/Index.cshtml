@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-} 
+}
 
 @section _Header{
     <link href="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -11,9 +11,7 @@
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-1">
         @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
-        <script>
-            $("#actionName").text("Student")
-        </script>
+
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
             <li class="breadcrumb-item">Tables</li>
@@ -63,7 +61,7 @@
                                 </th>
                                 <th>
                                     Quantity
-                                </th> 
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -95,86 +93,86 @@
                             @{var soluong = ViewBag.soluong; }
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.codeName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.className)
-                                </td>
-                                <td>
-                                    @item.endDate.ToString("dd-MM-yyy")
-                                    @*@Html.DisplayFor(modelItem => item.endDate)*@
-                                </td>
-                                <td>
-                                    @item.startDate.ToString("dd-MM-yyy")
-                                    @*@Html.DisplayFor(modelItem => item.startDate)*@
-                                </td>
-                                 
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.dayOfWeek)*@
-                                    @{ List<int> dayof = item.dayOfWeek.Split(',').Select(Int32.Parse).ToList(); }
-                                    @*@dayof[0]*@
-                                    @foreach (var day in dayof)
-                                    {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.codeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.className)
+                                    </td>
+                                    <td>
+                                        @item.endDate.ToString("dd-MM-yyy")
+                                        @*@Html.DisplayFor(modelItem => item.endDate)*@
+                                    </td>
+                                    <td>
+                                        @item.startDate.ToString("dd-MM-yyy")
+                                        @*@Html.DisplayFor(modelItem => item.startDate)*@
+                                    </td>
 
-                                        switch (day)
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.dayOfWeek)*@
+                                        @{ List<int> dayof = item.dayOfWeek.Split(',').Select(Int32.Parse).ToList(); }
+                                        @*@dayof[0]*@
+                                        @foreach (var day in dayof)
                                         {
-                                            case 0:
-                                                <span>2</span>
-                                                break;
-                                            case 1:
-                                                <span>3</span>
-                                                break;
-                                            case 2:
-                                                <span>4</span>
-                                                break;
-                                            case 3:
-                                                <span>5</span>
 
-                                                break;
-                                            case 4:
-                                                <span>6</span>
+                                            switch (day)
+                                            {
+                                                case 0:
+                                                    <span>2</span>
+                                                    break;
+                                                case 1:
+                                                    <span>3</span>
+                                                    break;
+                                                case 2:
+                                                    <span>4</span>
+                                                    break;
+                                                case 3:
+                                                    <span>5</span>
 
-                                                break;
-                                            case 5:
-                                                <span>7</span>
-                                                break;
-                                            case 6:
-                                                <span>CN</span>
-                                                break;
-                                            default:
-                                                break;
+                                                    break;
+                                                case 4:
+                                                    <span>6</span>
+
+                                                    break;
+                                                case 5:
+                                                    <span>7</span>
+                                                    break;
+                                                case 6:
+                                                    <span>CN</span>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
                                         }
+                                    </td>
+                                    <td> @soluong[key]</td>
+                                    @{key++;
                                     }
-                                </td>
-                                <td> @soluong[key]</td>
-                                @{key++;
-                                }
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-fw fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a title="Edit" href="@Url.Action("Edit" ,new { id = item.id})" class="btn btn-secondary" >
-                                                <i class="fas fa-fw fa-edit"></i>
-                                            </a>
-                                            <a title="Details" href="@Url.Action("details" ,new { id = item.id})" class="btn btn-warning">
-                                                <i class="fas fa-fw fa-fingerprint"></i>
-                                            </a>
-                                            <a title="Delete" href="@Url.Action("delete" ,new { id = item.id})" class="btn btn-danger">
-                                                <i class="fas fa-fw fa-trash-alt"></i>
-                                            </a>
-                                            <a title="Add Student" href="@Url.Action("addStudent" ,new { id = item.id})" class="btn btn-info">
-                                                <i class="fas fa-fw fa-plus"></i>
-                                            </a>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-fw fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a title="Edit" href="@Url.Action("Edit" ,new { id = item.id})" class="btn btn-secondary">
+                                                    <i class="fas fa-fw fa-edit"></i>
+                                                </a>
+                                                <a title="Details" href="@Url.Action("details" ,new { id = item.id})" class="btn btn-warning">
+                                                    <i class="fas fa-fw fa-fingerprint"></i>
+                                                </a>
+                                                <a title="Delete" href="@Url.Action("delete" ,new { id = item.id})" class="btn btn-danger">
+                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                </a>
+                                                <a title="Add Student" href="@Url.Action("addStudent" ,new { id = item.id})" class="btn btn-info">
+                                                    <i class="fas fa-fw fa-plus"></i>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -222,7 +220,9 @@
 <!---Container Fluid-->
 
 @section _Footer{
-
+    <script>
+        $("#actionName").text("Class list")
+    </script>
     <!-- Page level plugins -->
     <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
