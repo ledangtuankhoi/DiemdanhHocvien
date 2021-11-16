@@ -117,6 +117,8 @@ namespace DiemdanhHocvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            student.BOD.GetDateTimeFormats();
             return View(student);
         }
 
