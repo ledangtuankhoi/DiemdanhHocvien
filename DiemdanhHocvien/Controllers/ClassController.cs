@@ -115,7 +115,7 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,userId")] Class @class,List<int> dayOfWeek)
+        public ActionResult Create([Bind(Include = "id,className,codeName,startDate,endDate ,userId")] Class @class,List<int> dayOfWeek)
         {
             if (ModelState.IsValid)
             {
@@ -150,10 +150,13 @@ namespace DiemdanhHocvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,className,codeName,startDate,endDate,numPhoneMom,dayOfWeek,userId")] Class @class)
+        public ActionResult Edit([Bind(Include = "id,className,codeName,startDate,endDate ,userId")] Class @class, List<int> dayOfWeek)
         {
             if (ModelState.IsValid)
             {
+                List<string> l2 = dayOfWeek.ConvertAll<string>(x => x.ToString());
+
+                @class.dayOfWeek = string.Join(",", l2);
                 db.Entry(@class).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -4412,6 +4412,10 @@
     <Compile Include="Migrations\202111130954221_tbl_class_dayofwweb_to_string.Designer.cs">
       <DependentUpon>202111130954221_tbl_class_dayofwweb_to_string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111160302318_class_del_col_phone.cs" />
+    <Compile Include="Migrations\202111160302318_class_del_col_phone.Designer.cs">
+      <DependentUpon>202111160302318_class_del_col_phone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4459,6 +4463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111130954221_tbl_class_dayofwweb_to_string.resx">
       <DependentUpon>202111130954221_tbl_class_dayofwweb_to_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111160302318_class_del_col_phone.resx">
+      <DependentUpon>202111160302318_class_del_col_phone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
