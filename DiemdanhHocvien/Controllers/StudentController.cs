@@ -16,50 +16,7 @@ namespace DiemdanhHocvien.Controllers
     {
         private AuthenticationDB db = new AuthenticationDB();
         
-        // GET: addStudent/5
-        public ActionResult addStudent(int id)
-        {
-            var lstStudent = db.students.ToList();
-            List<string> lstnameClass = new List<string>();
-
-            foreach (var item in lstStudent)
-            {
-                var nameClass = db.classes.Where(x => x.id == item.classId).Select(x => x.className).FirstOrDefault();
-                if (nameClass!=null)
-                {
-
-                lstnameClass.Add(nameClass);
-                }
-                else
-                {
-                    lstnameClass.Add("null");
-                }
-            }
-            ViewBag.lstnameClass = lstnameClass;
-            ViewBag.classId = id;
-
-            return View(lstStudent);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult addStudent(List<int> lstStudent,int classId)
-        {
-            if (ModelState.IsValid)
-            {
-                //db.students.Add(student);
-
-                foreach (var item in lstStudent)
-                {
-                    db.students.Find(item).classId = classId;
-                    db.SaveChanges();
-                }
-
-                ViewBag.quantity = lstStudent.Count;
-                return RedirectToAction("Index","class");
-            }
-
-            return View( );
-        }
+       
 
         // GET: Student
         public ActionResult Index()
