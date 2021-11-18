@@ -11,6 +11,7 @@ using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers
 {
+    [Authorize]
     public class AttendenceController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
@@ -88,9 +89,9 @@ namespace DiemdanhHocvien.Controllers
 
                 lstStudeId.Add(idStud);
                 //minium time next attendent student
-                int minTimeAtte = 10;
+                int minTimeAtte = 10; // minutes
                 var atteStud = db.attendences.Where(x => x.studentId == idStud).FirstOrDefault();
-                if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > .1)
+                if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > minTimeAtte)
                 { 
                     atteStud.description = desAtten;
                     // kiểm tra xem nếu có trong list điểm danh thì tăng order lên
@@ -118,7 +119,7 @@ namespace DiemdanhHocvien.Controllers
 
         }
 
-
+        [CustomAuthorize(Roles = "superadmin,admin,user,leader")]
         // GET: Attendence
         public ActionResult Index()
         {
@@ -139,6 +140,7 @@ namespace DiemdanhHocvien.Controllers
             }
             return View(attendence);
         }
+        [CustomAuthorize(Roles = "superadmin,admin,user,leader")]
 
         // GET: Attendence/Create
         public ActionResult Create()
@@ -163,6 +165,7 @@ namespace DiemdanhHocvien.Controllers
             return View(attendence);
         }
 
+        [CustomAuthorize(Roles = "superadmin,admin,user,leader")]
         // GET: Attendence/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -194,6 +197,7 @@ namespace DiemdanhHocvien.Controllers
             return View(attendence);
         }
 
+        [CustomAuthorize(Roles = "superadmin,admin,user,leader")]
         // GET: Attendence/Delete/5
         public ActionResult Delete(int? id)
         {
