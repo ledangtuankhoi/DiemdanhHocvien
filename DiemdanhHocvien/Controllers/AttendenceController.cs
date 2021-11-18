@@ -40,11 +40,34 @@ namespace DiemdanhHocvien.Controllers
         // GET: Attendence/attendenceTeacher
         public ActionResult attendenceTeacher(int id)
         {
+            //List student in class
             var lstStudent = db.students.Where(x => x.classId == id).ToList();
-            //List<string> lstnameClass = new List<string>();
 
+            List<Attendence> lstAtten = new List<Attendence>();
+            foreach (var item in lstStudent)
+            {
+                var i = db.attendences.Where(x => x.studentId == item.id).FirstOrDefault();
+                if(i == null || i.createTime.Date.Day != DateTime.Now.Date.Day)
+                {
+                    Attendence atte = new Attendence();
+                    atte.createTime = DateTime.Now;
+                    atte.time= DateTime.Now;
+                    atte.description = "";
+                    atte.order = 0;
+                    atte.studentId = item.id;
 
-            return View(lstStudent);
+                    lstAtten.Add(atte);
+                    db.attendences.Add(atte);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    lstAtten.Add(i);
+                }
+            }
+
+            ViewBag.lstStud = lstStudent;
+            return View(lstAtten);
             //return 
         }
         [HttpPost]
@@ -52,57 +75,46 @@ namespace DiemdanhHocvien.Controllers
         // POST: Attendence/attendenceTeacher
         public ActionResult attendenceTeacher(List<int> lstStudentTrue, List<string> description)
         {
-            //List<string> lstDes = new List<string>( ) ;
+            //var lstStudent = db.students.Where(x => x.classId == id).ToList();
+            List<int> lstStudeId = new List<int>();
+            List<Attendence> lstAtten = new List<Attendence>();
             foreach (var item in description)
             {
-
                 var i = item.Split('#');
+                //i[0] id of student
+                //i[1] description of student
                 int idStud = int.Parse(i[0]);
+                string desAtten = item.Substring(item.IndexOf("#")+1);
+
+                lstStudeId.Add(idStud);
                 //minium time next attendent student
                 int minTimeAtte = 10;
                 var atteStud = db.attendences.Where(x => x.studentId == idStud).FirstOrDefault();
-                if (atteStud != null && atteStud.id > 0)
-                {
-                    if (atteStud.createTime.Date.Day == DateTime.Now.Date.Day || (atteStud.time - DateTime.Now).TotalMinutes > minTimeAtte)
+                if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > .1)
+                { 
+                    atteStud.description = desAtten;
+                    // kiểm tra xem nếu có trong list điểm danh thì tăng order lên
+                    if(lstStudentTrue != null && lstStudentTrue.Contains(idStud))
                     {
                         atteStud.order += 1;
                         atteStud.time = DateTime.Now;
+                    } 
+                    db.Entry(atteStud).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                        db.Entry(atteStud).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
                 }
-                else
-                {
-
-                    if (lstStudentTrue.Any(x => x == idStud))
-                    {
-                        Attendence attendence = new Attendence();
-                        attendence.order = 1;
-                        attendence.description = i[1];
-                        attendence.studentId = idStud;
-
-                        attendence.time = DateTime.Now;
-                        attendence.createTime = DateTime.Now;
-                        db.attendences.Add(attendence);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        Attendence attendence = new Attendence();
-                        attendence.order = 0;
-                        attendence.description = i[1];
-                        attendence.studentId = idStud;
-
-                        attendence.time = DateTime.Now;
-                        attendence.createTime = DateTime.Now;
-                        db.attendences.Add(attendence);
-                        db.SaveChanges();
-                    }
-                }
+                    ////find attendence procese
+                    bool datetrue = atteStud.createTime.Date.Day == DateTime.Now.Date.Day;
+                lstAtten.Add(db.attendences.Where(x => x.studentId == idStud && datetrue == true).FirstOrDefault());
+            }
+            List<Student> lstStudent = new List<Student>();
+            foreach (var item in lstStudeId)
+            {
+                lstStudent.Add(db.students.Find(item));
             }
 
-            return View();
+            ViewBag.lstStud = lstStudent;
+            return View(lstAtten);
 
         }
 

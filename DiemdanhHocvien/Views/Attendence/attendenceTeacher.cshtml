@@ -1,8 +1,14 @@
-﻿@model IEnumerable<DiemdanhHocvien.DataAccess.Student>
+﻿@model IEnumerable<DiemdanhHocvien.DataAccess.Attendence>
+@using DiemdanhHocvien.DataAccess
+@{ List<Student> lstStud = new List<Student>();
+    lstStud = ViewBag.lstStud;
+}
+
 
 @{
     ViewBag.Title = "Details";
 }
+
 <div class="container-fluid" id="container-wrapper">
 
     <!-- form atribute call -->
@@ -20,16 +26,16 @@
                             <tr>
                                 <th>Yes</th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.holyName)
+                                     holyName 
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.lastName)
+                                    lastName 
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.firstName)
+                                  firstName 
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.BOD)
+                                    BOD 
                                 </th>
                                 <th>
                                     Description
@@ -41,16 +47,16 @@
                             <tr>
                                 <th>Yes</th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.holyName)
+                                    holyName
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.lastName)
+                                    lastName
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.firstName)
+                                    firstName
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.BOD)
+                                    BOD
                                 </th>
                                 <th>
                                     Description
@@ -65,23 +71,27 @@
                             {
 
                                 <tr>
-                                    <td><input type="checkbox" name="lstStudentTrue" form="form" value="@item.id" /></td>
+                                    <td><input type="checkbox" name="lstStudentTrue" form="form" value="@lstStud.Where(x => x.id == item.studentId).FirstOrDefault().id" /></td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.lastName)
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().holyName
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.firstName)
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().firstName
+
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.holyName)
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().lastName
+
                                     </td>
                                     <td>
-                                        @item.BOD.ToString("dd-MM-yyyy")
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().BOD.ToString("dd-MM-yyyy")
                                     </td>
                                     <th>
-                                        <input class="form-control" data-id="@item.id" type="text" name="description" placeholder="enter description" form="form" />
+                                        <input value="@item.description" class="form-control" data-id="@lstStud.Where(x => x.id == item.studentId).FirstOrDefault().id" type="text" name="description" placeholder="enter description" form="form" />
                                     </th>
-                                    <th></th>
+                                    <th>
+                                        @item.order
+                                    </th>
                                 </tr>
 
                             }
@@ -93,55 +103,55 @@
     </div>
     <!--Row-->
     <!---Container Fluid-->
-    </div>
-    @section _Footer{
+</div>
+@section _Footer{
 
-        <!-- Page level plugins -->
-        <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script>
-            $(document).ready(function () {
-                $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    <!-- Page level custom scripts -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
+    <script>
+        $("#actionName").text("Add Student to class")
+    </script>
+
+    @*click submit add it student*@
+
+    <script>
+        function addIdInValues() {
+            var lstinput = $("tbody input[type=text]");
+            lstinput.each(function (e) {
+                id = $(this).data('id');
+                des = id;
+                des += "#";
+                des += $(this).val();
+                $(this).val(des);
             });
-        </script>
-        <script>
-            $("#actionName").text("Add Student to class")
-        </script>
+            return true;
 
-        @*click submit add it student*@
+        }
+    </script>
 
-        <script>
-            function addIdInValues() {
-                var lstinput = $("tbody input[type=text]");
-                lstinput.each(function (e) {
-                    id = $(this).data('id');
-                    des = id;
-                    des += "#";
-                    des += $(this).val();
-                    $(this).val(des);
-                });
-                return true;
-
-            }
-        </script>
-
-        @*click row in table checkbox*@
-        <script>
-            $(document).ready(function () {
-                $('.record_table tr').click(function (event) {
-                    if (event.target.type !== 'checkbox') {
-                        $(':checkbox', this).trigger('click');
-                        if ($(':checkbox', this)[0].checked) {
-                            $(this).css("background-color", "#6777ef6b");
-                        } else {
-                            $(this).css("background-color", "");
-                        }
+    @*click row in table checkbox*@
+    <script>
+        $(document).ready(function () {
+            $('.record_table tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                    if ($(':checkbox', this)[0].checked) {
+                        $(this).css("background-color", "#6777ef6b");
+                    } else {
+                        $(this).css("background-color", "");
                     }
+                }
 
 
-                });
             });
-        </script>
-    }
+        });
+    </script>
+}
