@@ -5,13 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
+
+
 
 
 namespace DiemdanhHocvien.Controllers
 {
-    [CustomAuthorize(Roles = "superadmin,admin,user,leader,teacher")]
 
+    [CustomAuthorize(Roles = "superadmin,admin,user,leader")] 
     public class ClassController : Controller
     {
 
@@ -65,17 +68,21 @@ namespace DiemdanhHocvien.Controllers
         // GET: Class
         public ActionResult Index()
         {
+            //List all classs
             var lstClass = db.classes.ToList();
+            //count student have in class
             List<int> soluong = new List<int>();
+
             foreach (var item in lstClass)
             {
                 var countStud = db.students.Where(x => x.classId == item.id).Count();
                 soluong.Add(countStud);
             }
-            //lstClass.AddRange);
             ViewBag.soluong = soluong;
-            return View(db.classes.ToList());
+            return View(lstClass);
         }
+
+
 
         // GET: Class/Details/5
         public ActionResult Details(int? id)

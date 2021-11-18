@@ -64,7 +64,8 @@ namespace DiemdanhHocvien.Controllers
 
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
-                        return Redirect(ReturnUrl);
+                        return RedirectToAction("Index","Home");
+                        //return Redirect(ReturnUrl);
                     }
                     else
                     {
