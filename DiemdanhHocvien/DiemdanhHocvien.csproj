@@ -4383,6 +4383,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendenceController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4416,6 +4417,10 @@
     <Compile Include="Migrations\202111160302318_class_del_col_phone.Designer.cs">
       <DependentUpon>202111160302318_class_del_col_phone.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111171613391_create_studentId_tblAttendence.cs" />
+    <Compile Include="Migrations\202111171613391_create_studentId_tblAttendence.Designer.cs">
+      <DependentUpon>202111171613391_create_studentId_tblAttendence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4447,6 +4452,13 @@
     <Content Include="Views\Class\addStudent.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Attendence\Create.cshtml" />
+    <Content Include="Views\Attendence\Delete.cshtml" />
+    <Content Include="Views\Attendence\Details.cshtml" />
+    <Content Include="Views\Attendence\Edit.cshtml" />
+    <Content Include="Views\Attendence\Index.cshtml" />
+    <Content Include="Views\Attendence\IndexTeacher.cshtml" />
+    <Content Include="Views\Attendence\attendenceTeacher.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4456,6 +4468,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Attendence\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111121130308_init.resx">
@@ -4466,6 +4479,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111160302318_class_del_col_phone.resx">
       <DependentUpon>202111160302318_class_del_col_phone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111171613391_create_studentId_tblAttendence.resx">
+      <DependentUpon>202111171613391_create_studentId_tblAttendence.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

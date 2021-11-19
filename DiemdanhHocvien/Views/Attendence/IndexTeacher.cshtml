@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DiemdanhHocvien.DataAccess.Class>
+﻿ 
+@model IEnumerable<DiemdanhHocvien.DataAccess.Class>
 
 @{
     ViewBag.Title = "Index";
@@ -18,10 +19,10 @@
             <li class="breadcrumb-item active" aria-current="page">DataTables</li>
         </ol>
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-start">
-            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+            <a href="@Url.Action("Create","Class")" class="btn btn-outline-success ml-2">
                 Create
             </a>
-            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+            <a href="@Url.Action("Create","Class")" class="btn btn-outline-success ml-2">
                 Create
             </a>
             <a class="btn btn-outline-success ml-2">
@@ -150,29 +151,32 @@
                                     <td> @soluong[key]</td>
                                     @{key++;
                                     }
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-fw fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a title="Edit" href="@Url.Action("Edit" ,new { id = item.id})" class="btn btn-secondary">
-                                                    <i class="fas fa-fw fa-edit"></i>
-                                                </a>
-                                                <a title="Details" href="@Url.Action("details" ,new { id = item.id})" class="btn btn-warning">
-                                                    <i class="fas fa-fw fa-fingerprint"></i>
-                                                </a>
-                                                <a title="Delete" href="@Url.Action("delete" ,new { id = item.id})" class="btn btn-danger">
-                                                    <i class="fas fa-fw fa-trash-alt"></i>
-                                                </a>
-                                                <a title="Add Student" href="@Url.Action("addStudent" ,new { id = item.id})" class="btn btn-info">
-                                                    <i class="fas fa-fw fa-plus"></i>
-                                                </a>
-                                            </div>
+                                <td>
+                                    <a title="Edit" href="@Url.Action("attendenceTeacher" ,new { id = item.id})" class="btn btn-secondary">
+                                        <i class="fas fa-fw fa-thumbs-up"></i>
+                                    </a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-fw fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a title="Edit" href="@Url.Action("Edit","Class" ,new { id = item.id})" class="btn btn-secondary">
+                                                <i class="fas fa-fw fa-edit"></i>
+                                            </a>
+                                            <a title="Details" href="@Url.Action("details","Class" ,new { id = item.id})" class="btn btn-warning">
+                                                <i class="fas fa-fw fa-fingerprint"></i>
+                                            </a>
+                                            <a title="Delete" href="@Url.Action("delete","Class" ,new { id = item.id})" class="btn btn-danger">
+                                                <i class="fas fa-fw fa-trash-alt"></i>
+                                            </a>
+                                            <a title="Add Student" href="@Url.Action("addStudent","Class" ,new { id = item.id})" class="btn btn-info">
+                                                <i class="fas fa-fw fa-plus"></i>
+                                            </a>
                                         </div>
+                                    </div>
 
 
-                                    </td>
+                                </td>
                                 </tr>
                             }
                         </tbody>
@@ -181,42 +185,7 @@
             </div>
         </div>
     </div>
-    <!--Row-->
-    <!-- Documentation Link -->
-    <div class="row">
-        <div class="col-lg-12">
-            <p>
-                DataTables is a third party plugin that is used to generate the demo table below. For more information
-                about DataTables, please visit the official <a href="https://datatables.net/" target="_blank">
-                    DataTables
-                    documentation.
-                </a>
-            </p>
-        </div>
-    </div>
-
-    <!-- Modal Logout -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to logout?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                    <a href="login.html" class="btn btn-primary">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!--Row-->  
 </div>
 <!---Container Fluid-->
 

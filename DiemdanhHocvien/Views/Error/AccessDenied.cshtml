@@ -1,7 +1,29 @@
-﻿
-@{
-    ViewBag.Title = "AccessDenied";
+﻿@using DiemdanhHocvien.CustomAuthentication
+
+@{ ViewBag.Title = "AccessDenied"; }
+
+
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="text-center">
+        <img src="~/Assets/dashboard/img/error.svg" style="max-height: 100px;" class="mb-3">
+        <h3 class="text-gray-800 font-weight-bold">Oopss!</h3>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            var identity = ((CustomPrincipal)HttpContext.Current.User);
+
+            @Html.Label(string.Format("{0} {1}", identity.FirstName, identity.LastName))
+        }
+        <p class="lead text-gray-800 mx-auto"><h2>AccessDenied</h2></p>
+
+        <a href="@Url.Action("index","home")">&larr; Back to Dashboard</a>
+    </div>
+
+</div>
+<!---Container Fluid-->
+
+@section _Footer{
+    <script>
+        $("#actionName").text("AccessDenied")
+    </script>
 }
-
-<h2>AccessDenied</h2>
-

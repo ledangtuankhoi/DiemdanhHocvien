@@ -1,0 +1,202 @@
+﻿@model IEnumerable<DiemdanhHocvien.DataAccess.Attendence>
+@using DiemdanhHocvien.DataAccess
+@{ List<Student> lstStud = new List<Student>();
+    lstStud = ViewBag.lstStud;
+}
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container-fluid" id="container-wrapper">
+    @*<h1>@ViewBag.error</h1>*@
+    @if (ViewBag.error != null)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @ViewBag.error
+        </div>
+    }
+    <!-- form atribute call -->
+    <form action="#" method="post" id="form" onsubmit="addIdInValues();" name="form">@Html.AntiForgeryToken()</form>
+    <button id="submit" value="addStudent" class="btn btn-primary" form="form">  submit  </button>
+
+    <!-- Row -->
+    <div class="row">
+        <!-- DataTable with Hover -->
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover record_table" id="dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Yes</th>
+                                <th>
+                                    holyName
+                                </th>
+                                <th>
+                                    lastName
+                                </th>
+                                <th>
+                                    firstName
+                                </th>
+                                <th>
+                                    BOD
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>Order</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Yes</th>
+                                <th>
+                                    holyName
+                                </th>
+                                <th>
+                                    lastName
+                                </th>
+                                <th>
+                                    firstName
+                                </th>
+                                <th>
+                                    BOD
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>Order</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="lstStudentTrue" form="form" value="@lstStud.Where(x => x.id == item.studentId).FirstOrDefault().id" />
+                                        <p style='visibility: hidden; display: none;'>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().holyName
+                                    </td>
+                                    <td>
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().firstName
+
+                                    </td>
+                                    <td>
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().lastName
+
+                                    </td>
+                                    <td>
+                                        @lstStud.Where(x => x.id == item.studentId).FirstOrDefault().BOD.ToString("dd-MM-yyyy")
+                                    </td>
+                                    <th>
+                                        <input value="@item.description" class="form-control" data-id="@lstStud.Where(x => x.id == item.studentId).FirstOrDefault().id" type="text" name="description" placeholder="enter description" form="form" />
+                                    </th>
+                                    <th>
+                                        @item.order
+                                    </th>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Row-->
+    <!---Container Fluid-->
+</div>
+@section _Footer{
+
+    <!-- Page level plugins -->
+    <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script>
+        /* Create an array with the values of all the checkboxes in a column */
+        $.fn.dataTable.ext.order['dom-checkbox'] = function (settings, col) {
+            return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+                return $('input', td).prop('checked') ? '1' : '0';
+            });
+        }
+
+        $(document).ready(function () {
+            @*$('#dataTableHover').DataTable({}); // ID From dataTable with Hover*@
+
+            var table = $('#dataTableHover').DataTable({
+                columnDefs: [
+                    {
+                        targets: [0],
+                        orderDataType: 'dom-checkbox'
+                    }
+                ]
+            });
+
+            $(':checkbox').on('change', function (e) {
+                var row = $(this).closest('tr');
+                var hmc = row.find(':checkbox:checked').length;
+                var kluj = parseInt(hmc);
+                row.find('td.counter').text(kluj);
+                table.row(row).invalidate('dom');
+            });
+
+        });
+    </script>
+    <script>
+        $("#actionName").text("Add Student to class")
+    </script>
+
+    @*click submit add it student*@
+
+    <script>
+        function addIdInValues() {
+            var lstinput = $("tbody input[type=text]");
+            lstinput.each(function (e) {
+                id = $(this).data('id');
+                des = id;
+                des += "#";
+                des += $(this).val();
+                $(this).val(des);
+            });
+            return true;
+
+        }
+    </script>
+
+    @*click row in table checkbox*@
+    <script>
+        $(document).ready(function () {
+            $('.record_table tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                    if ($(':checkbox', this)[0].checked) {
+                        $(this).css("background-color", "#6777ef6b");
+                    } else {
+                        $(this).css("background-color", "");
+                    }
+                }
+
+
+            });
+        });
+    </script>
+
+    <script>
+        $(".alert").delay(4000).slideUp(200, function () {
+            $(this).alert('close');
+        });
+    </script>
+   
+}
