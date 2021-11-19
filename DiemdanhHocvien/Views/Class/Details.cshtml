@@ -25,6 +25,7 @@
                             <a title="Edit" href="@Url.Action("Edit", "Class", new { id = Model.id })" class="btn btn-secondary">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
+                            <p class="text-center">edit</p>
                         </div>
                     </div>
                 </div>
@@ -57,26 +58,27 @@
                                     switch (day)
                                     {
                                         case 0:
-                                            <button class="btn btn-success"> <span>2</span></button>
-                                            break;
-                                        case 1:
-                                            <button class="btn btn-success"> <span>3</span></button>
-                                            break;
-                                        case 2:
-                                            <button class="btn btn-success"> <span>4</span></button>
-                                            break;
-                                        case 3:
-                                            <button class="btn btn-success"> <span>5</span></button>
-                                            break;
-                                        case 4:
-                                            <button class="btn btn-success"> <span>6</span></button>
-                                            break;
-                                        case 5:
-                                            <button class="btn btn-success"> <span>7</span></button>
-                                            break;
-                                        case 6:
                                             <button class="btn btn-success"> <span>CN</span></button>
                                             break;
+                                        case 1:
+                                            <button class="btn btn-success"> <span>2</span></button>
+                                            break;
+                                        case 2:
+                                            <button class="btn btn-success"> <span>3</span></button>
+                                            break;
+                                        case 3:
+                                            <button class="btn btn-success"> <span>4</span></button>
+                                            break;
+                                        case 4:
+                                            <button class="btn btn-success"> <span>5</span></button>
+                                            break;
+                                        case 5:
+                                            <button class="btn btn-success"> <span>6</span></button>
+                                            break;
+                                        case 6:
+                                            <button class="btn btn-success"> <span>7</span></button>
+                                            break;
+
                                         default:
                                             break;
                                     }
@@ -94,8 +96,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Count Student</div>
+                            <div class=" count h5 mb-0 mr-3 font-weight-bold text-gray-800" >    </div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
                                 <span>Since last month</span>
@@ -114,7 +116,6 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-
                             <img class="img-profile rounded-circle" src="/Assets/dashboard/img/boy.png" style="width: 50%">
                         </div>
                         <div class="col-auto">
@@ -245,6 +246,7 @@
     <script>
         $(document).ready(function () {
             $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+            $(".count").append($('#dataTableHover').DataTable().rows().count());
         });
     </script>
 

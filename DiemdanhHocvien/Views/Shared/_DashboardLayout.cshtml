@@ -119,7 +119,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
-                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-1 static-top">
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
@@ -327,14 +327,10 @@
                 </nav>
                 <!-- Topbar -->
                 <!-- Container Fluid-->
-                @*<div class="container-fluid" id="container-wrapper">*@
-
                 @RenderBody()
                 <!---Container Fluid-->
-                @*</div>*@
-                <!-- Footer -->
                 
-                <!-- Footer -->
+                
             </div>
         </div>
 
@@ -349,9 +345,9 @@
         <script src="~/Assets/dashboard/js/ruang-admin.min.js"></script>
         <script src="~/Assets/dashboard/vendor/chart.js/Chart.min.js"></script>
         <script src="~/Assets/dashboard/js/demo/chart-area-demo.js"></script>
-        @RenderSection("_Header", false);
+        @RenderSection("_Header", false)
 
-        @RenderSection("_Footer", false);
+        @RenderSection("_Footer", false)
 
         <script>
         @*ẩn thanh sidebar*@

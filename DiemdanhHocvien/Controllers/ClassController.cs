@@ -60,12 +60,13 @@ namespace DiemdanhHocvien.Controllers
                 }
 
                 ViewBag.quantity = lstStudent.Count;
-                return RedirectToAction("Index", "class");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
         }
 
+        [CustomAuthorize(Roles = "superadmin,admin,user,leader")]
         // GET: Class
         public ActionResult Index()
         {
@@ -131,7 +132,7 @@ namespace DiemdanhHocvien.Controllers
                 @class.dayOfWeek = string.Join(",", l2);
                 db.classes.Add(@class);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","home");
             }
 
             return View(@class);
