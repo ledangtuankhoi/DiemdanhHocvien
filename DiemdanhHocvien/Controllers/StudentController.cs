@@ -97,6 +97,8 @@ namespace DiemdanhHocvien.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
+            ViewBag.parents = db.parents.ToList();
+
             return View();
         }
 
@@ -129,6 +131,8 @@ namespace DiemdanhHocvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.parents = db.parents.ToList();
 
             student.BOD.GetDateTimeFormats();
             return View(student);

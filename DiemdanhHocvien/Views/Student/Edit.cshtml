@@ -1,6 +1,5 @@
 ﻿@model DiemdanhHocvien.DataAccess.Student
-
-@{
+ @{
     ViewBag.Title = "Edit";
 }
 <div class="container-fluid" id="container-wrapper">
@@ -76,26 +75,154 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1" class="text-uppercase">Parent</label>
-                            <input type="number" class="form-control" placeholder="Parent" value="@Model.parentId" name="parenId">
+                            <input id="parenId" type="number" class="form-control" placeholder="Parent" value="@Model.parentId" >
                             @Html.ValidationMessageFor(model => model.parentId, "", new { @class = "text-danger" })
 
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1" class="text-uppercase">Class</label>
-                            <input type="number" class="form-control" placeholder="Class" value="@Model.classId" name="classId">
-                            @Html.ValidationMessageFor(model => model.classId, "", new { @class = "text-danger" })
 
-                        </div>
 
                         <button type="submit" class="btn btn-primary">SAVE</button>
                         <a href="@Url.Action("index","student")" class="btn btn-primary">Back to list</a>
                     </form>
+                    <!-- Modal Scrollable -->
+                    <div class="modal fade " id="exampleModalScrollable" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal scrollable title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @*ten cha ten me*@
+                                    <fieldset class="form-group">
 
+
+                                        <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>
+                                                        Mon
+                                                    </th>
+                                                    <th>
+                                                        Mon Number phone
+                                                    </th>
+                                                    <th>
+                                                        Mon email
+                                                    </th>
+                                                    <th>
+                                                        Dad
+                                                    </th>
+                                                    <th>
+                                                        Dad Number phone
+                                                    </th>
+                                                    <th>
+                                                        Dad email
+                                                    </th>
+                                                    <th>
+                                                        Address
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>
+                                                        Mon
+                                                    </th>
+                                                    <th>
+                                                        Mon Number phone
+                                                    </th>
+                                                    <th>
+                                                        Mon email
+                                                    </th>
+                                                    <th>
+                                                        Dad
+                                                    </th>
+                                                    <th>
+                                                        Dad Number phone
+                                                    </th>
+                                                    <th>
+                                                        Dad email
+                                                    </th>
+                                                    <th>
+                                                        Address
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                @foreach (var item in ViewBag.parents as ICollection<DiemdanhHocvien.DataAccess.Parent>)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="parenId" value="@item.id" checked>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.monName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.numPhoneMom)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.emailMon)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.dadName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.numPhoneDad)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.emailDad)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.address)
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </fieldset>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
 
         </div>
+        <div class="col"></div>
     </div>
-</div>
+
+    @section _Footer{
+        <script>
+        $("#parenId").click(function () {
+            @*alert('clicked!');*@
+            $("#exampleModalScrollable").modal("show");
+        });
+
+
+        </script>
+        @*click row in table checkbox*@
+        <script>
+            $(document).ready(function () {
+                $(' tr').click(function (event) {
+                    console.log($(this).find("input").prop("checked", true));
+                });
+            });
+        </script>
+    }
+     
