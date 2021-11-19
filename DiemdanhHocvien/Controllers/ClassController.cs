@@ -14,7 +14,8 @@ using System.Web.UI.WebControls;
 namespace DiemdanhHocvien.Controllers
 {
 
-    [CustomAuthorize(Roles = "superadmin,admin,user,leader")]   
+    //[CustomAuthorize(Roles = "superadmin,admin,user,leader")]   
+    [Authorize]
     public class ClassController : Controller
     {
 

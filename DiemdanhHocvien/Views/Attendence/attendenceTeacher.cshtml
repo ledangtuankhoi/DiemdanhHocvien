@@ -10,7 +10,16 @@
 }
 
 <div class="container-fluid" id="container-wrapper">
-
+    @*<h1>@ViewBag.error</h1>*@
+    @if (ViewBag.error != null)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @ViewBag.error
+        </div>
+    }
     <!-- form atribute call -->
     <form action="#" method="post" id="form" onsubmit="addIdInValues();" name="form">@Html.AntiForgeryToken()</form>
     <button id="submit" value="addStudent" class="btn btn-primary" form="form">  submit  </button>
@@ -26,16 +35,16 @@
                             <tr>
                                 <th>Yes</th>
                                 <th>
-                                     holyName 
+                                    holyName
                                 </th>
                                 <th>
-                                    lastName 
+                                    lastName
                                 </th>
                                 <th>
-                                  firstName 
+                                    firstName
                                 </th>
                                 <th>
-                                    BOD 
+                                    BOD
                                 </th>
                                 <th>
                                     Description
@@ -73,7 +82,7 @@
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="lstStudentTrue" form="form" value="@lstStud.Where(x => x.id == item.studentId).FirstOrDefault().id" />
-                                        <p style='visibility: hidden; display: none;'> 
+                                        <p style='visibility: hidden; display: none;'>
                                         </p>
                                     </td>
                                     <td>
@@ -183,4 +192,11 @@
             });
         });
     </script>
+
+    <script>
+        $(".alert").delay(4000).slideUp(200, function () {
+            $(this).alert('close');
+        });
+    </script>
+   
 }

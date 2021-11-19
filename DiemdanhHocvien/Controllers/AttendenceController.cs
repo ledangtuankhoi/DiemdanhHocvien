@@ -39,7 +39,7 @@ namespace DiemdanhHocvien.Controllers
         }
 
         // GET: Attendence/attendenceTeacher
-        public ActionResult attendenceTeacher(int id)
+        public ActionResult attendenceTeacher(int id, string msg)
         {
             //List student in class
             var lstStudent = db.students.Where(x => x.classId == id).ToList();
@@ -47,7 +47,7 @@ namespace DiemdanhHocvien.Controllers
             List<Attendence> lstAtten = new List<Attendence>();
             foreach (var item in lstStudent)
             {
-                var i = db.attendences.Where(x => x.studentId == item.id).FirstOrDefault();
+                var i = db.attendences.Where(x => x.studentId == item.id).OrderByDescending(x=>x.createTime).FirstOrDefault();
                 if(i == null || i.createTime.Date.Day != DateTime.Now.Date.Day)
                 {
                     Attendence atte = new Attendence();
@@ -66,7 +66,7 @@ namespace DiemdanhHocvien.Controllers
                     lstAtten.Add(i);
                 }
             }
-
+            ViewBag.error = msg;
             ViewBag.lstStud = lstStudent;
             return View(lstAtten);
             //return 
@@ -85,12 +85,16 @@ namespace DiemdanhHocvien.Controllers
                 //i[0] id of student
                 //i[1] description of student
                 int idStud = int.Parse(i[0]);
+
+                //description or student
                 string desAtten = item.Substring(item.IndexOf("#")+1);
 
                 lstStudeId.Add(idStud);
+
                 //minium time next attendent student
-                int minTimeAtte = 10; // minutes
-                var atteStud = db.attendences.Where(x => x.studentId == idStud).FirstOrDefault();
+                int minTimeAtte = 1; // minutes
+
+                var atteStud = db.attendences.Where(x => x.studentId == idStud).OrderByDescending(x => x.createTime).FirstOrDefault();
                 if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > minTimeAtte)
                 { 
                     atteStud.description = desAtten;
@@ -102,7 +106,15 @@ namespace DiemdanhHocvien.Controllers
                     } 
                     db.Entry(atteStud).State = EntityState.Modified;
                     db.SaveChanges();
-
+                }
+                else
+                {
+                    ViewBag.error = "sau " + minTimeAtte + " phut ban moi co the diem danh lai";
+                    if (atteStud == null)
+                    {
+                        ViewBag.error = "diem danh hocj sinh"+atteStud.studentId+"khong thanh cong";
+                    }
+                    
                 }
                     ////find attendence procese
                     bool datetrue = atteStud.createTime.Date.Day == DateTime.Now.Date.Day;
@@ -114,8 +126,10 @@ namespace DiemdanhHocvien.Controllers
                 lstStudent.Add(db.students.Find(item));
             }
 
-            ViewBag.lstStud = lstStudent;
-            return View(lstAtten);
+            //ViewBag.lstStud = lstStudent;
+            //return View(lstAtten);
+            string msg = ViewBag.error;
+            return RedirectToAction("attendenceTeacher",new { msg });
 
         }
 

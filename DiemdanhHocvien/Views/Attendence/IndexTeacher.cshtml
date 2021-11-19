@@ -1,50 +1,4 @@
-﻿@*@model IEnumerable<DiemdanhHocvien.DataAccess.Attendence>
-
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-}*@
-
-@*<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.order)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.order)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>*@
-
+﻿ 
 @model IEnumerable<DiemdanhHocvien.DataAccess.Class>
 
 @{
@@ -65,10 +19,10 @@
             <li class="breadcrumb-item active" aria-current="page">DataTables</li>
         </ol>
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-start">
-            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+            <a href="@Url.Action("Create","Class")" class="btn btn-outline-success ml-2">
                 Create
             </a>
-            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+            <a href="@Url.Action("Create","Class")" class="btn btn-outline-success ml-2">
                 Create
             </a>
             <a class="btn btn-outline-success ml-2">
