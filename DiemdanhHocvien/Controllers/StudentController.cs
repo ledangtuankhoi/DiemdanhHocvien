@@ -1,5 +1,7 @@
 ﻿using DiemdanhHocvien.CustomAuthentication;
 using DiemdanhHocvien.DataAccess;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -32,12 +34,71 @@ namespace DiemdanhHocvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            // sinh vien hoc lớp nào
+            var classOfStud = db.classes.Where(x => x.id == student.classId).FirstOrDefault();
+            ViewBag.classOfStud = classOfStud;
+            // giáo viên dạy lớp
+            ViewBag.teacherOfStud = db.Teachers.Where(x => x.id == classOfStud.userId).FirstOrDefault();
+            // số ngày điểm danh
+            var AtteOfStud = db.attendences.Where(x => x.studentId == student.id).ToList();
+            ViewBag.countDateAtteOfStud = AtteOfStud.Count();
+            // số ngày vắng
+            ViewBag.countOrderFalse = AtteOfStud.Where(x => x.order == 0).Count();
+            // chi tiết vắng
+            //ngày - lý do - lớp 
+            ViewBag.orderFalse = AtteOfStud.Where(x => x.order == 0).Select(s => new { s.time, s.description, s.order });
+            // số ngày điểm danh ngoài giờ
+            var startDate = classOfStud.startDate.Date;
+            var endDate = classOfStud.endDate.Date;
+            List<int> dayOfWeek = classOfStud.dayOfWeek.Split(',').Select(Int32.Parse).ToList();
+            ViewBag.dayOfWeek = dayOfWeek;
+            List<Attendence> attenDateOT = new List<Attendence>();
+            List<Attendence> attenDateTrue = new List<Attendence>();
+            List<Attendence> attenDateFalse = new List<Attendence>();
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                var a = AtteOfStud.Where(x => x.createTime.Date == date.Date && x.studentId == id).FirstOrDefault();
+                if (a != null)
+                {
+
+                    if (dayOfWeek.Contains(((int)date.DayOfWeek)) == true)
+                    {
+                        if(a.order > 0)
+                        {
+                            attenDateTrue.Add(a);
+                        }
+                        else
+                        {
+                            attenDateFalse.Add(a);
+                        }
+                    }
+                    else
+                    {
+                        attenDateOT.Add(a);
+                    }
+                }
+            }
+            
+
+            // những ngày điểm danh 
+            ViewBag.attenDateTrue = attenDateTrue;
+            // những ngày KHONG điểm danh 
+            ViewBag.attenDateFalse = attenDateFalse;
+            // số ngày điểm danh ngoài giờ
+            ViewBag.attenDateOT = attenDateOT;
+            // chi tiết vắng
+            //ngày - lý do - lớp 
+
             return View(student);
         }
 
         // GET: Student/Create
         public ActionResult Create()
         {
+            ViewBag.parents = db.parents.ToList();
+
             return View();
         }
 
@@ -70,6 +131,8 @@ namespace DiemdanhHocvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.parents = db.parents.ToList();
 
             student.BOD.GetDateTimeFormats();
             return View(student);

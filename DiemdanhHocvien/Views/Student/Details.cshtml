@@ -14,8 +14,9 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">@Html.DisplayFor(model => model.holyName)</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.lastName) @Html.DisplayFor(model => model.firstName)</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"> @Html.DisplayFor(model => model.BOD)</span>
+                            <div class="mt-2 mb-0 text-muted text-xs d-flex justify-content-start">
+                                <p>birth day: </p>
+                                <span class="text-success mr-2"> @Model.BOD.ToString("dd-MM-yyyy")</span>
 
                             </div>
                         </div>
@@ -34,8 +35,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Contact</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Number Phone</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.numPhone)</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Email</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@Html.DisplayFor(model => model.email)</div>
                         </div>
 
@@ -49,16 +51,47 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                <span>Since last month</span>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Class @ViewBag.classOfStud.className</div>
+                            <div class="mt-2 mb-0 text-muted text-xs d-flex flex-column">
+                                <span class="text-success mr-2 text-capitalize">start date: @ViewBag.classOfStud.startDate.ToString("dd-MM-yyyy")</span>
+                                <span class="text-success mr-2 text-capitalize">end date:   @ViewBag.classOfStud.endDate.ToString("dd-MM-yyyy")</span>
                             </div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Day of week</div>
+
+                            @*@dayof[0]*@
+                            @foreach (var day in ViewBag.dayOfWeek as List<int>)
+                            {
+
+                                switch (day)
+                                {
+                                    case 0:
+                                        <button class="btn btn-success btn-sm"> <span>CN</span></button>
+                                        break;
+                                    case 1:
+                                        <button class="btn btn-success btn-sm"> <span>2</span></button>
+                                        break;
+                                    case 2:
+                                        <button class="btn btn-success btn-sm"> <span>3</span></button>
+                                        break;
+                                    case 3:
+                                        <button class="btn btn-success btn-sm"> <span>4</span></button>
+                                        break;
+                                    case 4:
+                                        <button class="btn btn-success btn-sm"> <span>5</span></button>
+                                        break;
+                                    case 5:
+                                        <button class="btn btn-success btn-sm"> <span>6</span></button>
+                                        break;
+                                    case 6:
+                                        <button class="btn btn-success btn-sm"> <span>7</span></button>
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-info"></i>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -79,121 +112,272 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
 
-        <div class="table-responsive p-3">
-            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                <thead class="thead-light">
-                    <tr>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.lastName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.firstName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.holyName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.BOD)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.numPhone)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.email)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.parentId)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.classId)*@
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.lastName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.firstName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.holyName)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.BOD)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.numPhone)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.email)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.parentId)*@
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.classId)*@
-                        </th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @*@foreach (var item in Model)*@
-                    {
-                        <tr>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.lastName)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.firstName)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.holyName)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.BOD)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.numPhone)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.email)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.parentId)*@
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.classId)*@
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-fw fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        @*<a title="Edit" href="@Url.Action("Edit","Student",new { id = item.id})" class="btn btn-secondary">*@
-                                            <i class="fas fa-fw fa-edit"></i>
-                                        </a>
-                                        @*<a title="Details" href="@Url.Action("details","student",new { id = item.id})" class="btn btn-warning">*@
-                                            <i class="fas fa-fw fa-fingerprint"></i>
-                                        </a>
-                                        @*<a title="Delete" href="@Url.Action("delete","student",new { id = item.id})" class="btn btn-danger">*@
-                                            <i class="fas fa-fw fa-trash-alt"></i>
-                                        </a>
-                                    </div>
-                                </div>
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">attenDateTrue</h6>
+                </div>
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
 
 
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                            @foreach (var item in ViewBag.attenDateTrue as ICollection<DiemdanhHocvien.DataAccess.Attendence>)
+                            {
+                                <tr>
+                                    <td>@item.createTime.Day</td>
+                                    <td>@item.createTime.Month</td>
+                                    <td>@item.createTime.Year</td>
+                                    <td>@item.description</td>
+                                    <td>@item.order</td>
+                                    <td></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">attenDateFalse</h6>
+                </div>
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+
+                            @foreach (var item in ViewBag.attenDateFalse as ICollection<DiemdanhHocvien.DataAccess.Attendence>)
+                            {
+                                <tr>
+                                    <td>@item.createTime.Day</td>
+                                    <td>@item.createTime.Month</td>
+                                    <td>@item.createTime.Year</td>
+                                    <td>@item.description</td>
+                                    <td>@item.order</td>
+                                    <td></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">attenDateOT</h6>
+                </div>
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Month
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Order
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+
+                            @foreach (var item in ViewBag.attenDateOT as ICollection<DiemdanhHocvien.DataAccess.Attendence>)
+                            {
+                                <tr>
+                                    <td>@item.createTime.Day</td>
+                                    <td>@item.createTime.Month</td>
+                                    <td>@item.createTime.Year</td>
+                                    <td>@item.description</td>
+                                    <td>@item.order</td>
+                                    <td></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
-    </div>    
+        <div class="col-lg-6">
+
+            <div class="card mb-4 p-2">
+                <div class="card-header py-3 ">
+                    <h6 class="m-0 font-weight-bold text-primary">attenDateOT</h6>
+                </div>
+                <h4 class="card-subtitle">so ngay lop hoc diem danh</h4>
+                <h6 class="card-text">card-text</h6>
+                <h4 class="card-subtitle">so ngay diem danh cuar hoc vien</h4>
+                <h6 class="card-text">card-text</h6>
+                <h4 class="card-subtitle">so buoi vang</h4>
+                <h6 class="card-text">card-text</h6>
+                <h4 class="card-subtitle"></h4>
+                <h6 class="card-text">card-text</h6>
+            </div>
+
+        </div>
+    </div>
 </div>
-     
+
+
+@section _Header{
+    <link href="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Assets/dashboard/vendor/datatables/buttons.dataTables.min.css" rel="stylesheet">
+
+}
+
+@section _Footer{
+
+    @*action Name for *@
+    <script>
+        $("#actionName").text("DeTails Student")
+    </script>
+
+    <!-- Page level plugins -->
+    <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+     <script src="~/Assets/dashboard/vendor/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/buttons.html5.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/jszip.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script>
+        $(document).ready(function () {
+            $('table.dataTableHover').DataTable({
+
+            }); // ID From dataTable with Hover
+            $('#dataTableHover').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv','excel'
+                ]
+
+            }); // ID From dataTable with Hover
+        });
+    </script>
+
+
+}

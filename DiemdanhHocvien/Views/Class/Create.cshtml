@@ -111,47 +111,48 @@
 
                         <label for="exampleInputEmail1" class="text-uppercase">Day Of Week</label>
                         <div class="form-group ">
-                            <div class="cat">
-                                <label>
-                                    <input id="thu2" type="checkbox" value="0" name="dayOfWeek"><span>Thu 2</span>
-                                </label>
-                            </div>
-
-                            <div class="cat ">
-                                <label>
-                                    <input id="thu3" type="checkbox" value="1" name="dayOfWeek"><span>Thu 3</span>
-                                </label>
-                            </div>
-
-                            <div class="cat ">
-                                <label>
-                                    <input id="thu4" type="checkbox" value="2" name="dayOfWeek"><span>Thu 4</span>
-                                </label>
-                            </div>
-
-                            <div class="cat ">
-                                <label>
-                                    <input id="thu5" type="checkbox" value="3" name="dayOfWeek"><span>Thu 5</span>
-                                </label>
-                            </div>
-
-                            <div class="cat ">
-                                <label>
-                                    <input id="thu6" type="checkbox" value="4" name="dayOfWeek"><span>Thu 6</span>
-                                </label>
-                            </div>
-
-                            <div class="cat ">
-                                <label>
-                                    <input id="thu7" type="checkbox" value="5" name="dayOfWeek"><span>Thu 7</span>
-                                </label>
-                            </div>
-
                             <div class="cat CN">
                                 <label>
-                                    <input id="CN" type="checkbox" value="6" name="dayOfWeek"><span>CN</span>
+                                    <input id="CN" type="checkbox" value="0" name="dayOfWeek"><span>CN</span>
                                 </label>
                             </div>
+                            <div class="cat">
+                                <label>
+                                    <input id="thu2" type="checkbox" value="1" name="dayOfWeek"><span>Thu 2</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu3" type="checkbox" value="2" name="dayOfWeek"><span>Thu 3</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu4" type="checkbox" value="3" name="dayOfWeek"><span>Thu 4</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu5" type="checkbox" value="4" name="dayOfWeek"><span>Thu 5</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu6" type="checkbox" value="5" name="dayOfWeek"><span>Thu 6</span>
+                                </label>
+                            </div>
+
+                            <div class="cat ">
+                                <label>
+                                    <input id="thu7" type="checkbox" value="6" name="dayOfWeek"><span>Thu 7</span>
+                                </label>
+                            </div>
+
+
 
                         </div>
                             @Html.ValidationMessageFor(model => model.dayOfWeek, "", new { @class = "text-danger" })
