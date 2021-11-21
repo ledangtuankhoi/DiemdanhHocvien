@@ -11,6 +11,7 @@ namespace DiemdanhHocvien.DataAccess
         public DateTime time { get; set; }
         public string description { get; set; }
         public int studentId{ get; set; }
+        public int classId{ get; set; }
         public DateTime createTime { get; set; }
 
     }

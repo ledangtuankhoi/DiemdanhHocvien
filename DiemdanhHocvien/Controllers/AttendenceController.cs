@@ -56,6 +56,7 @@ namespace DiemdanhHocvien.Controllers
                     atte.description = "";
                     atte.order = 0;
                     atte.studentId = item.id;
+                    atte.classId = id;
 
                     lstAtten.Add(atte);
                     db.attendences.Add(atte);
@@ -92,7 +93,7 @@ namespace DiemdanhHocvien.Controllers
                 lstStudeId.Add(idStud);
 
                 //minium time next attendent student
-                int minTimeAtte = 1; // minutes
+                int minTimeAtte = 1/100; // minutes
 
                 var atteStud = db.attendences.Where(x => x.studentId == idStud).OrderByDescending(x => x.createTime).FirstOrDefault();
                 if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > minTimeAtte)
