@@ -16,6 +16,11 @@ namespace DiemdanhHocvien.Controllers
     {
         private AuthenticationDB db = new AuthenticationDB();
 
+
+        public ActionResult Excel () {
+        
+            return View();
+        }
         // GET: Attendence/indexTeacher
         public ActionResult indexTeacher()
         {
