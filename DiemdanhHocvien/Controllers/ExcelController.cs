@@ -3,6 +3,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -55,65 +56,100 @@ namespace DiemdanhHocvien.Controllers
             workSheet.Cells[1, 4, 2, 4].Merge = true;
             workSheet.Cells[1, 4, 2, 4].Value = "S.No";
 
-            int i = 5;
+            //workSheet.Cells["D1:D2"].Merge = true;
+            workSheet.Cells[1, 5, 2, 5].Merge = true;
+            workSheet.Cells[1, 5, 2, 5].Value = "S.No";
+
+            //
+            int indexCol = 6;
             int firstDay = 0;
+            List<int> dayOfWeek = classCurrently.dayOfWeek.Split(',').Select(Int32.Parse).ToList();
+            // tim ngay dau tien da dang ky
             for (DateTime date = classCurrently.startDate; date <= classCurrently.endDate; date = date.AddDays(1))
             {
-                List<int> dayOfWeek = classCurrently.dayOfWeek.Split(',').Select(Int32.Parse).ToList();
                 if (dayOfWeek.Contains(((int)date.DayOfWeek)) == true)
                 {
                     firstDay = (int)date.DayOfWeek;
                     break;
                 }
-                    
+
             }
 
             // chạy từ ngày bắt đầu đến ngày kết thúc của lớp học 
             for (DateTime date = classCurrently.startDate; date <= classCurrently.endDate; date = date.AddDays(1))
             {
-                //tạo list cho các ngày trong tuần đã đang ký
-                List<int> dayOfWeek = classCurrently.dayOfWeek.Split(',').Select(Int32.Parse).ToList();
-
-                //
-                //if (i == 5)
-                //{
-                //    workSheet.Cells[1, i, 1, i + dayOfWeek.Count()-1].Merge = true;
-                //    workSheet.Cells[1, i, 1, i + dayOfWeek.Count()-1].Value = date.Date.ToString("dd-MM-yyyy");
-                //}
+                // gộp các dòng để đánh dấu 1 tuần
                 if ((int)date.Date.DayOfWeek == firstDay)
                 {
-                    workSheet.Cells[1, i + 1, 1, i + dayOfWeek.Count()].Merge = true;
-                    workSheet.Cells[1, i + 1, 1, i + dayOfWeek.Count()].Value = date.Date.ToString("dd-MM-yyyy");
+                    workSheet.Cells[1, indexCol, 1, indexCol + dayOfWeek.Count()-1].Merge = true;
+                     workSheet.Cells[1, indexCol, 1, indexCol + dayOfWeek.Count()-1].Value = date.Date.Day + "  =>  " + date.Date.AddDays(6).ToString("dd-MM-yyyy");
                 }
 
                 //lọc ra ngày trong tuần đúng với thứ của tuần đã đăng ký
                 if (dayOfWeek.Contains(((int)date.DayOfWeek)) == true)
                 {
-                    
+
                     //nếu ngày trong tuần bằng 0 thì là chủ nhật
                     if ((int)date.DayOfWeek == 0)
                     {
-                        workSheet.Cells[2, i].Value = "CN";
+                        workSheet.Cells[2, indexCol].Value = "CN";
+                        workSheet.Cells[3, indexCol].Value = date.Date.Day;
 
                     }
                     else
                     {
-                        workSheet.Cells[2, i].Value = (int)date.DayOfWeek + 1;
+                        workSheet.Cells[2, indexCol].Value = (int)date.DayOfWeek + 1;
+                        workSheet.Cells[3, indexCol].Value = date.Date.Day;
                     }
-                    i++;
+                    indexCol++;
                 }
 
             }
 
             //Body of table  
             //  
-            int recordIndex = 2;
-            foreach (var item in attenOfClass)
+            int recordIndex = 4;
+            foreach (var item in studentOfClass)
             {
+
                 workSheet.Cells[recordIndex, 1].Value = (recordIndex - 1).ToString();
-                workSheet.Cells[recordIndex, 2].Value = item.studentId;
-                workSheet.Cells[recordIndex, 3].Value = item.time.Date.ToString("dd-MM-yyyy");
-                workSheet.Cells[recordIndex, 4].Value = item.studentId;
+                workSheet.Cells[recordIndex, 2].Value = item.holyName;
+                workSheet.Cells[recordIndex, 3].Value = item.firstName;
+                workSheet.Cells[recordIndex, 4].Value = item.lastName;
+                workSheet.Cells[recordIndex, 5].Value = item.id;
+
+                //ngày điểm danh 
+                
+                for (DateTime date = classCurrently.startDate; date <= classCurrently.endDate; date = date.AddDays(1))
+                {
+                    //lọc ra ngày trong tuần đúng với thứ của tuần đã đăng ký
+                    if (dayOfWeek.Contains(((int)date.DayOfWeek)) == true)
+                    {
+                        var b = db.attendences.Where(x => DbFunctions.TruncateTime(x.time) == date.Date && x.studentId == item.id).FirstOrDefault();
+                        if (b != null)
+                        {
+
+                            if (b.order > 0)
+                            {
+                                workSheet.Cells[recordIndex, indexCol].Value = "V- "+date.Day;
+                                indexCol++;
+
+                            }
+                            else
+                            {
+                                workSheet.Cells[recordIndex, indexCol].Value = "- " + date.Day;
+                                indexCol++;
+                            }
+                        }
+                        else
+                        {
+                            indexCol++;
+                        }
+ 
+                    }
+                    
+
+                }
                 recordIndex++;
             }
             workSheet.Column(1).AutoFit();
