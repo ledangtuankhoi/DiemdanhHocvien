@@ -1,0 +1,334 @@
+[33mcommit 641c7e215fd3b62ac9341e51112045a9638130fa[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/detai_attendence_form_class_and_Stud[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 20 18:18:09 2021 +0700
+
+    android
+
+[33mcommit d30eb29a017645cdf91887555e5b819ac29d9d99[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 20 01:27:08 2021 +0700
+
+    edit student
+
+[33mcommit 5cfd10bd812fd40c1ad3a3c4c7dc9d6114959d56[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 19 23:55:34 2021 +0700
+
+    detail student
+
+[33mcommit a98ce3c1dc551667045b187ed28bfe2102dfbc30[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: 523722e 92c5c44
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 19 10:40:32 2021 +0700
+
+    Merge pull request #7 from ledangtuankhoi/feature/attendence
+    
+    Feature/attendence
+
+[33mcommit 92c5c445f740bc44752af0e18af8d5eb964ec8e8[m[33m ([m[1;31morigin/feature/attendence[m[33m, [m[1;32mfeature/attendence[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 19 10:29:45 2021 +0700
+
+    alert error attendence
+
+[33mcommit 88d4dd6547ca96be95f96995c1befa80d24babe0[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Thu Nov 18 23:21:47 2021 +0700
+
+    error AccessDenied
+
+[33mcommit cd302d0185ef618c1ba6ddbb3c1b99988c24c9fc[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Thu Nov 18 23:07:40 2021 +0700
+
+    sort col checkbox
+
+[33mcommit c3db6b47362685c46973aaea303b6f7250eedbe5[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Thu Nov 18 17:45:51 2021 +0700
+
+    attenden success
+
+[33mcommit 14fa657b06e7a27ace7907381cca4c9d51fcec02[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Thu Nov 18 15:17:08 2021 +0700
+
+    create controller attendence
+
+[33mcommit 523722e8f133e74794b13c9a6bb60f7c865d255c[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 714bd66 e0e4c5c
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 23:25:25 2021 +0700
+
+    Merge branch 'master' of https://github.com/ledangtuankhoi/DiemdanhHocvien
+
+[33mcommit 714bd66ea5b03add16f285d204b674b6a3f4cf6c[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 21:53:36 2021 +0700
+
+    select student
+
+[33mcommit 0d21c07ab8210e92fd8773f92c944d9e44b68768[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 20:51:46 2021 +0700
+
+    User
+
+[33mcommit 41dfdefc16871c5c65ede7c06c85db97a15de70f[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 14:01:23 2021 +0700
+
+    class
+
+[33mcommit 177a6b04f93ae5494acddf1869f956b61eb45f86[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 13:58:20 2021 +0700
+
+    class
+
+[33mcommit e90f497e1694213611cfab70bedd7a9d9ed69a00[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 11:41:12 2021 +0700
+
+    Index Class
+
+[33mcommit 338884fe76956da12021ae91a7a16772d628c9af[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:59:41 2021 +0700
+
+    Student
+
+[33mcommit 96e60c5eead6b4211b9fa1c0e61af0591ab5001d[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:51:52 2021 +0700
+
+    Create
+
+[33mcommit a54045eb69c7577380e1fa383e14d91f386c828b[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:35:51 2021 +0700
+
+    edit
+
+[33mcommit 5190142780aff7d24fe4fe44d4f89844e2c0c2b9[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 15:29:49 2021 +0700
+
+    details
+
+[33mcommit fffb6658d5e42a9512a01a2341f5c6501363c584[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 14:52:33 2021 +0700
+
+    index
+
+[33mcommit 0df2850ef92fbaac9900e1b091c9a5893c3db6c3[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 14:08:45 2021 +0700
+
+    sidebar
+
+[33mcommit dba7a7b7a80657ad2fe700364c8cbcf18d96793f[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 13:56:31 2021 +0700
+
+    home
+
+[33mcommit fbda59259282e3bbb984d31e64014bf8c702fcaf[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 13:51:52 2021 +0700
+
+    dashboard
+
+[33mcommit e0e4c5cf4e581d1220314119c2f384bdbc8a1e4a[m
+Merge: 12e15da 75b5fe0
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 22:12:58 2021 +0700
+
+    Merge pull request #6 from ledangtuankhoi/feature/create_fontend
+    
+    Feature/create fontend
+
+[33mcommit 75b5fe0c75f5b02f0ca94719a4436fb61614848a[m[33m ([m[1;31morigin/feature/create_fontend[m[33m, [m[1;32mfeature/create_fontend[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 21:53:36 2021 +0700
+
+    select student
+
+[33mcommit db7ce8f7cf417560ed772917e1bdeed696649c12[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 20:51:46 2021 +0700
+
+    User
+
+[33mcommit e160fd2543a6c3180d28b291b64972cf81b7bdfd[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 14:01:23 2021 +0700
+
+    class
+
+[33mcommit ada7d4bbbaaf75aac4d39f70cdd2c160e6e348b6[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 13:58:20 2021 +0700
+
+    class
+
+[33mcommit 2bdd0789f41cb416479027e39e13a4e93cbbfc69[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 11:41:12 2021 +0700
+
+    Index Class
+
+[33mcommit 2e595c86f5b495207f6395c6088575374005cb19[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:59:41 2021 +0700
+
+    Student
+
+[33mcommit a00d9e7386c71dac0664916810851ad55eed155d[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:51:52 2021 +0700
+
+    Create
+
+[33mcommit 44d68cfe569e421afa87db0dba47cabbe0773fc3[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Tue Nov 16 09:35:51 2021 +0700
+
+    edit
+
+[33mcommit 3311dcf5de0f082f824823c561398585c8133b9c[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 15:29:49 2021 +0700
+
+    details
+
+[33mcommit 9871cd4a4525a647d1b55e20d3d60113fc69d723[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 14:52:33 2021 +0700
+
+    index
+
+[33mcommit 02adcb11bc5a3c83aa2b6eefc7211f9acd14409a[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 14:08:45 2021 +0700
+
+    sidebar
+
+[33mcommit 66b66d7d17fa9d72b3e4d5c4d7d5a967825ee0e8[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 13:56:31 2021 +0700
+
+    home
+
+[33mcommit 68b33069cbdbd3618b54360b2278549e4e7a2ee1[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 13:51:52 2021 +0700
+
+    dashboard
+
+[33mcommit a0535cd35eb2997b368c847d2251ab0329fbf18a[m
+Merge: 8eeb3f6 b0b569f
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Mon Nov 15 13:19:18 2021 +0700
+
+    Merge pull request #5 from ledangtuankhoi/feature/create_class_by_teacher
+    
+    Feature/create class by teacher
+
+[33mcommit b0b569f8d7e986d1a7f42352fb7d66bbfd9c680e[m[33m ([m[1;31morigin/feature/create_class_by_teacher[m[33m, [m[1;32mfeature/create_class_by_teacher[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 22:52:58 2021 +0700
+
+    xóa học vien khoi lớp học
+
+[33mcommit efa2a9fdff359a534bcdeea3534005a63bb087ee[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 22:04:08 2021 +0700
+
+    hiện tên lớp cho từng sinh viên
+
+[33mcommit b82b1f76ac14411effdb3d20a1b5001350461ba9[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 21:41:51 2021 +0700
+
+    so luong hoc vien trong class
+
+[33mcommit 12e15daac993f72b2b73cda64cb1867c478336b0[m
+Merge: b432b59 8eeb3f6
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 17:37:24 2021 +0700
+
+    Merge pull request #4 from ledangtuankhoi/develop
+    
+    Develop
+
+[33mcommit 8eeb3f64626905ac2a0d6acf30ce344c443a0d6d[m
+Merge: 74a0cdf 7b61253
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 17:36:56 2021 +0700
+
+    Merge pull request #3 from ledangtuankhoi/feature/controller_class
+    
+    Feature/controller class
+
+[33mcommit 7b612536f81306d6a627127982aaefbfcee91895[m[33m ([m[1;31morigin/feature/controller_class[m[33m)[m
+Merge: 14d9e8e 74a0cdf
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 17:36:45 2021 +0700
+
+    Merge branch 'develop' into feature/controller_class
+
+[33mcommit 14d9e8e2fcd12b28271515bcffec469626cb3e45[m[33m ([m[1;32mfeature/controller_class[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 17:29:47 2021 +0700
+
+    controller class
+
+[33mcommit 2da763bbf49c406516db4d39e61a56ed27b8851e[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 10:13:17 2021 +0700
+
+    create controller
+
+[33mcommit b432b59dfb73477ea16cdcd98f9f39bc5b0672e2[m
+Merge: d5121a6 74a0cdf
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 10:03:08 2021 +0700
+
+    Merge pull request #2 from ledangtuankhoi/develop
+    
+    Develop
+
+[33mcommit 74a0cdf1207b69ac41d1988bbaf491e8163823d2[m
+Merge: d5121a6 9334930
+Author: ledangtuankhoi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 10:02:06 2021 +0700
+
+    Merge pull request #1 from ledangtuankhoi/feature/Controller_user
+    
+    Feature/controller user
+
+[33mcommit 933493022992654af4da1be5efb26718921c5711[m[33m ([m[1;31morigin/feature/Controller_user[m[33m, [m[1;32mfeature/Controller_user[m[33m)[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Sat Nov 13 09:16:02 2021 +0700
+
+    seed data, role
+
+[33mcommit a95c73763be5c8c449941194e405571f65bc6e0e[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 12 20:08:48 2021 +0700
+
+    seed database
+
+[33mcommit d5121a6bcd277b3cf50743fa5bae85686d2dd201[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 12 19:21:06 2021 +0700
+
+    init
+
+[33mcommit cc11cfbb9ee9a61c149e86c11c7b3a186cca810d[m
+Author: Tuấn Khôi <ledangtuankhoi@gmail.com>
+Date:   Fri Nov 12 19:07:01 2021 +0700
+
+    Add .gitignore and .gitattributes.
