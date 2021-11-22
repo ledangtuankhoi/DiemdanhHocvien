@@ -150,35 +150,51 @@
                                     <td> @soluong[key]</td>
                                     @{key++;
                                     }
-                                <td>
-                                    <a title="Edit" href="@Url.Action("attendenceTeacher" ,new { id = item.id})" class="btn btn-secondary">
-                                        <i class="fas fa-fw fa-thumbs-up"></i>
-                                    </a>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-fw fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a title="Edit" href="@Url.Action("Edit","Class" ,new { id = item.id})" class="btn btn-secondary">
-                                                <i class="fas fa-fw fa-edit"></i>
-                                            </a>
-                                            <a title="Details" href="@Url.Action("details","Class" ,new { id = item.id})" class="btn btn-warning">
-                                                <i class="fas fa-fw fa-fingerprint"></i>
-                                            </a>
-                                            <a title="Delete" href="@Url.Action("delete","Class" ,new { id = item.id})" class="btn btn-danger">
-                                                <i class="fas fa-fw fa-trash-alt"></i>
-                                            </a>
-                                            <a title="Add Student" href="@Url.Action("addStudent","Class" ,new { id = item.id})" class="btn btn-info">
-                                                <i class="fas fa-fw fa-plus"></i>
-                                            </a>
-                                            <a title="export Excel" href="@Url.Action("CreateExcelForClass","excel" ,new { id = item.id})" class="btn btn-outline-success">
-                                                <i class="fas fa-fw fa-file-excel"></i>
-                                            </a>
+                                    <td>
+                                        <a title="Edit" href="@Url.Action("attendenceTeacher" ,new { id = item.id})" class="btn btn-secondary">
+                                            <i class="fas fa-fw fa-thumbs-up"></i>
+                                        </a>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-fw fa-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu ">
+                                                <li>
+
+                                                    <a title="Edit" href="@Url.Action("Edit","Class" ,new { id = item.id})" class=" btn btn-secondary">
+                                                        <i class="fas fa-fw fa-edit"></i> edit
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a title="Details" href="@Url.Action("details","Class" ,new { id = item.id})" class=" btn btn-warning">
+                                                        <i class="fas fa-fw fa-fingerprint"></i> Details
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a title="Delete" href="@Url.Action("delete","Class" ,new { id = item.id})" class=" btn btn-danger">
+                                                        <i class="fas fa-fw fa-trash-alt"></i>Delete
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a title="Add Student" href="@Url.Action("addStudent","Class" ,new { id = item.id})" class=" btn btn-info">
+                                                        <i class="fas fa-fw fa-plus"></i>Add Student
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a title="export Excel" href="@Url.Action("CreateExcelForClass","excel" ,new { id = item.id})" class=" btn btn-outline-success">
+                                                        <i class="fas fa-fw fa-file-excel"></i> export Excel
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>
 
 
-                                </td>
+
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -187,7 +203,7 @@
             </div>
         </div>
     </div>
-    <!--Row-->  
+    <!--Row-->
 </div>
 <!---Container Fluid-->
 

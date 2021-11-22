@@ -8,12 +8,16 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 namespace DiemdanhHocvien.Controllers
 {
     public class ExcelController : Controller
     {
         private AuthenticationDB db = new AuthenticationDB();
+
+         
 
         public void CreateExcelForClass(int id)
         {
