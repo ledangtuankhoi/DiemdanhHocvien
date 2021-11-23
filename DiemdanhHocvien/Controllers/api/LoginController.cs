@@ -16,14 +16,16 @@ namespace DiemdanhHocvien.Controllers.api
 
         // POST: api/Class
         [HttpPost]
-        public string login([FromBody] User value)
+        public string login([FromBody]LoginView value)
         {
-            if (!db.Users.Any(x => x.Username.Equals(value.Username)))
+            //return JsonConvert.SerializeObject(value);
+
+            if (db.Users.Any(x => x.Username.Equals(value.UserName)))
             {
-                User user = db.Users.Where(x => x.Username.Equals(value.Username)).First();
+                User user = db.Users.Where(x => x.Username.Equals(value.UserName)).First();
                 if (user.Password.Equals(value.Password))
                 {
-                    return JsonConvert.SerializeObject(user);
+                     return JsonConvert.SerializeObject(user);
                 }
                 else
                 {
