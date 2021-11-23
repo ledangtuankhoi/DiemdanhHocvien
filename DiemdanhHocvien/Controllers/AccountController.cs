@@ -111,6 +111,7 @@ namespace DiemdanhHocvien.Controllers
                         Password = registrationView.Password,
                         ActivationCode = Guid.NewGuid(),
                     };
+                    registrationView.ActivationCode = user.ActivationCode;
 
                     dbContext.Users.Add(user);
                     dbContext.SaveChanges();
