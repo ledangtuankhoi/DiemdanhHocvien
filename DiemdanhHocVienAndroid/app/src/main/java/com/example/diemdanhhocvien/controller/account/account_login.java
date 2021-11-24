@@ -1,4 +1,4 @@
-package com.example.diemdanhhocvien;
+package com.example.diemdanhhocvien.controller.account;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.diemdanhhocvien.R;
 import com.example.diemdanhhocvien.api.ApiClient;
 import com.example.diemdanhhocvien.api.account.LoginRequest;
-import com.example.diemdanhhocvien.api.account.LoginResponse;
-import com.example.diemdanhhocvien.api.account.RegisterRequest;
 import com.example.diemdanhhocvien.model.User;
 
 import retrofit2.Call;

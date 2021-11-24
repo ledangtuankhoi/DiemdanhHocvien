@@ -15,6 +15,6 @@ public interface UserService {
     @POST("Login/")
     Call<User> loginUser(@Body LoginRequest loginRequest);
 
-    @POST("register")
+    @POST("register/")
     Call<RegisterResponse> RegisterUser(@Body RegisterRequest registerRequest);
 }
