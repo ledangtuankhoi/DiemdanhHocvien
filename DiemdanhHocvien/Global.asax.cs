@@ -9,6 +9,7 @@ using System.Web.Routing;
 using System.Web.Security;
  using System.Web.Http;
 using WebApplication;
+using System.Data.Entity;
 
 namespace DiemdanhHocvien
 {
@@ -19,9 +20,15 @@ namespace DiemdanhHocvien
              
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings
+                    .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters
+                .Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)

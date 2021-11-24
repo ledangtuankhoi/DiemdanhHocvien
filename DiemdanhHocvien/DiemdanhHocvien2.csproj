@@ -4394,7 +4394,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\LoginController.cs" />
     <Compile Include="Controllers\api\ClassController.cs" />
+    <Compile Include="Controllers\api\RegisterController.cs" />
+    <Compile Include="Controllers\api\RoleController.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\AttendenceController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -4485,6 +4489,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Attendence\Teacher\" />
+    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111121130308_init.resx">
@@ -4518,7 +4523,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57794</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57794/</IISUrl>
+          <IISUrl>http://localhost:57795/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

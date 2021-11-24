@@ -7,64 +7,57 @@
     tools:context=".login">
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edUsername"
         android:layout_width="376dp"
         android:layout_height="59dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="185dp"
-        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="User Name"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="teacher"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtFirstName"
+        android:id="@+id/edPassword"
         android:layout_width="376dp"
         android:layout_height="59dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        android:text="1234"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/edUsername" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="249dp"
         android:layout_height="48dp"
         android:layout_marginStart="81dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginTop="56dp"
         android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
-
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="104dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="79dp"
-        android:text="Register Now!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="126dp"
         android:layout_height="26dp"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="50dp"
         android:text="have not accout?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+
+    <TextView
+        android:id="@+id/loginNow"
+        android:layout_width="104dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="81dp"
+        android:text="Register Now!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

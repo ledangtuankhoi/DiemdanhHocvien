@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.diemdanhhocvien">
+    package="com.example.diemdanhhocvien" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -8,18 +10,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DiemDanhHocVien">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.DiemDanhHocVien" >
         <activity
-            android:name=".account_login"
+            android:name=".classActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".account_register"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".account_login"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.DiemDanhHocVien.NoActionBar">
+            android:theme="@style/Theme.DiemDanhHocVien.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
