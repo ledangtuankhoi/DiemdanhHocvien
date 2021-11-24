@@ -1,37 +1,20 @@
 package com.example.diemdanhhocvien.model;
 
 public class User {
-    public int UserId ;
-    public String Username ;
-    public String FirstName ;
-    public String LastName ;
-    public String Email ;
-    public String Password ;
+    private int UserId ;
+    private String Username ;
+    private String FirstName ;
+    private String LastName ;
+    private String Email ;
+    private String Password ;
+    private String[] Roles;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "UserId=" + UserId +
-                ", Username='" + Username + '\'' +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Role='" + Role + '\'' +
-                '}';
+    public String[] getRoles() {
+        return Roles;
     }
 
-    public User() {
-    }
-
-    public User(int userId, String username, String firstName, String lastName, String email, String password, String role) {
-        UserId = userId;
-        Username = username;
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        Password = password;
-        Role = role;
+    public void setRoles(String[] roles) {
+        Roles = roles;
     }
 
     public int getUserId() {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using DiemdanhHocvien.DataAccess;
 using DiemdanhHocvien.Models;
 using Newtonsoft.Json;
@@ -15,8 +16,8 @@ namespace DiemdanhHocvien.Controllers.api
         private AuthenticationDB db = new AuthenticationDB();
 
         // POST: api/login
-        [HttpPost]
-        public string login([FromBody]LoginView value)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult login([FromBody]LoginView value)
         {
             //return JsonConvert.SerializeObject(value);
 
@@ -25,16 +26,24 @@ namespace DiemdanhHocvien.Controllers.api
                 User user = db.Users.Where(x => x.Username.Equals(value.UserName)).First();
                 if (user.Password.Equals(value.Password))
                 {
-                     return JsonConvert.SerializeObject(user);
+                    //User u = db.Users.Where(x => x.UserId == user.UserId).Select(x => new { x.UserId }).FirstOrDefault();
+                    CustomSerializeModel userModel = new Models.CustomSerializeModel()
+                    {
+                        UserId = user.UserId,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        RoleName = user.Roles.Select(r => r.RoleName).ToList()
+                    };
+                    return Content(HttpStatusCode.OK, userModel);
                 }
                 else
                 {
-                    return JsonConvert.SerializeObject("Pass flase");
+                    return Content(HttpStatusCode.BadRequest, "Pass flase");
                 }
             }
             else
             {
-                return JsonConvert.SerializeObject("user not existing in database");
+                return Content(HttpStatusCode.BadRequest, "user not existing in database");
 
             } 
 

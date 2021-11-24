@@ -19,59 +19,50 @@ namespace DiemdanhHocvien.Controllers.api
         // POST: api/Class
         [ResponseType(typeof(User))]
         public IHttpActionResult post(RegistrationView registrationView)
-        { 
+        {
 
 
-           
 
-                bool statusRegistration = false;
-                string messageRegistration = string.Empty;
 
-                // Email Verification
-                //string userName = Membership.GetUserNameByEmail(registrationView.Email);
-                bool email = db.Users.Any(x => x.Email == registrationView.Email);
-                if ((bool)email == true)
-                {
-                    //ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
-                    //return View(registrationView);
-                    //return JsonConvert.SerializeObject("Warning EmailSorry: Email already Exists");
-                    return Content(HttpStatusCode.OK, "Warning EmailSorry: Email already Exists");
+            bool statusRegistration = false;
+            string messageRegistration = string.Empty;
+
+            // Email Verification
+            //string userName = Membership.GetUserNameByEmail(registrationView.Email);
+            bool email = db.Users.Any(x => x.Email == registrationView.Email);
+            if ((bool)email == true)
+            {
+                return Content(HttpStatusCode.OK, "Warning EmailSorry: Email already Exists");
 
             }
 
             //Save User Data 
             User user = new User();
-                using (AuthenticationDB dbContext = new AuthenticationDB())
+            using (AuthenticationDB dbContext = new AuthenticationDB())
+            {
+                user = new User()
                 {
-                    user = new User()
-                    {
-                        Username = registrationView.Username,
-                        FirstName = registrationView.FirstName,
-                        LastName = registrationView.LastName,
-                        Email = registrationView.Email,
-                        Password = registrationView.Password,
-                        ActivationCode = Guid.NewGuid(),
-                    };
+                    Username = registrationView.Username,
+                    FirstName = registrationView.FirstName,
+                    LastName = registrationView.LastName,
+                    Email = registrationView.Email,
+                    Password = registrationView.Password,
+                    ActivationCode = Guid.NewGuid(),
+                };
 
-                    registrationView.ActivationCode = user.ActivationCode;
-                     dbContext.Users.Add(user);
-                    dbContext.SaveChanges();
-                    
+                registrationView.ActivationCode = user.ActivationCode;
+                dbContext.Users.Add(user);
+                dbContext.SaveChanges();
 
-                }
 
-                //Verification Email
-                //VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
-                messageRegistration = "Your account has been created successfully";
-                statusRegistration = true;
+            }
 
-                //ViewBag.Message = messageRegistration;
-                //ViewBag.Status = statusRegistration;
+            //Verification Email
+            //VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
+            messageRegistration = "Your account has been created successfully";
+            statusRegistration = true;
 
-                //return View(registrationView);
-                //return JsonConvert.SerializeObject("asd");
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
-            //return "";
 
         }
 

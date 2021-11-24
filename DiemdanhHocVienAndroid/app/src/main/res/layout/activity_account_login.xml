@@ -14,7 +14,7 @@
         android:layout_marginTop="185dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="User Name"
+        android:text="teacher"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Password"
+        android:text="1234"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edUsername" />
 
