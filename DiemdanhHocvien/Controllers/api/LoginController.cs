@@ -14,7 +14,7 @@ namespace DiemdanhHocvien.Controllers.api
     {
         private AuthenticationDB db = new AuthenticationDB();
 
-        // POST: api/Class
+        // POST: api/login
         [HttpPost]
         public string login([FromBody]LoginView value)
         {
