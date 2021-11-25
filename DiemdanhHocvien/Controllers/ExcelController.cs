@@ -143,8 +143,9 @@ namespace DiemdanhHocvien.Controllers
                                 if (b.order > 0)
                                 {
                                     attTrue++;
-                                    workSheet.Cells[recordIndex, indexCol].Value = "-";
-
+                                    workSheet.Cells[recordIndex, indexCol].Value = b.order;
+                                    workSheet.Cells[recordIndex, indexCol].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                    workSheet.Cells[recordIndex, indexCol].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                     indexCol++;
 
                                 }
@@ -179,7 +180,7 @@ namespace DiemdanhHocvien.Controllers
                     workSheet.Cells[2, i+1].Value = "Chuan";
                 }
                 //tong so buoi vang
-                indexCol +=2;
+                indexCol ++;
                 workSheet.Cells[recordIndex, indexCol].Value = lost;
 
                 // so buoi diem danh

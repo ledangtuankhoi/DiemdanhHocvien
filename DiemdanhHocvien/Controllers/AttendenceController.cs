@@ -68,6 +68,7 @@ namespace DiemdanhHocvien.Controllers
                     lstAtten.Add(i);
                 }
             }
+            ViewBag.classId = id;
             ViewBag.error = msg;
             ViewBag.lstStud = lstStudent;
             return View(lstAtten);

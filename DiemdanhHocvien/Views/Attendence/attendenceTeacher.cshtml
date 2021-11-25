@@ -21,13 +21,19 @@
         </div>
     }
     <!-- form atribute call -->
-    <form action="#" method="post" id="form" onsubmit="addIdInValues();" name="form">@Html.AntiForgeryToken()</form>
-    <button id="submit" value="addStudent" class="btn btn-primary" form="form">  submit  </button>
+    
 
     <!-- Row -->
     <div class="row">
         <!-- DataTable with Hover -->
         <div class="col-lg-12">
+            <form action="#" method="post" id="form" onsubmit="addIdInValues();" name="form">@Html.AntiForgeryToken()</form>
+            <button id="submit" value="addStudent" class="btn btn-primary" form="form"><i class="fas fa-thumbs-up"></i>  submit  </button>
+            <button class="btn btn-outline-info" onclick="toggle()"><i class="fas fa-check-double"></i>  Select ALL</button>
+            <a title="Add Student" href="@Url.Action("CreateExcelForClass","excel" ,new { id = ViewBag.classId})" class="btn btn-outline-success">
+                <i class="fas fa-fw fa-file-excel"></i>
+                Export To Excel
+            </a>
             <div class="card mb-4">
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush table-hover record_table" id="dataTableHover">
@@ -110,7 +116,10 @@
                             }
                         </tbody>
                     </table>
+                    <button id="submit" value="addStudent" class="btn btn-primary" form="form"><i class="fas fa-thumbs-up"></i>  submit  </button>
+                    <button class="btn btn-outline-info" onclick="toggle()"><i class="fas fa-check-double"></i>  Select ALL</button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -155,7 +164,7 @@
         });
     </script>
     <script>
-        $("#actionName").text("Add Student to class")
+        $("#actionName").text("Attendance students")
     </script>
 
     @*click submit add it student*@
@@ -197,6 +206,14 @@
         $(".alert").delay(4000).slideUp(200, function () {
             $(this).alert('close');
         });
+    </script>
+
+    <script>
+        function toggle() {
+            console.log("toggle");
+            $(":checkbox").prop("checked", true);
+                $('.record_table tr').css("background-color", "#6777ef6b");
+        }
     </script>
    
 }
