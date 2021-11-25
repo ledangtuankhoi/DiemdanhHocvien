@@ -82,6 +82,10 @@ namespace DiemdanhHocvien.Controllers
             //
             int i = 6;
             int recordIndex = 4;
+            //so buoi vang
+            int lost = 0;
+            //so buoi diemdanh
+            int attTrue = 0;
             foreach (var item in studentOfClass)
             {
 
@@ -125,6 +129,7 @@ namespace DiemdanhHocvien.Controllers
                         }
                     }
 
+                    //CHỈ TÌNH TRƯƠC NGÀY HIENJ TẠI
                     if (date.Date <= DateTime.Now.Date)
                     {
 
@@ -137,12 +142,15 @@ namespace DiemdanhHocvien.Controllers
 
                                 if (b.order > 0)
                                 {
+                                    attTrue++;
                                     workSheet.Cells[recordIndex, indexCol].Value = "-";
+
                                     indexCol++;
 
                                 }
                                 else
                                 {
+                                    lost++;
                                     workSheet.Cells[recordIndex, indexCol].Value = "Lose";
                                     workSheet.Cells[recordIndex, indexCol].Style.Fill.PatternType = ExcelFillStyle.DarkHorizontal;
                                     workSheet.Cells[recordIndex, indexCol].Style.Fill.BackgroundColor.SetColor(Color.Orange);
@@ -151,6 +159,7 @@ namespace DiemdanhHocvien.Controllers
                             }
                             else
                             {
+                                lost++;
                                 workSheet.Cells[recordIndex, indexCol].Value = "Lose";
                                 workSheet.Cells[recordIndex, indexCol].Style.Fill.PatternType = ExcelFillStyle.DarkHorizontal;
                                 workSheet.Cells[recordIndex, indexCol].Style.Fill.BackgroundColor.SetColor(Color.Orange);
@@ -158,11 +167,28 @@ namespace DiemdanhHocvien.Controllers
 
                             }
 
-                        }
+                        } 
                     }
-
-
+                    
+                    
                 }
+
+                if (recordIndex == 4)
+                {
+                    workSheet.Cells[2, i].Value = "Vang";
+                    workSheet.Cells[2, i+1].Value = "Chuan";
+                }
+                //tong so buoi vang
+                indexCol +=2;
+                workSheet.Cells[recordIndex, indexCol].Value = lost;
+
+                // so buoi diem danh
+                indexCol++;
+                workSheet.Cells[recordIndex, indexCol].Value = attTrue;
+
+                lost = 0;
+                attTrue = 0;
+                //xuong dongf
                 recordIndex++;
             }
             workSheet.Column(1).AutoFit();
