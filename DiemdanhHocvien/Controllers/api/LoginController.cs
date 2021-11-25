@@ -32,6 +32,7 @@ namespace DiemdanhHocvien.Controllers.api
                         UserId = user.UserId,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
+                        Email = user.Email,
                         RoleName = user.Roles.Select(r => r.RoleName).ToList()
                     };
                     return Content(HttpStatusCode.OK, userModel);

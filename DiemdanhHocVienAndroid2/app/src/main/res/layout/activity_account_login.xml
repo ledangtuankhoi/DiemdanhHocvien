@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".login">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/edUsername"
+            android:layout_width="376dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="185dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="teacher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edPassword"
+            android:layout_width="376dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="1234"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edUsername" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="249dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginTop="56dp"
+            android:text="Login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="126dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="50dp"
+            android:text="have not accout?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+
+        <TextView
+            android:id="@+id/loginNow"
+            android:layout_width="104dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="81dp"
+            android:text="Register Now!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
