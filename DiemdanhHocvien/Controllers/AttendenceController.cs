@@ -17,10 +17,7 @@ namespace DiemdanhHocvien.Controllers
         private AuthenticationDB db = new AuthenticationDB();
 
 
-        public ActionResult Excel () {
-        
-            return View();
-        }
+       
         // GET: Attendence/indexTeacher
         public ActionResult indexTeacher()
         {
@@ -97,7 +94,7 @@ namespace DiemdanhHocvien.Controllers
                 lstStudeId.Add(idStud);
 
                 //minium time next attendent student
-                int minTimeAtte = 1; // minutes
+                int minTimeAtte =0; // minutes
 
                 var atteStud = db.attendences.Where(x => x.studentId == idStud).OrderByDescending(x => x.createTime).FirstOrDefault();
                 if (atteStud != null && atteStud.createTime.Date.Day == DateTime.Now.Date.Day && (DateTime.Now - atteStud.time).TotalMinutes > minTimeAtte)

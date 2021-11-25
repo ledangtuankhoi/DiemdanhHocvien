@@ -143,11 +143,20 @@
     <!-- Page level plugins -->
     <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/buttons.html5.min.js"></script>
+    <script src="~/Assets/dashboard/vendor/datatables/jszip.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script>
         $(document).ready(function () {
-            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+            $('#dataTableHover').DataTable({
+                dom: 'Blfrtip',
+                buttons: [
+                    'selectAll',
+                    'selectNone'
+                ]
+            }); // ID From dataTable with Hover
         });
     </script>
     <script>
@@ -157,19 +166,28 @@
 
     @*click row in table checkbox*@
     <script>
-        $(document).ready(function () {
-            $('.record_table tr').click(function (event) {
-                if (event.target.type !== 'checkbox') {
-                    $(':checkbox', this).trigger('click');
-                    if ($(':checkbox', this)[0].checked) {
-                        $(this).css("background-color", "#6777ef6b");
-                    } else {
-                        $(this).css("background-color", "");
+        // set timeout
+        var tid = setTimeout(mycode, 0);
+        function mycode() {
+            
+                $('.record_table tr').click(function (event) {
+                    if (event.target.type !== 'checkbox') {
+                        $(':checkbox', this).trigger('click');
+                        if ($(':checkbox', this)[0].checked) {
+                            $(this).css("background-color", "#6777ef6b");
+                        } else {
+                            $(this).css("background-color", "");
+                        }
                     }
-                }
 
 
-            });
-        });
+                });
+             
+            tid = setTimeout(mycode, 10) // repeat myself
+        }
+        function abortTimer() { // to be called when you want to stop the timer
+            clearTimeout(tid);
+        }
+       
     </script>
 }
