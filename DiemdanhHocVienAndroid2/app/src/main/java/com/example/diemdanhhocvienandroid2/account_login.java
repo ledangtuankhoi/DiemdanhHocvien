@@ -17,7 +17,10 @@ import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.api.account.LoginRequest;
 import com.example.diemdanhhocvienandroid2.models.User;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,8 +93,10 @@ public class account_login extends AppCompatActivity {
 //                    bundle.putString("FullName",userCurrent.getFirstName()+userCurrent.getLastName());
 //                    bundle.putString("Email",userCurrent.getEmail());
 
-                    String[] header = {userCurrent.getFirstName()+userCurrent.getLastName(),userCurrent.getEmail()};
+                    String[] header = {userCurrent.getFirstName()+userCurrent.getLastName(),userCurrent.getEmail(), Arrays.toString(userCurrent.getRoleName())};
+                    String[] role = userCurrent.getRoleName();
                     bundle.putStringArray("header",header);
+                    bundle.putStringArray("role",role);
                     intent.putExtras(bundle);
 
                     startActivity(intent);

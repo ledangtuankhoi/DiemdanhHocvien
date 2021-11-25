@@ -2,9 +2,11 @@ package com.example.diemdanhhocvienandroid2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.api.account.RegisterRequest;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -19,6 +21,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.diemdanhhocvienandroid2.databinding.ActivityHomeBinding;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -49,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_class)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
@@ -69,11 +73,14 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            String FullName = bundle.getString("FullName");
-            String Email = bundle.getString("Email");
+//            String FullName = bundle.getString("FullName");
+//            String Email = bundle.getString("Email");
             String[] headers = bundle.getStringArray("header");
+            String[] role = bundle.getStringArray("role");
             txFullName.setText(headers[0]);
             txEmail.setText(headers[1]);
+//            Toast.makeText(HomeActivity.this, headers[2], Toast.LENGTH_SHORT).show();
+            Log.d("role",headers[2]);
         }
 
     }

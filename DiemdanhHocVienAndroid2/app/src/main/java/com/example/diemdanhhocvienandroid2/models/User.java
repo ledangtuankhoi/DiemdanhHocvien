@@ -7,23 +7,21 @@ public class User {
     private String LastName ;
     private String Email ;
     private String Password ;
-    private String[] Roles;
 
-
-
-
-    public User() {
+    public String[] getRoleName() {
+        return RoleName;
     }
 
-    public User(int userId, String username, String firstName, String lastName, String email, String password, String[] roles) {
-        UserId = userId;
-        Username = username;
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        Password = password;
-        Roles = roles;
+    public void setRoleName(String[] roleName) {
+        RoleName = roleName;
     }
+
+    private String[] RoleName;
+
+
+
+
+
 
     public int getUserId() {
         return UserId;
@@ -73,11 +71,4 @@ public class User {
         Password = password;
     }
 
-    public String[] getRoles() {
-        return Roles;
-    }
-
-    public void setRoles(String[] roles) {
-        Roles = roles;
-    }
 }
