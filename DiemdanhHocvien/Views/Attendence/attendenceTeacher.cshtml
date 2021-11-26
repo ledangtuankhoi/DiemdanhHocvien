@@ -21,8 +21,6 @@
         </div>
     }
     <!-- form atribute call -->
-    
-
     <!-- Row -->
     <div class="row">
         <!-- DataTable with Hover -->
@@ -186,34 +184,42 @@
 
     @*click row in table checkbox*@
     <script>
-        $(document).ready(function () {
-            $('.record_table tr').click(function (event) {
-                if (event.target.type !== 'checkbox') {
-                    $(':checkbox', this).trigger('click');
-                    if ($(':checkbox', this)[0].checked) {
-                        $(this).css("background-color", "#6777ef6b");
-                    } else {
-                        $(this).css("background-color", "");
+        function clickRow() {
+
+            $(document).ready(function () {
+                $('.record_table tr').click(function (event) {
+                    if (event.target.type !== 'checkbox') {
+                        $(':checkbox', this).trigger('click');
+                        if ($(':checkbox', this)[0].checked) {
+                            $(this).css("background-color", "#6777ef6b");
+                        } else {
+                            $(this).css("background-color", "");
+                        }
                     }
-                }
 
 
+                });
             });
-        });
-    </script>
-
-    <script>
-        $(".alert").delay(4000).slideUp(200, function () {
-            $(this).alert('close');
-        });
-    </script>
-
-    <script>
-        function toggle() {
-            console.log("toggle");
-            $(":checkbox").prop("checked", true);
-                $('.record_table tr').css("background-color", "#6777ef6b");
         }
-    </script>
-   
+    </script>       
+
+
+<script>
+    $(".alert").delay(4000).slideUp(200, function () {
+        $(this).alert('close');
+    });
+</script>
+
+<script>
+    function toggle() {
+        console.log("toggle");
+        $(":checkbox").prop("checked", true);
+        $('.record_table tr').css("background-color", "#6777ef6b");
+    }
+</script>
+<script>
+    $('#dataTableHover').on('draw.dt', function () {
+        clickRow();
+    });
+</script>
 }
