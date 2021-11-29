@@ -1,5 +1,8 @@
-package com.example.diemdanhhocvienandroid2.api.account;
+package com.example.diemdanhhocvienandroid2.api;
 
+import com.example.diemdanhhocvienandroid2.api.account.LoginRequest;
+import com.example.diemdanhhocvienandroid2.api.account.RegisterRequest;
+import com.example.diemdanhhocvienandroid2.api.account.RegisterResponse;
 import com.example.diemdanhhocvienandroid2.models.User;
 
 import retrofit2.Call;

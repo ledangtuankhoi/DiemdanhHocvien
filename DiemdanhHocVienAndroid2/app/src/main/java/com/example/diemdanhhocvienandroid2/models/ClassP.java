@@ -1,25 +1,13 @@
 package com.example.diemdanhhocvienandroid2.models;
 
-import java.time.LocalDate;
-
-public class Class {
+public class ClassP {
     private int id ;
     private String className ;
     private String codeName ;
-    private LocalDate startDate ;
-
-    public Class() {
-    }
-
-    public Class(int id, String className, String codeName, LocalDate startDate, LocalDate endDate, String dayOfWeek, int userId) {
-        this.id = id;
-        this.className = className;
-        this.codeName = codeName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.dayOfWeek = dayOfWeek;
-        this.userId = userId;
-    }
+    private String startDate ;
+    private String endDate ;
+    private String dayOfWeek ;
+    private int userId ;
 
     public int getId() {
         return id;
@@ -45,19 +33,20 @@ public class Class {
         this.codeName = codeName;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+     public String getStartDate() {
+        return  startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+     public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
+
         this.endDate = endDate;
     }
 
@@ -77,7 +66,4 @@ public class Class {
         this.userId = userId;
     }
 
-    private LocalDate endDate ;
-    private String dayOfWeek ;
-    private int userId ;
 }

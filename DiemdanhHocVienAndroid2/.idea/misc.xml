@@ -3,16 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/drawable-v24/ic_baseline_add_24.xml" value="0.16111111111111112" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/drawable-v24/ic_baseline_restore_from_trash_24.xml" value="0.15092592592592594" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/drawable/ic_menu_camera.xml" value="0.15185185185185185" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.15185185185185185" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/activity_account_login.xml" value="0.19814814814814816" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/activity_account_register.xml" value="0.19814814814814816" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/activity_home.xml" value="0.19814814814814816" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/app_bar_home.xml" value="0.16799999999999998" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/class_fragment.xml" value="0.18518518518518517" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/content_home.xml" value="0.15648148148148147" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_class.xml" value="0.18425925925925926" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_class_teacher.xml" value="0.10833333333333334" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_gallery.xml" value="0.10925925925925926" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_home.xml" value="0.1925925925925926" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_slideshow.xml" value="0.1925925925925926" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student.xml" value="0.18425925925925926" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/item_class.xml" value="0.2" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/nav_header_home.xml" value="0.1925925925925926" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/activity_home_drawer.xml" value="0.16054421768707483" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/home.xml" value="0.10925925925925926" />
