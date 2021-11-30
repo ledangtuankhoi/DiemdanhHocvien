@@ -68,6 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:drawableLeft="@drawable/ic_baseline_home_24"
                     android:textSize="18dp"
                     android:text="Add student"/>
                 <TextView
@@ -75,12 +76,14 @@
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_home_24"
                     android:text="Add student"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_home_24"
                     android:text="Add student"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

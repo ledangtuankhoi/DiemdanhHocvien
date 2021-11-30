@@ -65,7 +65,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "onBindViewHolder: "+classP.getEndDate().toString());
+
 
         //substring "yyyy-MM-dd'T'HH:mm:ss" to "yyyy-MM-dd"
         holder.startDate.setText(classP.getStartDate().substring(0,classP.getStartDate().indexOf("T")));

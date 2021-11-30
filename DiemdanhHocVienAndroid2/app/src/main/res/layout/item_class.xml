@@ -9,7 +9,7 @@
     android:layout_marginTop="5sp"
     android:layout_marginRight="5sp"
     android:layout_marginBottom="5sp"
-    app:cardBackgroundColor="#F2F2F2">
+    app:cardBackgroundColor="#FDF8FF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/imageView_flag"
-            android:layout_width="110sp"
-            android:layout_height="90sp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"

@@ -1,5 +1,6 @@
 package com.example.diemdanhhocvienandroid2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,12 +28,12 @@ import com.gordonwong.materialsheetfab.MaterialSheetFab;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-
     private static final int FRAMGENT_HOME = 1;
     private static final int FRAMGENT_GALLERY = 2;
     private static final int FRAMGENT_SLIDESSHOW = 3;
     private static final int FRAMGENT_USER = 4;
     private static final int FRAMGENT_CLASS = 5;
+    private static final String TAG = HomeActivity.class.getName();
 
     private int currentFragment = FRAMGENT_CLASS;
     NavigationView navigationView;
@@ -40,12 +42,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //floating action button become a menu
     private MaterialSheetFab materialSheetFab;
 
-
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -60,9 +62,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        setTitleToolbar();
-        replateFragment(new ClassFragment());
-        navigationView.setCheckedItem(R.id.nav_class);
+        // response bundle form login
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+//        Bundle bundle = getArguments();
+        if (bundle != null) {
+            User item = (User) bundle.getSerializable("object_user");
+            if (item != null) {
+                user = item;
+                Toast.makeText(HomeActivity.this, "wellcom " + item.getLastName()+" "+item.getFirstName(), Toast.LENGTH_SHORT).show();
+            } else Toast.makeText(HomeActivity.this, "user null", Toast.LENGTH_SHORT).show();
+
+        } else Toast.makeText(HomeActivity.this, "bundel null", Toast.LENGTH_SHORT).show();
+
+
+
+        //set name header nav
+        View header = navigationView.getHeaderView(0);
+        TextView txEmail = header.findViewById(R.id.txEmail);
+        TextView txFullName = header.findViewById(R.id.txFullName);
+        txEmail.setText(user.getEmail());
+        txFullName.setText(user.getLastName()+" "+user.getFirstName());
 
 
         //floating action button become a menu
@@ -82,9 +102,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //
+        ClassFragment classFragment = new ClassFragment();
+        Bundle bundle1 = new Bundle();
+        bundle1.putSerializable("object_user", user);
+        classFragment.setArguments(bundle1);
+
+
+        currentFragment = FRAMGENT_CLASS;
+        setTitleToolbar();
+        replateFragment(new ClassFragment());
+        navigationView.setCheckedItem(R.id.nav_class);
 
 
     }
+
 
     public void replateFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -115,11 +147,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setCheckedItem(R.id.nav_home);
 
             }
-        }  else if (id == R.id.nav_class) {
+        } else if (id == R.id.nav_class) {
             replateFragment(new ClassFragment());
             currentFragment = FRAMGENT_CLASS;
             navigationView.setCheckedItem(R.id.nav_class);
-
         }
         setTitleToolbar();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -133,14 +164,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case FRAMGENT_HOME:
                 title = getString(R.string.menu_home);
                 break;
-            case FRAMGENT_GALLERY:
-                title = getString(R.string.menu_gallery);
-
+            case FRAMGENT_CLASS:
+                title = getString(R.string.menu_class);
                 break;
-            case FRAMGENT_SLIDESSHOW:
-                title = getString(R.string.menu_slideshow);
 
-                break;
         }
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
