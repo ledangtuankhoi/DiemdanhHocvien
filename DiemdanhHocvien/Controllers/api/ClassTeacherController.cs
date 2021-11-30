@@ -10,13 +10,13 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DiemdanhHocvien.DataAccess;
 
-namespace DiemdanhHocvien.Controllers
+namespace DiemdanhHocvien.Controllers.api
 {
     public class ClassTeacherController : ApiController
     {
         private AuthenticationDB db = new AuthenticationDB();
 
-        // GET: api/ClassTeacher
+        // GET: api/ClassTeacher/5
         public List<Class> Getclasses(int id)
         {
             //id of teacher
