@@ -53,6 +53,14 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
             Toast.makeText(main2Activity.getApplicationContext(), "list null", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIClickItemListener.onClickItemUser(classP);
+            }
+        });
+
         holder.className.setText(classP.getClassName());
 
         //conver string to date
@@ -106,13 +114,6 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
 
             }
         }
-
-         holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("onclick", String.valueOf(classP.getId()+classP.getClassName()));
-            }
-        });
     }
 
     @Override

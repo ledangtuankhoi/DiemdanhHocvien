@@ -1,6 +1,8 @@
 package com.example.diemdanhhocvienandroid2.models;
 
-public class ClassP {
+import java.io.Serializable;
+
+public class ClassP implements Serializable {
     private int id ;
     private String className ;
     private String codeName ;
@@ -8,6 +10,19 @@ public class ClassP {
     private String endDate ;
     private String dayOfWeek ;
     private int userId ;
+
+    @Override
+    public String toString() {
+        return "ClassP{" +
+                "id=" + id +
+                ", className='" + className + '\'' +
+                ", codeName='" + codeName + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", dayOfWeek='" + dayOfWeek + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 
     public int getId() {
         return id;

@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
+import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -115,6 +117,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_class);
 
 
+    }
+
+
+    public void goToListOfClassFragment(ClassP classP){
+        StudentOfClassFragment studentOfClassFragment = new StudentOfClassFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_class", classP);
+        studentOfClassFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentOfClassFragment);
+        fragmentTransaction.addToBackStack(StudentOfClassFragment.TAG);
+        fragmentTransaction.commit();
     }
 
 

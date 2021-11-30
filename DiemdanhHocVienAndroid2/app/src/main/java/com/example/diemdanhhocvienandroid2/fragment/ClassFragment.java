@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,6 +55,8 @@ public class ClassFragment extends Fragment {
             getListClass();
         }
 
+
+
         return mView;
     }
 
@@ -69,7 +72,7 @@ public class ClassFragment extends Fragment {
                     ClassAdapter classAdapter = new ClassAdapter(lstClass, new ClassAdapter.IClickItemListener() {
                         @Override
                         public void onClickItemUser(ClassP classP) {
-                            Toast.makeText(mHomeActivity.getApplicationContext(), "click", Toast.LENGTH_SHORT).show();
+                            mHomeActivity.goToListOfClassFragment(classP);
                         }
                     });
 //                 Log.d("onCreateView", "onCreateView"+lstClass.size() + " ");
@@ -92,12 +95,14 @@ public class ClassFragment extends Fragment {
             @Override
             public void onResponse(Call<List<ClassP>> call, Response<List<ClassP>> response) {
                 if(response.isSuccessful()){
-                    lstClass = response.body();
                     Log.d("onResponse", "call api success" + lstClass.size() + " ");
+                    lstClass = response.body();
+
+                    //click item class tran to list student of class
                     ClassAdapter classAdapter = new ClassAdapter(lstClass, new ClassAdapter.IClickItemListener() {
                         @Override
                         public void onClickItemUser(ClassP classP) {
-                            Toast.makeText(mHomeActivity.getApplicationContext(), "click", Toast.LENGTH_SHORT).show();
+                            mHomeActivity.goToListOfClassFragment(classP);
                         }
                     });
 //                 Log.d("onCreateView", "onCreateView"+lstClass.size() + " ");
@@ -114,4 +119,5 @@ public class ClassFragment extends Fragment {
             }
         });
     }
+
 }
