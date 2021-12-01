@@ -1,24 +1,27 @@
 package com.example.diemdanhhocvienandroid2.models;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Class {
+public class ClassP implements Serializable {
     private int id ;
     private String className ;
     private String codeName ;
-    private LocalDate startDate ;
+    private String startDate ;
+    private String endDate ;
+    private String dayOfWeek ;
+    private int userId ;
 
-    public Class() {
-    }
-
-    public Class(int id, String className, String codeName, LocalDate startDate, LocalDate endDate, String dayOfWeek, int userId) {
-        this.id = id;
-        this.className = className;
-        this.codeName = codeName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.dayOfWeek = dayOfWeek;
-        this.userId = userId;
+    @Override
+    public String toString() {
+        return "ClassP{" +
+                "id=" + id +
+                ", className='" + className + '\'' +
+                ", codeName='" + codeName + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", dayOfWeek='" + dayOfWeek + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 
     public int getId() {
@@ -45,19 +48,20 @@ public class Class {
         this.codeName = codeName;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+     public String getStartDate() {
+        return  startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+     public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
+
         this.endDate = endDate;
     }
 
@@ -77,7 +81,4 @@ public class Class {
         this.userId = userId;
     }
 
-    private LocalDate endDate ;
-    private String dayOfWeek ;
-    private int userId ;
 }

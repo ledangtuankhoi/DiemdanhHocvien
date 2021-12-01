@@ -1,22 +1,24 @@
 package com.example.diemdanhhocvienandroid2.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int UserId ;
     private String Username ;
     private String FirstName ;
     private String LastName ;
     private String Email ;
     private String Password ;
+    private String[] RoleName;
 
-    public String[] getRoleName() {
-        return RoleName;
+    public String getRoleName() {
+        return RoleName[0].toString().trim();
     }
 
     public void setRoleName(String[] roleName) {
         RoleName = roleName;
     }
 
-    private String[] RoleName;
 
 
 

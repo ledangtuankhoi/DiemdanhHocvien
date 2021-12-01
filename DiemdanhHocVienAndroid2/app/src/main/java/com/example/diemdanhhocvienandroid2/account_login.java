@@ -1,10 +1,10 @@
 package com.example.diemdanhhocvienandroid2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +16,6 @@ import android.widget.Toast;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.api.account.LoginRequest;
 import com.example.diemdanhhocvienandroid2.models.User;
-
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,36 +76,32 @@ public class account_login extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(account_login.this, response.toString(), Toast.LENGTH_SHORT).show();
-//                    Log.d("onResponse", response.raw().toString());
+                    User user = response.body();
+                    //goToHomeFragment
+                    goToHomeFragment(user);
 
-                    userCurrent = response.body();
-//                    Log.d("user",userCurrent.toString());
-
-//                    pass data user
-                    Intent intent = new Intent(account_login.this,HomeActivity.class);
-                    Bundle bundle = new Bundle();
-//                    bundle.putString("FullName",userCurrent.getFirstName()+userCurrent.getLastName());
-//                    bundle.putString("Email",userCurrent.getEmail());
-
-                    String[] header = {userCurrent.getFirstName()+userCurrent.getLastName(),userCurrent.getEmail(), Arrays.toString(userCurrent.getRoleName())};
-                    String[] role = userCurrent.getRoleName();
-                    bundle.putStringArray("header",header);
-                    bundle.putStringArray("role",role);
-                    intent.putExtras(bundle);
-
-                    startActivity(intent);
-                    finish();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                String msg = "user or pass false .. ";
+                String msg = "call api false";
                 Toast.makeText(account_login.this, msg, Toast.LENGTH_SHORT).show();
                 Log.d("onFailure: ", t.getMessage());
             }
         });
 
     }
+
+
+    public void goToHomeFragment(User user) {
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_user", user);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+    }
+
+
 }
