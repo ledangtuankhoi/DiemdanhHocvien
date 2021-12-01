@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
@@ -72,11 +73,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             User item = (User) bundle.getSerializable("object_user");
             if (item != null) {
                 user = item;
-                Toast.makeText(HomeActivity.this, "wellcom " + item.getLastName()+" "+item.getFirstName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "wellcom " + item.getLastName() + " " + item.getFirstName(), Toast.LENGTH_SHORT).show();
             } else Toast.makeText(HomeActivity.this, "user null", Toast.LENGTH_SHORT).show();
 
         } else Toast.makeText(HomeActivity.this, "bundel null", Toast.LENGTH_SHORT).show();
-
 
 
         //set name header nav
@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView txEmail = header.findViewById(R.id.txEmail);
         TextView txFullName = header.findViewById(R.id.txFullName);
         txEmail.setText(user.getEmail());
-        txFullName.setText(user.getLastName()+" "+user.getFirstName());
+        txFullName.setText(user.getLastName() + " " + user.getFirstName());
 
 
         //floating action button become a menu
@@ -113,8 +113,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void goToAttendanceStudent(ClassP classP) {
+        AttendanceStudentFragment attendanceStudentFragment = new AttendanceStudentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_class", classP);
+        attendanceStudentFragment.setArguments(bundle);
 
-    public void goToListOfClassFragment(ClassP classP){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, attendanceStudentFragment);
+        fragmentTransaction.addToBackStack(AttendanceStudentFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void goToListOfClassFragment(ClassP classP) {
         StudentOfClassFragment studentOfClassFragment = new StudentOfClassFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("object_class", classP);
