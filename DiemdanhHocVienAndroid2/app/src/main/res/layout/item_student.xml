@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    app:cardPreventCornerOverlap="true"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="100dp"
+         android:padding="10dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_holyName"
+             android:textColor="@color/white"
+            android:textSize="15dp"
+            android:text="Maths Maths Maths Mat"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_fullname"
+            style="@style/viewParent.headerText.HomeCardTitle"
+             android:layout_below="@+id/tv_holyName"
+            android:text="Maths Maths Maths Mat\nMaths Maths Maths" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/viewParent.headerText.homeCardContent"
+            android:layout_below="@id/tv_fullname"
+            android:text="Study nature, love nature,\nclose to nature" />
+
+        <TextView
+            android:id="@+id/tv_order"
+            style="@style/viewParent.headerText.homeCardContent"
+            android:layout_below="@id/tv_info"
+            android:text="Study nature, " />
+
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/img_student"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_check_box_24"
+            android:visibility="gone"
+            android:layout_width="30dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

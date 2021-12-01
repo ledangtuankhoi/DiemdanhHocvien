@@ -85,7 +85,7 @@ public class account_login extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                String msg = "user or pass false .. ";
+                String msg = "call api false";
                 Toast.makeText(account_login.this, msg, Toast.LENGTH_SHORT).show();
                 Log.d("onFailure: ", t.getMessage());
             }

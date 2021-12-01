@@ -46,13 +46,14 @@ public class ClassFragment extends Fragment {
         rcvClass = mView.findViewById(R.id.rcv_class);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcvClass.setLayoutManager(linearLayoutManager);
-        Log.d(TAG, "onCreate: " + user.getUserId());
+
 
         if (user.getRoleName().equals("teacher")) {
             getListClassOfTeacher(user.getUserId());
-            Toast.makeText(mHomeActivity.getApplicationContext(), "class of teacher", Toast.LENGTH_SHORT).show();
-        } else {
+            Log.d(TAG, "getListClassOfTeacher--------- ");
+         } else {
             getListClass();
+            Log.d(TAG, "getListClass--------- ");
         }
 
 

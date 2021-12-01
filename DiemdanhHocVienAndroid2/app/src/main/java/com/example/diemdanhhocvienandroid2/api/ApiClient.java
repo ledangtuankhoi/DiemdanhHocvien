@@ -1,5 +1,7 @@
 package com.example.diemdanhhocvienandroid2.api;
 
+import com.example.diemdanhhocvienandroid2.models.Student;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -10,7 +12,7 @@ public class ApiClient {
 
     public static Retrofit getRetrofit(){
 
-        String link = "http://192.168.1.5:45455/api/";
+        String link = "http://192.168.1.4:45455/api/";
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -37,5 +39,11 @@ public class ApiClient {
     public static ClassService getClassService(){
         ClassService classService = getRetrofit().create(ClassService.class);
         return classService;
+    }
+
+
+    public static StudentService getStudentService(){
+        StudentService studentService = getRetrofit().create(StudentService.class);
+        return studentService;
     }
 }

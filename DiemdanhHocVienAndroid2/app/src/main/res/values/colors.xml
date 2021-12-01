@@ -10,4 +10,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fab_sheet_color">#FFFFFF</color>
     <color name="fab_color">#FF7F76</color>
+
+    //item studnet
+    <!--colors for dark mode-->
+    <color name="contentBodyColor">#000</color>
+    <color name="contentTextColor">#fff</color>
+    <color name="bottomNavigationBackground">#000</color>
+    <color name="miniTitleColor">#fff</color>
+    <color name="whiteTextColor">#fff</color>
 </resources>
