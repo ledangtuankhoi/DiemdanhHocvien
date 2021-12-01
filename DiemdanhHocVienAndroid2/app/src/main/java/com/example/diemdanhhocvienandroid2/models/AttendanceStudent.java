@@ -116,6 +116,14 @@ public class AttendanceStudent {
         this.time = time;
     }
 
+    public boolean isAttendance() {
+        return isAttendance;
+    }
+
+    public void setAttendance(boolean attendance) {
+        isAttendance = attendance;
+    }
+
     public String lastName ;
     public String firstName ;
     public String holyName ;
@@ -130,4 +138,6 @@ public class AttendanceStudent {
     public int studentId ;
     public String createTime ;
     public String time ;
+    public boolean isAttendance;
+
 }

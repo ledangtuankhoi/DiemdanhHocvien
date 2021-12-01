@@ -1,5 +1,6 @@
 package com.example.diemdanhhocvienandroid2.api;
 
+import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.Student;
 
 import okhttp3.OkHttpClient;
@@ -45,5 +46,10 @@ public class ApiClient {
     public static StudentService getStudentService(){
         StudentService studentService = getRetrofit().create(StudentService.class);
         return studentService;
+    }
+
+    public static AttendanceService getAttendanceService(){
+        AttendanceService attendanceService = getRetrofit().create(AttendanceService.class);
+        return attendanceService;
     }
 }

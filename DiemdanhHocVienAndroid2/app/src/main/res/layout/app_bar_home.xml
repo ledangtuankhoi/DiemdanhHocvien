@@ -86,14 +86,25 @@
                     android:drawableLeft="@drawable/ic_check_attendance"
                     android:text="Attendance student"
                     android:visibility="gone"/>
+
+                //CRUD Student
                 <TextView
                     android:id="@+id/fab_add_student"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:textSize="18dp"
-                     android:drawableLeft="@drawable/ic_baseline_home_24"
-                    android:text="Add student"
+                    android:drawableLeft="@drawable/ic_baseline_add_box_24"
+                    android:text="add student"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/fab_delete_multi_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_home_24"
+                    android:text="delete multi student"
                     android:visibility="gone"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

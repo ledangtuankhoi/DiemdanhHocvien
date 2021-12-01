@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.diemdanhhocvienandroid2.AttendanceStudentActivity;
+import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.viewmodel.AttendanceStudentViewModel;
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
@@ -29,10 +33,14 @@ import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStudentAdapter.StudentViewHolder> {
 
     List<AttendanceStudent> studentList;
-    private HomeActivity mHomeActivity;
+    private AttendanceStudentActivity mAttendanceStudentActivity;
     public static  final String TAG = AttendanceStudentAdapter.class.getName();
 
     //select multi
@@ -79,6 +87,11 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         holder.tv_info.setText("numberPhone: "+info);
         holder.tv_order.setText("order: "+String.valueOf(student.getOrder()));
 
+
+        holder.relativeLayout.setBackgroundColor(Color.rgb(191, 174, 177));
+
+
+
         //set actin click shot
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,18 +135,21 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                             int id = item.getItemId();
                             //use swicth
                             switch (id){
-                                case R.id.menu_delete:
-                                    //when click delete
-                                    //use for loop
-                                    Log.e("menu_delete", "onActionItemClicked: "+selectList.size() );
-                                    for (AttendanceStudent s: selectList){
-                                        //remove  selete item on select list
-                                        studentList.remove(s);
-                                    }
+                                case R.id.menu_attendance:
+//                                    //when click delete
+//                                    //use for loop
+//                                    Log.e("menu_delete", "onActionItemClicked: "+selectList.size() );
+//                                    for (AttendanceStudent s: selectList){
+//                                        //remove  selete item on select list
+//                                        studentList.remove(s);
+//                                    }
                                     // when array list empty
                                     if(studentList.isEmpty()){
                                         tv_empty.setVisibility(View.GONE);
                                     }
+                                    Attendance(selectList);
+                                    Toast.makeText(v.getContext(), "attandance", Toast.LENGTH_SHORT).show();
+
                                     mode.finish();
                                     break;
                                 case R.id.menu_selete_all:
@@ -183,16 +199,43 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             //visible all check box
             holder.iv_check_box.setVisibility(View.VISIBLE);
             //set backgound
-            holder.itemView.setBackgroundColor(Color.LTGRAY);
+            holder.relativeLayout.setBackgroundColor(Color.rgb( 86, 166, 106));
+
         }else {
             //when item is unselect
             //visible all un check box
             holder.iv_check_box.setVisibility(View.GONE);
             //set backgound
-            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+            holder.relativeLayout.setBackgroundColor(Color.rgb(191, 174, 177));
         }
     }
 
+    private void Attendance(List<AttendanceStudent> selectList) {
+        for (AttendanceStudent a :selectList){
+            for(AttendanceStudent b : studentList){
+                if(a.getStudentId() == b.getStudentId()){
+                    b.setAttendance(true);
+                    break;
+                }
+            }
+        }
+        Log.w(TAG, "Attendance: "+selectList );
+
+        ApiClient.getAttendanceService().attendanceStudent(studentList).enqueue(new Callback<List<AttendanceStudent>>() {
+            @Override
+            public void onResponse(Call<List<AttendanceStudent>> call, Response<List<AttendanceStudent>> response) {
+                if(response.isSuccessful()){
+                    Log.w(TAG, "isSuccessful: "+response.body().size());
+                    //reload fragment
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AttendanceStudent>> call, Throwable t) {
+                Log.e(TAG, "onFailure: "+t.getMessage() );
+            }
+        });
+    }
 
 
     private void clickItem(StudentViewHolder holder) {
@@ -203,7 +246,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             //when item not select
             holder.iv_check_box.setVisibility(View.VISIBLE);
             //set backgound item
-            holder.itemView.setBackgroundColor(Color.LTGRAY);
+            holder.relativeLayout.setBackgroundColor(Color.rgb( 86, 166, 106));
             //add item selete list
 
             selectList.add(s);
@@ -211,7 +254,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             //when item select
             holder.iv_check_box.setVisibility(View.GONE);
             //set backgound item
-            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+            holder.relativeLayout.setBackgroundColor(Color.rgb(191, 174, 177));
             //remove item list select
 
             selectList.remove(s);
@@ -233,6 +276,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     public class StudentViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_fullname,tv_info,tv_order,tv_holyName;
         private ImageView img_student,iv_check_box;
+        private RelativeLayout relativeLayout;
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_fullname = itemView.findViewById(R.id.tv_fullname);
@@ -241,6 +285,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             tv_holyName =itemView.findViewById(R.id.tv_holyName);
             img_student = itemView.findViewById(R.id.img_student);
             iv_check_box = itemView.findViewById(R.id.iv_check_box);
+            relativeLayout =itemView.findViewById(R.id.item);
         }
     }
 

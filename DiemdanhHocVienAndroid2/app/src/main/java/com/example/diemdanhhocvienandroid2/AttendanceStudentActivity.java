@@ -63,6 +63,8 @@ public class AttendanceStudentActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mainAdapter = new AttendanceStudentAdapter(AttendanceStudentActivity.this,arrayList,tv_empty);
         recyclerView.setAdapter(mainAdapter);
+
+        getSupportActionBar().setTitle("Attendance Student");
     }
 
     private void getStudentInClass() {
