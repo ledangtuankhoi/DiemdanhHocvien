@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,6 +20,8 @@ import com.example.diemdanhhocvienandroid2.adapter.ClassAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.gordonwong.materialsheetfab.MaterialSheetFab;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,8 @@ public class ClassFragment extends Fragment {
     private HomeActivity mHomeActivity;
     private List<ClassP> lstClass = new ArrayList<>();
     private User user = HomeActivity.user;
+    MaterialSheetFab materialSheetFab;
+    FloatingActionButton fab;
 
 
     @Override
@@ -56,11 +61,20 @@ public class ClassFragment extends Fragment {
             Log.d(TAG, "getListClass--------- ");
         }
 
+        //show fab func add class
+        TextView fab_add_class = mHomeActivity.findViewById(R.id.fab_add_class);
+        fab_add_class.setVisibility(View.VISIBLE);
 
 
         return mView;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        TextView fab_add_class = mHomeActivity.findViewById(R.id.fab_add_class);
+        fab_add_class.setVisibility(View.GONE);
+    }
 
     private void getListClass() {
         ApiClient.getClassService().ClassIndex().enqueue(new Callback<List<ClassP>>() {

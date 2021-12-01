@@ -96,15 +96,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Initialize material sheet FAB
         materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-        TextView fab_add = findViewById(R.id.fab_add);
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomeActivity.this, "add", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        //
+
+        //send data object user to classfragment
         ClassFragment classFragment = new ClassFragment();
         Bundle bundle1 = new Bundle();
         bundle1.putSerializable("object_user", user);

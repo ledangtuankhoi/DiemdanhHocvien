@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,11 +62,39 @@ public class StudentOfClassFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
 
+        //get data from api
         getStudentInClass();
 
+        //show fab func student
+        TextView fab_1 = mHomeActivity.findViewById(R.id.fab_add_student);
+        TextView fab_2 = mHomeActivity.findViewById(R.id.fab_attendance_student);
+         fab_1.setVisibility(View.VISIBLE);
+        fab_2.setVisibility(View.VISIBLE);
+
+        //
+        fab_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AttendanceStudent();
+            }
+        });
         return mView;
 
     }
+
+    private void AttendanceStudent() {
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //hide func in fab
+        TextView fab_1 = mHomeActivity.findViewById(R.id.fab_add_student);
+        TextView fab_2 = mHomeActivity.findViewById(R.id.fab_attendance_student);
+         fab_1.setVisibility(View.GONE);
+        fab_2.setVisibility(View.GONE);
+     }
 
     private  void getStudentInClass(){
         ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {
