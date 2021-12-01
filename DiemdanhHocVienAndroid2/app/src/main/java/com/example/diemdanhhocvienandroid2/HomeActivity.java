@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rcvUser;
 
     //floating action button become a menu
-    private MaterialSheetFab materialSheetFab;
+    public MaterialSheetFab materialSheetFab;
 
     public static User user;
 
@@ -144,6 +144,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        materialSheetFab.hideSheet();
+
+    }
 
     @Override
     public void onBackPressed() {

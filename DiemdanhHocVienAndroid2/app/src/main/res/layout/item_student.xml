@@ -21,21 +21,25 @@
             style="@style/viewParent.headerText.homeCardContent" />
 
         <TextView
-            android:layout_marginTop="12dp"
             android:id="@+id/tv_fullname"
             style="@style/viewParent.headerText.HomeCardTitle"
             android:layout_below="@+id/tv_holyName"
+            android:layout_marginTop="12dp"
             android:text="Maths Maths Maths Mat\nMaths Maths Maths" />
 
         <TextView
             android:id="@+id/tv_info"
-            style="@style/viewParent.headerText.homeCardContent"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/whiteTextColor"
             android:layout_below="@id/tv_fullname"
-            android:text="Study nature, love nature,\nclose to nature" />
+            android:text="Study nature, " />
 
         <TextView
             android:id="@+id/tv_order"
-            style="@style/viewParent.headerText.homeCardContent"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/whiteTextColor"
             android:layout_below="@id/tv_info"
             android:text="Study nature, " />
 

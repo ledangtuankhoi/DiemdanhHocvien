@@ -12,32 +12,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
+import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStudentAdapter.StudentViewHolder> {
 
-    private List<Student> studentList;
+    private List<AttendanceStudent> studentList;
     private HomeActivity mHomeActivity;
-    public static  final String TAG = StudentAdapter.class.getName();
+    public static  final String TAG = AttendanceStudentAdapter.class.getName();
 
-    public StudentAdapter(List<Student> studentList){
-        this.studentList = studentList;
-        Log.w(TAG, "StudentAdapter: studentlist"+studentList.size());
+    public AttendanceStudentAdapter(List<AttendanceStudent> attendanceStudentList){
+        this.studentList = attendanceStudentList;
+
     }
 
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false);
-        return new StudentAdapter.StudentViewHolder(view);
+        return new AttendanceStudentAdapter.StudentViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        Student student = studentList.get(position);
+        AttendanceStudent student = studentList.get(position);
         Log.w(TAG, "onBindViewHolder: "+studentList.get(position).getId() );
 
         holder.tv_holyName.setText(student.getHolyName());
@@ -48,8 +48,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         }
         holder.tv_fullname.setText(fullName);
         String info = student.getNumPhone();
-        holder.tv_info.setText("Numberphone: "+info);
-        holder.tv_order.setText("email: "+student.getEmail());
+        holder.tv_info.setText("numberPhone: "+info);
+        holder.tv_order.setText("order: "+String.valueOf(student.getOrder()));
     }
 
     @Override

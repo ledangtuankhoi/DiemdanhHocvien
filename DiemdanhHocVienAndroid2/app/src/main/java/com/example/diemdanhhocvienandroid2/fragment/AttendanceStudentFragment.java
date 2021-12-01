@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
+import com.example.diemdanhhocvienandroid2.adapter.AttendanceStudentAdapter;
 import com.example.diemdanhhocvienandroid2.adapter.StudentAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -39,7 +41,7 @@ public class AttendanceStudentFragment extends Fragment {
 
     private ClassP classP;
     private User user = HomeActivity.user;
-    private List<Student> studentList = new ArrayList<>();
+    private List<AttendanceStudent> attendanceStudentList;
 
 
     @Override
@@ -54,6 +56,7 @@ public class AttendanceStudentFragment extends Fragment {
                 this.classP = classP;
             }
         }
+
 
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_attendance_student, container, false);
@@ -79,26 +82,24 @@ public class AttendanceStudentFragment extends Fragment {
     }
 
     private void getStudentInClass() {
-        ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {
+        ApiClient.getStudentService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
             @Override
-            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
-                if (response.isSuccessful()) {
-                    Log.w(TAG, "onResponse: isSuccessful");
-                    Log.w(TAG, "response.bofy.size()" + response.body().size());
+            public void onResponse(Call<List<AttendanceStudent>> call, Response<List<AttendanceStudent>> response) {
+                if(response.isSuccessful()){
+                    attendanceStudentList = response.body();
+                     Log.w(TAG, "isSuccessful: "+attendanceStudentList.size() );
 
-                    studentList = response.body();
-                    StudentAdapter studentAdapter = new StudentAdapter(studentList);
-                    rcv_attendance_student.setAdapter(studentAdapter);
+                    AttendanceStudentAdapter attendanceStudentAdapter = new AttendanceStudentAdapter(attendanceStudentList);
+                    rcv_attendance_student.setAdapter(attendanceStudentAdapter);
 
-                    Log.w(TAG, "studentList.size: " + studentList.size());
-                    Log.w(TAG, "classP.getId: " + classP.getId());
+
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Student>> call, Throwable t) {
-                Toast.makeText(mHomeActivity.getApplicationContext(), "onFailure", Toast.LENGTH_SHORT).show();
-                Log.w(TAG, "onFailure: " + t.getMessage());
+            public void onFailure(Call<List<AttendanceStudent>> call, Throwable t) {
+                Toast.makeText(mHomeActivity.getApplicationContext(), "onFailure: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onFailure: "+t.getMessage());
             }
         });
     }
