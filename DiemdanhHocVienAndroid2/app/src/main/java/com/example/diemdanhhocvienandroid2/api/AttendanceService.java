@@ -13,6 +13,6 @@ import retrofit2.http.POST;
 public interface AttendanceService {
 
     @POST("StudentsInClass/")
-    Call<List<AttendanceStudent>> attendanceStudent (@Body List<AttendanceStudent> attendanceStudentList);
+    Call<String> attendanceStudent (@Body List<AttendanceStudent> attendanceStudentList);
 
 }

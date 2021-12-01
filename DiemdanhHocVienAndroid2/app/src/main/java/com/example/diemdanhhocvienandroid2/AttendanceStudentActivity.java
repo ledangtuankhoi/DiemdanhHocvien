@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.adapter.AttendanceStudentAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
 import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -65,6 +66,15 @@ public class AttendanceStudentActivity extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
 
         getSupportActionBar().setTitle("Attendance Student");
+    }
+
+    public void reloadAttendanceStudentFragment(){
+        android.app.Fragment currentFragment = getFragmentManager().findFragmentByTag(AttendanceStudentFragment.TAG);
+        android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.detach(currentFragment);
+        fragmentTransaction.attach(currentFragment);
+        fragmentTransaction.commit();
+        Log.w(TAG, "reloadAttendanceStudentFragment: " );
     }
 
     private void getStudentInClass() {

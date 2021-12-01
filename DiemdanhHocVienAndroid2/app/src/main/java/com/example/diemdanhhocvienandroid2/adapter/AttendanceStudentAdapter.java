@@ -1,6 +1,7 @@
 package com.example.diemdanhhocvienandroid2.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.ActionMode;
@@ -17,7 +18,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -42,6 +46,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     List<AttendanceStudent> studentList;
     private AttendanceStudentActivity mAttendanceStudentActivity;
     public static  final String TAG = AttendanceStudentAdapter.class.getName();
+    AttendanceStudentAdapter mAttendanceStudentAdapter;
 
     //select multi
     AttendanceStudentViewModel mainViewModel;
@@ -221,18 +226,26 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         }
         Log.w(TAG, "Attendance: "+selectList );
 
-        ApiClient.getAttendanceService().attendanceStudent(studentList).enqueue(new Callback<List<AttendanceStudent>>() {
+        ApiClient.getAttendanceService().attendanceStudent(studentList).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<List<AttendanceStudent>> call, Response<List<AttendanceStudent>> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
-                    Log.w(TAG, "isSuccessful: "+response.body().size());
+                    Log.w(TAG, "isSuccessful: "+response.body());
                     //reload fragment
+                    for (AttendanceStudent a :selectList){
+                        for(AttendanceStudent b : studentList){
+                            if(a.getStudentId() == b.getStudentId()){
+                                b.setOrder(b.getOrder()+1);
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<AttendanceStudent>> call, Throwable t) {
-                Log.e(TAG, "onFailure: "+t.getMessage() );
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.w(TAG, "onFailure: "+t.getMessage());
             }
         });
     }

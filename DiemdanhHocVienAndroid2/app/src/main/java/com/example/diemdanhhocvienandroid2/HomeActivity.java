@@ -113,6 +113,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     public void goToAttendanceStudent(ClassP classP) {
         Intent intent = new Intent(getApplicationContext(), AttendanceStudentActivity.class);
         Bundle bundle = new Bundle();

@@ -124,12 +124,11 @@ namespace DiemdanhHocvien.Controllers.api
         public IHttpActionResult PostStudent(List<AtteStudent> atteStudents)
         {
             foreach (var item in atteStudents)
-            {
-                Attendence attendence = db.attendences
-                    .Where(x => x.studentId.Equals(item.studentId) 
-                    && x.createTime == item.createTime).FirstOrDefault();
+            { 
+                Attendence attendence = db.attendences.Where(x => x.studentId == item.studentId).OrderByDescending(x => x.createTime).FirstOrDefault();
                 //when attendance true
-                if (attendence != null && item.isAttendance == true)
+                if (attendence != null && item.isAttendance == true
+                    && attendence.createTime.Date.Day == DateTime.Now.Date.Day)
                 {
                     attendence.order += 1;
                     attendence.time = DateTime.Now;
@@ -137,16 +136,17 @@ namespace DiemdanhHocvien.Controllers.api
                     db.Entry(attendence).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-                else if(attendence != null)
+                else if(attendence != null 
+                    && attendence.createTime.Date.Day == DateTime.Now.Date.Day)
                 {
                     attendence.time = DateTime.Now;
                     attendence.description = item.description;
-                    db.attendences.Add(attendence);
+                    db.Entry(attendence).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
 
-            return Ok();
+            return Ok("ok");
         }
 
         //// GET: api/StudentsInClass/5
