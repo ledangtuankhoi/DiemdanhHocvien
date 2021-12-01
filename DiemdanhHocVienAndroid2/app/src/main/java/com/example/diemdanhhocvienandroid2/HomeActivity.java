@@ -114,15 +114,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void goToAttendanceStudent(ClassP classP) {
-        AttendanceStudentFragment attendanceStudentFragment = new AttendanceStudentFragment();
+        Intent intent = new Intent(getApplicationContext(), AttendanceStudentActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("object_class", classP);
-        attendanceStudentFragment.setArguments(bundle);
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, attendanceStudentFragment);
-        fragmentTransaction.addToBackStack(AttendanceStudentFragment.TAG);
-        fragmentTransaction.commit();
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public void goToListOfClassFragment(ClassP classP) {
