@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 
     List<AttendanceStudent> studentList;
     private AttendanceStudentActivity mAttendanceStudentActivity;
-    public static  final String TAG = AttendanceStudentAdapter.class.getName();
+    public static final String TAG = AttendanceStudentAdapter.class.getName();
     AttendanceStudentAdapter mAttendanceStudentAdapter;
 
     //select multi
@@ -53,9 +54,9 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     boolean isEnable = false;
     boolean isSelectAll = false;
     Activity activity;
-//    ArrayList<String> arrayList = new ArrayList<>();
+    //    ArrayList<String> arrayList = new ArrayList<>();
     TextView tv_empty;
-//    ArrayList<String> selectList = new ArrayList<>();
+    //    ArrayList<String> selectList = new ArrayList<>();
     List<AttendanceStudent> selectList = new ArrayList<>();
 
 
@@ -68,12 +69,12 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
 //
         //init view model
         mainViewModel = ViewModelProviders.of((FragmentActivity) activity)
                 .get(AttendanceStudentViewModel.class);
-        return new  StudentViewHolder(view);
+        return new StudentViewHolder(view);
     }
 
     @Override
@@ -82,26 +83,25 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 
 
         holder.tv_holyName.setText(student.getHolyName());
-        String fullName = student.getFirstName()+" "+student.getLastName();
+        String fullName = student.getFirstName() + " " + student.getLastName();
         int maxLengthTextViewFullName = 21;
-        if(fullName.length()>maxLengthTextViewFullName){
+        if (fullName.length() > maxLengthTextViewFullName) {
 
         }
         holder.tv_fullname.setText(fullName);
         String info = student.getNumPhone();
-        holder.tv_info.setText("numberPhone: "+info);
-        holder.tv_order.setText("order: "+String.valueOf(student.getOrder()));
+        holder.tv_info.setText("numberPhone: " + info);
+        holder.tv_order.setText("order: " + String.valueOf(student.getOrder()));
 
 
         holder.relativeLayout.setBackgroundColor(Color.rgb(191, 174, 177));
-
 
 
         //set actin click shot
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isEnable){
+                if (!isEnable) {
                     ActionMode.Callback callback = new ActionMode.Callback() {
                         @Override
                         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -109,7 +109,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                             MenuInflater menuInflater = mode.getMenuInflater();
                             //init menu
                             Log.w(TAG, "onCreateActionMode: menuInflater 1");
-                            menuInflater.inflate(R.menu.menu_attendance,menu);
+                            menuInflater.inflate(R.menu.menu_attendance, menu);
                             Log.w(TAG, "onCreateActionMode: menuInflater 2");
                             return true;
                         }
@@ -127,7 +127,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                                         public void onChanged(String s) {
                                             //when text change
                                             //set text on action model title
-                                            mode.setTitle(String.format("%s/"+studentList.size()+" selected",s));
+                                            mode.setTitle(String.format("%s/" + studentList.size() + " selected", s));
                                         }
                                     });
                             return true;
@@ -139,7 +139,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                             //get item id
                             int id = item.getItemId();
                             //use swicth
-                            switch (id){
+                            switch (id) {
                                 case R.id.menu_attendance:
 //                                    //when click delete
 //                                    //use for loop
@@ -149,7 +149,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 //                                        studentList.remove(s);
 //                                    }
                                     // when array list empty
-                                    if(studentList.isEmpty()){
+                                    if (studentList.isEmpty()) {
                                         tv_empty.setVisibility(View.GONE);
                                     }
                                     Attendance(selectList);
@@ -158,12 +158,12 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                                     mode.finish();
                                     break;
                                 case R.id.menu_selete_all:
-                                    if(selectList.size() == studentList.size()){
+                                    if (selectList.size() == studentList.size()) {
                                         isEnable = false;
                                         selectList.clear();
                                         isSelectAll = false;
 
-                                    }else {
+                                    } else {
                                         isEnable = true;
                                         selectList.clear();
                                         selectList.addAll(studentList);
@@ -178,7 +178,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 
                         @Override
                         public void onDestroyActionMode(ActionMode mode) {
-                            isEnable =false;
+                            isEnable = false;
                             isSelectAll = false;
                             selectList.clear();
                             notifyDataSetChanged();
@@ -188,7 +188,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                     ((AppCompatActivity) v.getContext()).startActionMode(callback);
 //                    ((AppCompatActivity) v.getContext()).startActionMode(callback);
 
-                }else  {
+                } else {
                     //when action already enable
                     //call method
                     clickItem(holder);
@@ -199,14 +199,15 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 
 
         //check condition
-        if(isSelectAll){
+        if (isSelectAll) {
             //when item is select all value
             //visible all check box
             holder.iv_check_box.setVisibility(View.VISIBLE);
             //set backgound
-            holder.relativeLayout.setBackgroundColor(Color.rgb( 86, 166, 106));
+            holder.relativeLayout.setBackgroundResource(R.drawable.bg1);
 
-        }else {
+
+        } else {
             //when item is unselect
             //visible all un check box
             holder.iv_check_box.setVisibility(View.GONE);
@@ -216,36 +217,30 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     }
 
     private void Attendance(List<AttendanceStudent> selectList) {
-        for (AttendanceStudent a :selectList){
-            for(AttendanceStudent b : studentList){
-                if(a.getStudentId() == b.getStudentId()){
+        for (AttendanceStudent a : selectList) {
+            for (AttendanceStudent b : studentList) {
+                if (a.getStudentId() == b.getStudentId()) {
                     b.setAttendance(true);
                     break;
                 }
             }
         }
-        Log.w(TAG, "Attendance: "+selectList );
+        Log.w(TAG, "Attendance: " + selectList);
 
         ApiClient.getAttendanceService().attendanceStudent(studentList).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-                    Log.w(TAG, "isSuccessful: "+response.body());
+                if (response.isSuccessful()) {
+                    Log.w(TAG, "isSuccessful: " + response.body());
                     //reload fragment
-                    for (AttendanceStudent a :selectList){
-                        for(AttendanceStudent b : studentList){
-                            if(a.getStudentId() == b.getStudentId()){
-                                b.setOrder(b.getOrder()+1);
-                                break;
-                            }
-                        }
-                    }
+
+
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.w(TAG, "onFailure: "+t.getMessage());
+                Log.w(TAG, "onFailure: " + t.getMessage());
             }
         });
     }
@@ -255,15 +250,15 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         //get select item value
         AttendanceStudent s = studentList.get(holder.getAdapterPosition());
         //check condition
-        if(holder.iv_check_box.getVisibility() == View.GONE){
+        if (holder.iv_check_box.getVisibility() == View.GONE) {
             //when item not select
             holder.iv_check_box.setVisibility(View.VISIBLE);
             //set backgound item
-            holder.relativeLayout.setBackgroundColor(Color.rgb( 86, 166, 106));
+            holder.relativeLayout.setBackgroundResource(R.drawable.bg1);
             //add item selete list
 
             selectList.add(s);
-        }else{
+        } else {
             //when item select
             holder.iv_check_box.setVisibility(View.GONE);
             //set backgound item
@@ -274,31 +269,32 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         }
         //set text on view model
         mainViewModel.setText(String.valueOf(selectList.size()));
-        Log.e("clickItem", "clickItem: "+selectList.size());
+        Log.e("clickItem", "clickItem: " + selectList.size());
 
     }
 
     @Override
     public int getItemCount() {
-        if(studentList != null){
+        if (studentList != null) {
             return studentList.size();
         }
         return 0;
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_fullname,tv_info,tv_order,tv_holyName;
-        private ImageView img_student,iv_check_box;
+        private TextView tv_fullname, tv_info, tv_order, tv_holyName;
+        private ImageView img_student, iv_check_box;
         private RelativeLayout relativeLayout;
+
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_fullname = itemView.findViewById(R.id.tv_fullname);
             tv_info = itemView.findViewById(R.id.tv_info);
             tv_order = itemView.findViewById(R.id.tv_order);
-            tv_holyName =itemView.findViewById(R.id.tv_holyName);
+            tv_holyName = itemView.findViewById(R.id.tv_holyName);
             img_student = itemView.findViewById(R.id.img_student);
             iv_check_box = itemView.findViewById(R.id.iv_check_box);
-            relativeLayout =itemView.findViewById(R.id.item);
+            relativeLayout = itemView.findViewById(R.id.item);
         }
     }
 

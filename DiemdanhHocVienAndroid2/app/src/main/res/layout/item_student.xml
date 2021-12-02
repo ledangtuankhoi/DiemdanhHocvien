@@ -57,9 +57,10 @@
             android:layout_alignParentEnd="true"
             android:id="@+id/iv_check_box"
             android:layout_height="30dp"
-             android:visibility="gone"
             android:src="@drawable/ic_baseline_check_box_24"
-             android:layout_width="30dp"/>
+             android:layout_width="30dp"
+            app:tint="@color/green"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

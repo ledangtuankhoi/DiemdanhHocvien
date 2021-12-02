@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class AttendanceStudentActivity extends AppCompatActivity {
     private TextView tv_empty;
     private List<AttendanceStudent> arrayList = new ArrayList<>();
     AttendanceStudentAdapter mainAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private ClassP classP;
     private User user = HomeActivity.user;
@@ -66,16 +68,19 @@ public class AttendanceStudentActivity extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
 
         getSupportActionBar().setTitle("Attendance Student");
+
+        //reload data in fragment
+        swipeRefreshLayout =findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getStudentInClass();
+                mainAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
-    public void reloadAttendanceStudentFragment(){
-        android.app.Fragment currentFragment = getFragmentManager().findFragmentByTag(AttendanceStudentFragment.TAG);
-        android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.detach(currentFragment);
-        fragmentTransaction.attach(currentFragment);
-        fragmentTransaction.commit();
-        Log.w(TAG, "reloadAttendanceStudentFragment: " );
-    }
 
     private void getStudentInClass() {
         ApiClient.getStudentService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
