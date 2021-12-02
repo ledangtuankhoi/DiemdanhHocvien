@@ -33,6 +33,7 @@ namespace DiemdanhHocvien.Controllers.api
             public int studentId { get; set; }
             public DateTime createTime { get; set; }
             public DateTime time { get; set; }
+            public bool isAttendance { get; set; }
 
 
         }
@@ -69,6 +70,8 @@ namespace DiemdanhHocvien.Controllers.api
                     atteStudent.studentId = atte.studentId;
                     atteStudent.time = atte.time;
                     atteStudent.createTime = atte.createTime;
+                    atteStudent.isAttendance = false;
+
                     //info student
                     atteStudent.lastName = item.lastName;
                     atteStudent.firstName = item.firstName;
@@ -93,6 +96,8 @@ namespace DiemdanhHocvien.Controllers.api
                     atteStudent.studentId = i.studentId;
                     atteStudent.time = i.time;
                     atteStudent.createTime = i.createTime;
+                    atteStudent.isAttendance = false;
+
                     //info student
                     atteStudent.lastName = item.lastName;
                     atteStudent.firstName = item.firstName;
@@ -111,7 +116,38 @@ namespace DiemdanhHocvien.Controllers.api
 
 
             return listAtteStudents;
-        } 
+        }
+
+
+        // POST: api/StudentsInClass
+        [ResponseType(typeof(Student))]
+        public IHttpActionResult PostStudent(List<AtteStudent> atteStudents)
+        {
+            foreach (var item in atteStudents)
+            { 
+                Attendence attendence = db.attendences.Where(x => x.studentId == item.studentId).OrderByDescending(x => x.createTime).FirstOrDefault();
+                //when attendance true
+                if (attendence != null && item.isAttendance == true
+                    && attendence.createTime.Date.Day == DateTime.Now.Date.Day)
+                {
+                    attendence.order += 1;
+                    attendence.time = DateTime.Now;
+                    attendence.description = item.description;
+                    db.Entry(attendence).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if(attendence != null 
+                    && attendence.createTime.Date.Day == DateTime.Now.Date.Day)
+                {
+                    attendence.time = DateTime.Now;
+                    attendence.description = item.description;
+                    db.Entry(attendence).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+
+            return Ok("ok");
+        }
 
         //// GET: api/StudentsInClass/5
         //[ResponseType(typeof(Student))]
@@ -161,20 +197,6 @@ namespace DiemdanhHocvien.Controllers.api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/StudentsInClass
-        [ResponseType(typeof(Student))]
-        public IHttpActionResult PostStudent(Student student)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.students.Add(student);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = student.id }, student);
-        }
 
         // DELETE: api/StudentsInClass/5
         [ResponseType(typeof(Student))]

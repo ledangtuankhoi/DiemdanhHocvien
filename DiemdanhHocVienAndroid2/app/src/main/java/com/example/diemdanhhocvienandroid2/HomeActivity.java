@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
@@ -42,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rcvUser;
 
     //floating action button become a menu
-    private MaterialSheetFab materialSheetFab;
+    public MaterialSheetFab materialSheetFab;
 
     public static User user;
 
@@ -72,11 +73,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             User item = (User) bundle.getSerializable("object_user");
             if (item != null) {
                 user = item;
-                Toast.makeText(HomeActivity.this, "wellcom " + item.getLastName()+" "+item.getFirstName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "wellcom " + item.getLastName() + " " + item.getFirstName(), Toast.LENGTH_SHORT).show();
             } else Toast.makeText(HomeActivity.this, "user null", Toast.LENGTH_SHORT).show();
 
         } else Toast.makeText(HomeActivity.this, "bundel null", Toast.LENGTH_SHORT).show();
-
 
 
         //set name header nav
@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView txEmail = header.findViewById(R.id.txEmail);
         TextView txFullName = header.findViewById(R.id.txFullName);
         txEmail.setText(user.getEmail());
-        txFullName.setText(user.getLastName()+" "+user.getFirstName());
+        txFullName.setText(user.getLastName() + " " + user.getFirstName());
 
 
         //floating action button become a menu
@@ -96,15 +96,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Initialize material sheet FAB
         materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-        TextView fab_add = findViewById(R.id.fab_add);
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomeActivity.this, "add", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        //
+
+        //send data object user to classfragment
         ClassFragment classFragment = new ClassFragment();
         Bundle bundle1 = new Bundle();
         bundle1.putSerializable("object_user", user);
@@ -120,7 +114,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void goToListOfClassFragment(ClassP classP){
+    public void goToAttendanceStudent(ClassP classP) {
+        Intent intent = new Intent(getApplicationContext(), AttendanceStudentActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_class", classP);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void goToListOfClassFragment(ClassP classP) {
         StudentOfClassFragment studentOfClassFragment = new StudentOfClassFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("object_class", classP);
@@ -139,6 +141,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        materialSheetFab.hideSheet();
+
+    }
 
     @Override
     public void onBackPressed() {

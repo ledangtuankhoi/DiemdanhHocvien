@@ -8,4 +8,14 @@
         android:id="@+id/rcv_student"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Data Not Found"
+        android:textSize="24sp"
+        android:textColor="@color/material_on_primary_emphasis_high_type"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2.api;
 import com.example.diemdanhhocvienandroid2.api.account.LoginRequest;
 import com.example.diemdanhhocvienandroid2.api.account.RegisterRequest;
 import com.example.diemdanhhocvienandroid2.api.account.RegisterResponse;
+import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
 
@@ -18,4 +19,10 @@ public interface StudentService {
 
    @GET("StudentsInClass/")
     Call<List<Student>> StudentInClass(@Query("id") int id);
+
+//
+    @GET("StudentsInClass/")
+    Call<List<AttendanceStudent>> AttendanceStudent(@Query("id") int id);
+
+
 }

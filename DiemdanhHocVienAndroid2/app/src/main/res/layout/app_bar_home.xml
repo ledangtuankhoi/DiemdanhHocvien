@@ -30,21 +30,24 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:src="@drawable/ic_baseline_functions_24"
+        tools:ignore="SpeakableTextPresentCheck"
+        />
 
     <!-- Overlay that dims the screen -->
     <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
         android:id="@+id/overlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <!-- Circular reveal container for the sheet -->
     <io.codetail.widget.RevealLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="end|bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <!-- Sheet that contains your items -->
         <androidx.cardview.widget.CardView
@@ -63,28 +66,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                //class fragment
                 <TextView
-                    android:id="@+id/fab_add"
+                    android:id="@+id/fab_add_class"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:drawableLeft="@drawable/ic_baseline_home_24"
                     android:textSize="18dp"
-                    android:text="Add student"/>
+                    android:text="Add Class"
+                    android:visibility="gone"/>
+                //attendance fragment
                 <TextView
+                    android:id="@+id/fab_attendance_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_check_attendance"
+                    android:text="Attendance student"
+                    android:visibility="gone"/>
+
+                //CRUD Student
+                <TextView
+                    android:id="@+id/fab_add_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_add_box_24"
+                    android:text="add student"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/fab_delete_multi_student"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
                     android:textSize="18dp"
                     android:drawableLeft="@drawable/ic_baseline_home_24"
-                    android:text="Add student"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
-                    android:textSize="18dp"
-                    android:drawableLeft="@drawable/ic_baseline_home_24"
-                    android:text="Add student"/>
+                    android:text="delete multi student"
+                    android:visibility="gone"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </io.codetail.widget.RevealLinearLayout>

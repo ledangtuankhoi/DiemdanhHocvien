@@ -48,7 +48,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         }
         holder.tv_fullname.setText(fullName);
         String info = student.getNumPhone();
-        holder.tv_info.setText(info);
+        holder.tv_info.setText("Numberphone: "+info);
+        holder.tv_order.setText("email: "+student.getEmail());
     }
 
     @Override
