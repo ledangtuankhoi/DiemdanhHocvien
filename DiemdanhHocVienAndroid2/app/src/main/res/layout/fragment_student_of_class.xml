@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ClassFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -25,5 +26,76 @@
             android:textSize="24sp"
             android:visibility="gone"
             tools:ignore="MissingConstraints" />
+
+
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_baseline_functions_24"
+        tools:ignore="SpeakableTextPresentCheck"
+        />
+
+    <!-- Overlay that dims the screen -->
+    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!-- Circular reveal container for the sheet -->
+    <io.codetail.widget.RevealLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end|bottom"
+        android:orientation="vertical"
+        >
+
+        <!-- Sheet that contains your items -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fab_sheet"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="end"
+            android:layout_marginTop="3dp"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="0dp" >
+            >
+
+            <!-- TODO: Put your sheet items here -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                //attendance fragment
+                <TextView
+                    android:id="@+id/fab_attendance_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_check_attendance"
+                    android:text="Attendance student" />
+
+                //CRUD Student
+                <TextView
+                    android:id="@+id/fab_add_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_add_box_24"
+                    android:text="add student" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </io.codetail.widget.RevealLinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

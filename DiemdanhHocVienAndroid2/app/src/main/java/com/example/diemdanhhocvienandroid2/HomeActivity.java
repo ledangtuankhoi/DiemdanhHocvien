@@ -45,10 +45,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public int currentFragment = FRAMGENT_CLASS;
     NavigationView navigationView;
     private RecyclerView rcvUser;
-    public FloatingActionButton fab;
 
-    //floating action button become a menu
-    private   MaterialSheetFab materialSheetFab;
+
 
     public static User user;
 
@@ -57,8 +55,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        fab = findViewById(R.id.fab);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -92,16 +89,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         txFullName.setText(user.getLastName() + " " + user.getFirstName());
 
 
-        //floating action button become a menu
-        View sheetView = findViewById(R.id.fab_sheet);
-        View overlay = findViewById(R.id.overlay);
-        int sheetColor = getResources().getColor(R.color.fab_sheet_color);
-        int fabColor = getResources().getColor(R.color.fab_color);
-
-        // Initialize material sheet FAB
-        materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
-                sheetColor, fabColor);
-//        fab.hide();
 
         //send data object user to classfragment
         ClassFragment classFragment = new ClassFragment();
@@ -119,11 +106,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void goToStudentFagment(int idClass) {
+    public void goToStudentFagment(ClassP classP) {
 
         StudentFragment studentFragment = new StudentFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("idClass",idClass);
+        bundle.putSerializable("object_class",classP);
         studentFragment.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -160,22 +147,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        materialSheetFab.hideSheet();
-
-    }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (materialSheetFab.isSheetVisible()) {
-            materialSheetFab.hideSheet();
-        } else {
-            super.onBackPressed();
         }
     }
 

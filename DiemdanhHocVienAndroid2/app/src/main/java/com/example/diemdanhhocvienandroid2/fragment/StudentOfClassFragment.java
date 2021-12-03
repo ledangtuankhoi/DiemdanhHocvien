@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.utils.widget.MockView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.gordonwong.materialsheetfab.MaterialSheetFab;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +55,14 @@ public class StudentOfClassFragment extends Fragment {
 
 
         Bundle bundle = getArguments();
-        if(bundle!=null){
+        if (bundle != null) {
             ClassP classP = (ClassP) bundle.get("object_class");
-            if(classP!=null){
-                 this.classP = classP;
+            if (classP != null) {
+                this.classP = classP;
             }
         }
         // Inflate the layout for this fragment
-        mView =  inflater.inflate(R.layout.fragment_student_of_class, container, false);
+        mView = inflater.inflate(R.layout.fragment_student_of_class, container, false);
         mHomeActivity = (HomeActivity) getActivity();
 
         rcv_student = mView.findViewById(R.id.rcv_student);
@@ -81,19 +83,31 @@ public class StudentOfClassFragment extends Fragment {
             }
         });
 
-        return mView;
+        setFloatingActionButton();
 
+
+        //set title toolbar
+        mHomeActivity.getSupportActionBar().setTitle("student in class");
+
+        return mView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    private void setFloatingActionButton() {
 
+        //floating action button become a menu
+        View sheetView = mView.findViewById(R.id.fab_sheet);
+        View overlay = mView.findViewById(R.id.overlay);
+        int sheetColor = getResources().getColor(R.color.fab_sheet_color);
+        int fabColor = getResources().getColor(R.color.fab_color);
+        FloatingActionButton fab = mView.findViewById(R.id.fab);
+
+        // Initialize material sheet FAB
+        MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
+                sheetColor, fabColor);
+//        fab.hide();
         //show fab func student
-        TextView fab_1 = mHomeActivity.findViewById(R.id.fab_add_student);
-        TextView fab_2 = mHomeActivity.findViewById(R.id.fab_attendance_student);
-        fab_1.setVisibility(View.VISIBLE);
-        fab_2.setVisibility(View.VISIBLE);
+        TextView fab_1 = mView.findViewById(R.id.fab_add_student);
+        TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
 
         //attendance student
         fab_2.setOnClickListener(new View.OnClickListener() {
@@ -106,23 +120,10 @@ public class StudentOfClassFragment extends Fragment {
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToStudentFagment(classP.getId());
+                mHomeActivity.goToStudentFagment(classP);
             }
         });
-
     }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        //hide func in fab
-        TextView fab_1 = mHomeActivity.findViewById(R.id.fab_add_student);
-        TextView fab_2 = mHomeActivity.findViewById(R.id.fab_attendance_student);
-         fab_1.setVisibility(View.GONE);
-        fab_2.setVisibility(View.GONE);
-     }
-
 
     private  void getStudentInClass(){
         ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {

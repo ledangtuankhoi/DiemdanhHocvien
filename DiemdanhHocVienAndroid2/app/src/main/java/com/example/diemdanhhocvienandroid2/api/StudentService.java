@@ -20,9 +20,12 @@ public interface StudentService {
    @GET("StudentsInClass/")
     Call<List<Student>> StudentInClass(@Query("id") int id);
 
-//
+
     @GET("StudentsInClass/")
     Call<List<AttendanceStudent>> AttendanceStudent(@Query("id") int id);
 
+
+    @POST("Student/")
+    Call<Student> createstudent(@Body Student s);
 
 }

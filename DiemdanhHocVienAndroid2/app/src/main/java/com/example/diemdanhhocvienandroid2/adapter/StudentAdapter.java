@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
@@ -49,6 +50,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         String info = student.getNumPhone();
         holder.tv_info.setText("Numberphone: "+info);
         holder.tv_order.setText("email: "+student.getEmail());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

@@ -38,8 +38,6 @@ public class ClassFragment extends Fragment {
     private HomeActivity mHomeActivity;
     private List<ClassP> lstClass = new ArrayList<>();
     private User user = HomeActivity.user;
-    MaterialSheetFab materialSheetFab;
-    FloatingActionButton fab;
 
 
     @Override
@@ -61,20 +59,22 @@ public class ClassFragment extends Fragment {
             Log.d(TAG, "getListClass--------- ");
         }
 
-        //show fab func add class
-        TextView fab_add_class = mHomeActivity.findViewById(R.id.fab_add_class);
-        fab_add_class.setVisibility(View.VISIBLE);
+
+
+        //floating action button become a menu
+        View sheetView = mView.findViewById(R.id.fab_sheet);
+        View overlay = mView.findViewById(R.id.overlay);
+        int sheetColor = getResources().getColor(R.color.fab_sheet_color);
+        int fabColor = getResources().getColor(R.color.fab_color);
+        FloatingActionButton fab = mView.findViewById(R.id.fab);
+        // Initialize material sheet FAB
+        MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
+                sheetColor, fabColor);
 
 
         return mView;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        TextView fab_add_class = mHomeActivity.findViewById(R.id.fab_add_class);
-        fab_add_class.setVisibility(View.GONE);
-    }
 
     private void getListClass() {
         ApiClient.getClassService().ClassIndex().enqueue(new Callback<List<ClassP>>() {
