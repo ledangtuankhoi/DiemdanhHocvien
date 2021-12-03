@@ -2,14 +2,16 @@ package com.example.diemdanhhocvienandroid2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
+import com.example.diemdanhhocvienandroid2.adapter.StudentAdapter;
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -27,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
+import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,14 +39,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAMGENT_SLIDESSHOW = 3;
     private static final int FRAMGENT_USER = 4;
     private static final int FRAMGENT_CLASS = 5;
+    private static final int FRAMGENT_STUDENT = 6;
     private static final String TAG = HomeActivity.class.getName();
 
-    private int currentFragment = FRAMGENT_CLASS;
+    public int currentFragment = FRAMGENT_CLASS;
     NavigationView navigationView;
     private RecyclerView rcvUser;
+    public FloatingActionButton fab;
 
     //floating action button become a menu
-    public MaterialSheetFab materialSheetFab;
+    private   MaterialSheetFab materialSheetFab;
 
     public static User user;
 
@@ -52,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -96,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Initialize material sheet FAB
         materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-
+//        fab.hide();
 
         //send data object user to classfragment
         ClassFragment classFragment = new ClassFragment();
@@ -111,6 +116,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_class);
 
 
+    }
+
+
+    public void goToStudentFagment(int idClass) {
+
+        StudentFragment studentFragment = new StudentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("idClass",idClass);
+        studentFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentFragment);
+        fragmentTransaction.addToBackStack(StudentFragment.TAG);
+        fragmentTransaction.commit();
     }
 
 

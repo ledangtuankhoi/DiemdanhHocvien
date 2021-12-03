@@ -5,6 +5,11 @@ public class Student {
     private String lastName;
     private String firstName;
     private String holyName;
+    private String BOD;
+    private String numPhone;
+    private String email;
+    private int parentId;
+    private int classId;
 
     public int getId() {
         return id;
@@ -78,9 +83,4 @@ public class Student {
         this.classId = classId;
     }
 
-    private String BOD;
-    private String numPhone;
-    private String email;
-    private int parentId;
-    private int classId;
 }

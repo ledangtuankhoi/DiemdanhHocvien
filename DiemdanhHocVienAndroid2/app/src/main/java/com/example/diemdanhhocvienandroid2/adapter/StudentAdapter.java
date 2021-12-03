@@ -38,7 +38,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student student = studentList.get(position);
-        Log.w(TAG, "onBindViewHolder: "+studentList.get(position).getId() );
 
         holder.tv_holyName.setText(student.getHolyName());
         String fullName = student.getFirstName()+" "+student.getLastName();

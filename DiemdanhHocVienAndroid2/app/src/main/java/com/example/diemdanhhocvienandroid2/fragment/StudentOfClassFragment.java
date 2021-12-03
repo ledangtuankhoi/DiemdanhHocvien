@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +39,8 @@ public class StudentOfClassFragment extends Fragment {
     private View mView;
     private HomeActivity mHomeActivity;
     private RecyclerView rcv_student;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private StudentAdapter studentAdapter;
 
     private ClassP classP;
     private User user = HomeActivity.user;
@@ -67,6 +70,17 @@ public class StudentOfClassFragment extends Fragment {
         //get data from api
         getStudentInClass();
 
+        //reload
+        swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout_student);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getStudentInClass();
+                studentAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         return mView;
 
     }
@@ -81,13 +95,21 @@ public class StudentOfClassFragment extends Fragment {
         fab_1.setVisibility(View.VISIBLE);
         fab_2.setVisibility(View.VISIBLE);
 
-        //
+        //attendance student
         fab_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mHomeActivity.goToAttendanceStudent(classP);
             }
         });
+        //add student
+        fab_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHomeActivity.goToStudentFagment(classP.getId());
+            }
+        });
+
     }
 
 
@@ -111,7 +133,7 @@ public class StudentOfClassFragment extends Fragment {
                     Log.w(TAG, "response.bofy.size()"+response.body().size());
 
                     studentList =response.body();
-                    StudentAdapter studentAdapter = new StudentAdapter(studentList);
+                    studentAdapter = new StudentAdapter(studentList);
                     rcv_student.setAdapter(studentAdapter);
 
                     Log.w(TAG, "studentList.size: "+studentList.size() );
