@@ -8,11 +8,17 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface AttendanceService {
 
-    @POST("StudentsInClass/PostStudent/")
+    //attendance student with list attendance
+    @GET("AttendanceStudents/GetstudentsInClass/")
+    Call<List<AttendanceStudent>> AttendanceStudent(@Query("id") int id);
+
+    @POST("AttendanceStudents/PostStudent/")
     Call<String> attendanceStudent (@Body List<AttendanceStudent> attendanceStudentList);
 
 }

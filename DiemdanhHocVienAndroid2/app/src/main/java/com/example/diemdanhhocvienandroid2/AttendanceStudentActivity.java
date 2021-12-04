@@ -81,7 +81,7 @@ public class AttendanceStudentActivity extends AppCompatActivity {
 
 
     private void getStudentInClass() {
-        ApiClient.getStudentService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
+        ApiClient.getAttendanceService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
             @Override
             public void onResponse(Call<List<AttendanceStudent>> call, Response<List<AttendanceStudent>> response) {
                 if(response.isSuccessful()){

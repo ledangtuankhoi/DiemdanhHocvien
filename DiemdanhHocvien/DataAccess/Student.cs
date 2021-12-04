@@ -16,7 +16,6 @@ namespace DiemdanhHocvien.DataAccess
         [Required]
         public DateTime BOD { get; set; }
         public string numPhone { get; set; }
-        
         public string email { get; set; }
         public int parentId { get; set; }
         public int classId { get; set; }

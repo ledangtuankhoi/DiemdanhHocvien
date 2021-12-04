@@ -22,11 +22,8 @@ public interface StudentService {
    @GET("StudentsInClass/GetstudentsInClass/")
     Call<List<Student>> StudentInClass(@Query("id") int id);
 
- //attendance student with list attendance
-    @GET("StudentsInClass/GetstudentsInClass/")
-    Call<List<AttendanceStudent>> AttendanceStudent(@Query("id") int id);
 
-//create student
+//craete student
     @POST("Student/PostStudent/")
     Call<Student> createstudent(@Body Student s);
 

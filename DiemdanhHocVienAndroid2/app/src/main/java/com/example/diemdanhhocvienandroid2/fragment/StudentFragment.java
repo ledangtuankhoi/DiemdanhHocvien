@@ -100,8 +100,11 @@ public class StudentFragment extends Fragment {
          //show fab func student
         TextView create_student = mView.findViewById(R.id.fab_add_student);
         TextView del_multi = mView.findViewById(R.id.fab_attendance_student);
+        TextView fab_3 = mView.findViewById(R.id.fab_del_multiple_student);
+
         create_student.setText("Create student");
         del_multi.setText("Delete mutiple student");
+        fab_3.setVisibility(View.GONE);
 
         //create student
         create_student.setOnClickListener(new View.OnClickListener() {

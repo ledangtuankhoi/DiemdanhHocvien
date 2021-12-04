@@ -141,14 +141,6 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                             //use swicth
                             switch (id) {
                                 case R.id.menu_attendance:
-//                                    //when click delete
-//                                    //use for loop
-//                                    Log.e("menu_delete", "onActionItemClicked: "+selectList.size() );
-//                                    for (AttendanceStudent s: selectList){
-//                                        //remove  selete item on select list
-//                                        studentList.remove(s);
-//                                    }
-                                    // when array list empty
                                     if (studentList.isEmpty()) {
                                         tv_empty.setVisibility(View.GONE);
                                     }
@@ -233,6 +225,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                 if (response.isSuccessful()) {
                     Log.w(TAG, "isSuccessful: " + response.body());
                     //reload fragment
+                    notifyDataSetChanged();
                 }
             }
 

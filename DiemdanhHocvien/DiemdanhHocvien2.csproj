@@ -4403,6 +4403,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\AttendanceStudentsController.cs" />
     <Compile Include="Controllers\api\ClassTeacherController.cs" />
     <Compile Include="Controllers\api\LoginController.cs" />
     <Compile Include="Controllers\api\ClassController.cs" />
@@ -4453,6 +4454,10 @@
     <Compile Include="Migrations\202111221205167_init1.cs" />
     <Compile Include="Migrations\202111221205167_init1.Designer.cs">
       <DependentUpon>202111221205167_init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112041551458_student.cs" />
+    <Compile Include="Migrations\202112041551458_student.Designer.cs">
+      <DependentUpon>202112041551458_student.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginView.cs" />
@@ -4520,6 +4525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111221205167_init1.resx">
       <DependentUpon>202111221205167_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112041551458_student.resx">
+      <DependentUpon>202112041551458_student.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

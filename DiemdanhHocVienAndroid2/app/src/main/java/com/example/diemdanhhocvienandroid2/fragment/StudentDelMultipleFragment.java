@@ -51,10 +51,8 @@ public class StudentDelMultipleFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-
             List<Student> studentList = (List<Student>) bundle.get("List_object_student");
-//            lstObj = (List<Contacts>) bundle.getSerializable("lstContact");
-            if (studentList != null) {
+             if (studentList != null) {
                 this.studentList = studentList;
                 Log.w(TAG, "onCreateView: "+this.studentList.size() );
             }
@@ -63,10 +61,14 @@ public class StudentDelMultipleFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_student_of_class, container, false);
         mHomeActivity = (HomeActivity) getActivity();
 
+        //set title toolbar
+        mHomeActivity.getSupportActionBar().setTitle("Delete multiple student ");
+
+        //init recyclerveiew
         rcv_student = mView.findViewById(R.id.rcv_student);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
-
+        //load adapter
         studentDelMultipleAdapter = new StudentDelMultipleAdapter(mHomeActivity,studentList);
         rcv_student.setAdapter(studentDelMultipleAdapter);
 
@@ -81,9 +83,7 @@ public class StudentDelMultipleFragment extends Fragment {
             }
         });
         setFloatingActionButton();
-        //set title toolbar
-        mHomeActivity.getSupportActionBar().setTitle("Delete multiple student ");
-//        mHomeActivity.getSupportActionBar().hide();
+
 
         return mView;
     }
@@ -100,8 +100,7 @@ public class StudentDelMultipleFragment extends Fragment {
         // Initialize material sheet FAB
         MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-//        fab.hide();
-        //show fab func student
+         //show fab func student
         TextView fab_1 = mView.findViewById(R.id.fab_add_student);
         TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
 
@@ -109,15 +108,13 @@ public class StudentDelMultipleFragment extends Fragment {
         fab_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToAttendanceStudent(classP);
-            }
+             }
         });
         //add student
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//
-            }
+             }
         });
 
         fab.hide();

@@ -95,6 +95,14 @@
                     android:textSize="18dp"
                     android:drawableLeft="@drawable/ic_baseline_add_box_24"
                     android:text="add student" />
+                <TextView
+                    android:id="@+id/fab_del_multiple_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
+                    android:textSize="18dp"
+                    android:drawableLeft="@drawable/ic_baseline_delete_forever_24"
+                    android:text="add student" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </io.codetail.widget.RevealLinearLayout>

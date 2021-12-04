@@ -87,7 +87,7 @@ public class StudentOfClassFragment extends Fragment {
 
 
         //set title toolbar
-        mHomeActivity.getSupportActionBar().setTitle("student in class");
+        mHomeActivity.getSupportActionBar().setTitle("student in "+classP.getClassName());
 
         return mView;
     }
@@ -108,6 +108,8 @@ public class StudentOfClassFragment extends Fragment {
         //show fab func student
         TextView fab_1 = mView.findViewById(R.id.fab_add_student);
         TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
+        TextView fab_3 = mView.findViewById(R.id.fab_del_multiple_student);
+        fab_3.setText("Delete Multiple Student");
 
         //attendance student
         fab_2.setOnClickListener(new View.OnClickListener() {
@@ -120,12 +122,20 @@ public class StudentOfClassFragment extends Fragment {
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//
+
+            }
+        });
+        //del multiple student
+        fab_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHomeActivity.goToStudentDeleteMultipleFagment(studentList);
             }
         });
     }
 
     private  void getStudent(){
+        Log.w(TAG, "getStudent: "+classP.getId() );
         ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
