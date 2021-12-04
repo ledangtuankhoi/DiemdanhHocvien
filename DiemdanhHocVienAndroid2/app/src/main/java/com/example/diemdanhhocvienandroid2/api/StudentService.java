@@ -11,6 +11,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -32,4 +33,8 @@ public interface StudentService {
 //list all student of user
     @GET("Student/Getstudents/")
     Call<List<Student>> Getstudents(@Query("id") int id);
+
+    //delete student
+    @DELETE("Student/DeleteStudent/")
+    Call<Student> DeleteStudent(@Query("id")int id);
 }

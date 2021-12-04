@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_attendance"
+        android:id="@+id/menu_del_multiple"
         android:title="Delete"
-        android:icon="@drawable/ic_check_attendance"
+        android:icon="@drawable/ic_baseline_delete_forever_24"
         app:showAsAction="always"/>
 
     <item

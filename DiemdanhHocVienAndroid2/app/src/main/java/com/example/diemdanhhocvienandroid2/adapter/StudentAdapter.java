@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -54,9 +55,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(holder.itemView.getContext(), "Detail "+holder.tv_fullname, Toast.LENGTH_SHORT).show();
             }
         });
+//        holder.del_multi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(holder.itemView.getContext(), "del_multiple", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
@@ -77,6 +84,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             tv_order = itemView.findViewById(R.id.tv_order);
             tv_holyName =itemView.findViewById(R.id.tv_holyName);
             img = itemView.findViewById(R.id.img_student);
+
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.diemdanhhocvienandroid2.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -113,7 +114,7 @@ public class StudentFragment extends Fragment {
         del_multi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mHomeActivity.goToStudentDeleteMultipleFagment(studentList);
             }
         });
     }

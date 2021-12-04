@@ -39,8 +39,9 @@ namespace DiemdanhHocvien.Controllers.api
         }
 
         // GET: api/StudentsInClass/5
-        public List<AtteStudent> Getstudents(int id)
+        public List<AtteStudent> GetstudentsInClass(int id)
         {
+            //id is idclass
             //init list studen for attendance
             List<AtteStudent> listAtteStudents = new List<AtteStudent>();
 

@@ -113,7 +113,8 @@ namespace DiemdanhHocvien.Controllers.api
         }
 
         // DELETE: api/Student/5
-        [ResponseType(typeof(Student))]
+         [HttpDelete]
+        [ActionName("DeleteStudent")]
         public IHttpActionResult DeleteStudent(int id)
         {
             Student student = db.students.Find(id);

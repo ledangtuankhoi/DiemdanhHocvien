@@ -9,10 +9,12 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentDelMultipleFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentcreateFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
+import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,6 +27,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -100,13 +105,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void goToStudentDeleteMultipleFagment(List<Student> studentList) {
+
+        StudentDelMultipleFragment studentDelMultipleFragment = new StudentDelMultipleFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("List_object_student", (Serializable) studentList);
+        studentDelMultipleFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentDelMultipleFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
+    }
 
     public void goToStudentCreateFagment( ) {
 
         StudentcreateFragment studentFragment = new StudentcreateFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("object_class",classP);
-//        studentFragment.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, studentFragment);
