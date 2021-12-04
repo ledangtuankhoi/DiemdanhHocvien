@@ -64,6 +64,7 @@ public class AttendanceStudentActivity extends AppCompatActivity {
         mainAdapter = new AttendanceStudentAdapter(AttendanceStudentActivity.this,arrayList,tv_empty);
         recyclerView.setAdapter(mainAdapter);
 
+        //set title toolbar
         getSupportActionBar().setTitle("Attendance Student");
 
         //reload data in fragment

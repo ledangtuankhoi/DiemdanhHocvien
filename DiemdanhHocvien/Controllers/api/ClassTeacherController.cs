@@ -17,6 +17,7 @@ namespace DiemdanhHocvien.Controllers.api
         private AuthenticationDB db = new AuthenticationDB();
 
         // GET: api/ClassTeacher/5
+        [HttpGet]
         public List<Class> Getclasses(int id)
         {
             //id of teacher

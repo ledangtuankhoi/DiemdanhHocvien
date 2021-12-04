@@ -70,14 +70,14 @@ public class StudentOfClassFragment extends Fragment {
         rcv_student.setLayoutManager(linearLayoutManager);
 
         //get data from api
-        getStudentInClass();
+        getStudent();
 
         //reload
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout_student);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getStudentInClass();
+                getStudent();
                 studentAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -120,32 +120,25 @@ public class StudentOfClassFragment extends Fragment {
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToStudentFagment(classP);
+//
             }
         });
     }
 
-    private  void getStudentInClass(){
+    private  void getStudent(){
         ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 if (response.isSuccessful()){
-                    Log.w(TAG, "onResponse: isSuccessful");
-                    Log.w(TAG, "response.bofy.size()"+response.body().size());
-
                     studentList =response.body();
                     studentAdapter = new StudentAdapter(studentList);
                     rcv_student.setAdapter(studentAdapter);
-
-                    Log.w(TAG, "studentList.size: "+studentList.size() );
-                    Log.w(TAG, "classP.getId: "+classP.getId() );
                 }
             }
 
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
-                Toast.makeText(mHomeActivity.getApplicationContext(), "onFailure", Toast.LENGTH_SHORT).show();
-                Log.w(TAG, "onFailure: "+t.getMessage());
+                Log.w(TAG, "onFailure: "+t.getMessage() );
             }
         });
     }

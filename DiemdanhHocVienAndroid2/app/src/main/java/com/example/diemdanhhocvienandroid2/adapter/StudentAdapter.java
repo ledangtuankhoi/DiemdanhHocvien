@@ -26,7 +26,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     public StudentAdapter(List<Student> studentList){
         this.studentList = studentList;
-        Log.w(TAG, "StudentAdapter: studentlist"+studentList.size());
+
     }
 
     @NonNull

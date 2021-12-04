@@ -17,15 +17,19 @@ import retrofit2.http.Query;
 
 public interface StudentService {
 
-   @GET("StudentsInClass/")
+  //list studetn of class with id is class
+   @GET("StudentsInClass/GetstudentsInClass/")
     Call<List<Student>> StudentInClass(@Query("id") int id);
 
-
-    @GET("StudentsInClass/")
+ //attendance student with list attendance
+    @GET("StudentsInClass/GetstudentsInClass/")
     Call<List<AttendanceStudent>> AttendanceStudent(@Query("id") int id);
 
-
-    @POST("Student/")
+//create student
+    @POST("Student/PostStudent/")
     Call<Student> createstudent(@Body Student s);
 
+//list all student of user
+    @GET("Student/Getstudents/")
+    Call<List<Student>> Getstudents(@Query("id") int id);
 }

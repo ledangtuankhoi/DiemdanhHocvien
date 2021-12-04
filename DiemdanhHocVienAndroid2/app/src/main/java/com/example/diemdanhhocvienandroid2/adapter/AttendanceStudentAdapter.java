@@ -233,8 +233,6 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                 if (response.isSuccessful()) {
                     Log.w(TAG, "isSuccessful: " + response.body());
                     //reload fragment
-
-
                 }
             }
 

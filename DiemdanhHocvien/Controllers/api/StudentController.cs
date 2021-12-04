@@ -12,19 +12,46 @@ using DiemdanhHocvien.DataAccess;
 
 namespace DiemdanhHocvien.Controllers.api
 {
+
     public class StudentController : ApiController
     {
         private AuthenticationDB db = new AuthenticationDB();
 
         // GET: api/Student
-        public IQueryable<Student> Getstudents()
+        [HttpGet]
+        [ActionName("Getstudents")]
+        public List<Student> Getstudents(int id)
         {
-            return db.students;
+            //id is iduser
+            var u = db.Users.Find(id);
+            string role = u.Roles.FirstOrDefault().RoleName;
+                List<Student> listStudent = new List<Student>();
+            if(role == "teacher" && role != null)
+            {
+                var listClass = db.classes.Where(x => x.userId == id).ToList();
+                foreach (var item in listClass)
+                {
+                    List<Student> students = db.students.Where(x => x.classId == item.id).ToList();
+                    listStudent.AddRange(students);
+                }
+
+            }
+            else if(role == "admin" || role == "superadmin" || role == "admin" || role == "leader")
+            {
+                listStudent.AddRange(db.students.ToList());
+            }
+            else
+            {
+                listStudent = null;
+             }
+            return listStudent;
         }
 
         // GET: api/Student/5
         [ResponseType(typeof(Student))]
-        public IHttpActionResult GetStudent(int id)
+        [HttpGet]
+        [ActionName("GetStudent")]
+         public IHttpActionResult GetStudent(int id)
         {
             Student student = db.students.Find(id);
             if (student == null)

@@ -2,20 +2,18 @@ package com.example.diemdanhhocvienandroid2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.diemdanhhocvienandroid2.adapter.StudentAdapter;
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentcreateFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -27,9 +25,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.gordonwong.materialsheetfab.MaterialSheetFab;
-import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -106,16 +101,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void goToStudentFagment(ClassP classP) {
+    public void goToStudentCreateFagment( ) {
 
-        StudentFragment studentFragment = new StudentFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("object_class",classP);
-        studentFragment.setArguments(bundle);
+        StudentcreateFragment studentFragment = new StudentcreateFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("object_class",classP);
+//        studentFragment.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, studentFragment);
-        fragmentTransaction.addToBackStack(StudentFragment.TAG);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
         fragmentTransaction.commit();
     }
 
@@ -170,6 +165,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             replateFragment(new ClassFragment());
             currentFragment = FRAMGENT_CLASS;
             navigationView.setCheckedItem(R.id.nav_class);
+        }else if (id == R.id.nav_student) {
+            replateFragment(new StudentFragment());
+            currentFragment = FRAMGENT_STUDENT;
+            navigationView.setCheckedItem(R.id.nav_student);
         }
         setTitleToolbar();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -185,6 +184,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case FRAMGENT_CLASS:
                 title = getString(R.string.menu_class);
+                break;
+            case FRAMGENT_STUDENT:
+                title = getString(R.string.menu_student);
                 break;
 
         }
