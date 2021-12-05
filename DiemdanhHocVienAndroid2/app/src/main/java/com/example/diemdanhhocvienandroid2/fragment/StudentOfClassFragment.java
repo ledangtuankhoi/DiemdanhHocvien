@@ -109,7 +109,7 @@ public class StudentOfClassFragment extends Fragment {
         TextView fab_1 = mView.findViewById(R.id.fab_add_student);
         TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
         TextView fab_3 = mView.findViewById(R.id.fab_del_multiple_student);
-        fab_3.setText("Delete Multiple Student");
+        fab_3.setText("Remove  Student");
 
         //attendance student
         fab_2.setOnClickListener(new View.OnClickListener() {
@@ -125,11 +125,11 @@ public class StudentOfClassFragment extends Fragment {
 
             }
         });
-        //del multiple student
+        //remove  multiple student in class
         fab_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToStudentDeleteMultipleFagment(studentList);
+                mHomeActivity.goToStudentRemoveMultipleInClassFagment(studentList);
             }
         });
     }

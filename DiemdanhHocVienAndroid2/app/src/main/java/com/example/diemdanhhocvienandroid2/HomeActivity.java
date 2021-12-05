@@ -11,6 +11,7 @@ import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentDelMultipleFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentRemoveMultipleInClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentcreateFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
@@ -103,6 +104,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_class);
 
 
+    }
+
+    public void goToStudentRemoveMultipleInClassFagment(List<Student> studentList) {
+
+        StudentRemoveMultipleInClassFragment studentRemoveMultipleInClassFragment = new StudentRemoveMultipleInClassFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("List_object_student", (Serializable) studentList);
+        studentRemoveMultipleInClassFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentRemoveMultipleInClassFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
     }
 
     public void goToStudentDeleteMultipleFagment(List<Student> studentList) {

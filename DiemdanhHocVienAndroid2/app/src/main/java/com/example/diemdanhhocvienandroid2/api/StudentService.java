@@ -14,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface StudentService {
@@ -34,4 +35,8 @@ public interface StudentService {
     //delete student
     @DELETE("Student/DeleteStudent/")
     Call<Student> DeleteStudent(@Query("id")int id);
+
+    //edit student
+    @PUT("Student/PutStudent/")
+    Call<Student> PutStudent(@Query("id")int id,@Body Student student );
 }

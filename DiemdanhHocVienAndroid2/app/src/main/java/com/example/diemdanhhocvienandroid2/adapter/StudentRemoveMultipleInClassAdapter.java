@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,13 +22,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.diemdanhhocvienandroid2.AttendanceStudentActivity;
-import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
-import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.Student;
-import com.example.diemdanhhocvienandroid2.viewmodel.AttendanceStudentViewModel;
 import com.example.diemdanhhocvienandroid2.viewmodel.StudentDelmultipleViewModel;
 
 import java.util.ArrayList;
@@ -39,10 +34,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMultipleAdapter.StudentDelMultiViewHolder>  {
+public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<StudentRemoveMultipleInClassAdapter.StudentViewHolder>  {
 
     List<Student> studentList;
-     public static final String TAG = StudentDelMultipleAdapter.class.getName();
+     public static final String TAG = StudentRemoveMultipleInClassAdapter.class.getName();
 
 
     //select multi
@@ -53,23 +48,23 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
      TextView tv_empty;
      List<Student> selectList = new ArrayList<>();
 
-    public StudentDelMultipleAdapter(Activity activity, List<Student> ls){
+    public StudentRemoveMultipleInClassAdapter(Activity activity, List<Student> ls){
         this.activity = activity;
         this.studentList = ls;
     }
     @NonNull
     @Override
-    public StudentDelMultiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
 //
         //init view model
         mainViewModel = ViewModelProviders.of((FragmentActivity) activity)
                 .get(StudentDelmultipleViewModel.class);
-        return new StudentDelMultiViewHolder(view);
+        return new StudentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StudentDelMultiViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student student = studentList.get(position);
 
 
@@ -138,7 +133,8 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
                                     if (studentList.isEmpty()) {
                                         tv_empty.setVisibility(View.GONE);
                                     }
-                                    DeleteMultipleStudent(selectList);
+                                    RemoveStudent(selectList);
+
                                     mode.finish();
                                     break;
                                 case R.id.menu_selete_all:
@@ -200,13 +196,16 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
         }
     }
 
-    private void DeleteMultipleStudent(List<Student> selectList) {
+    private void RemoveStudent(List<Student> selectList) {
         for (Student a :selectList){
-            ApiClient.getStudentService().DeleteStudent(a.getId()).enqueue(new Callback<Student>() {
+            //set empty classid
+            a.setClassId(0);
+            //call api
+            ApiClient.getStudentService().PutStudent(a.getId(),a).enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
                     if(response.isSuccessful()){
-                        Log.w(TAG, "onResponse: "+response.body().getId() );
+//                        Log.w(TAG, "onResponse: "+response.body() );
                         studentList.remove(a);
                     }
                 }
@@ -219,7 +218,7 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
         }
     }
 
-    private void clickItem(StudentDelMultiViewHolder holder) {
+    private void clickItem(StudentViewHolder holder) {
         //get select item value
         Student s = studentList.get(holder.getAdapterPosition());
         //check condition
@@ -252,11 +251,11 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
         return 0;
     }
 
-    public class StudentDelMultiViewHolder extends RecyclerView.ViewHolder{
+    public class StudentViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_fullname, tv_info, tv_order, tv_holyName;
         private ImageView img_student, iv_check_box;
         private RelativeLayout relativeLayout;
-        public StudentDelMultiViewHolder(@NonNull View itemView) {
+        public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_fullname = itemView.findViewById(R.id.tv_fullname);
             tv_info = itemView.findViewById(R.id.tv_info);

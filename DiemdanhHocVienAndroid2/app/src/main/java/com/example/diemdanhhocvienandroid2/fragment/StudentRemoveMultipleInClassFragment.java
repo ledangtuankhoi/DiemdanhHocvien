@@ -14,9 +14,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
-import com.example.diemdanhhocvienandroid2.adapter.StudentAdapter;
 import com.example.diemdanhhocvienandroid2.adapter.StudentDelMultipleAdapter;
-import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.adapter.StudentRemoveMultipleInClassAdapter;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -26,18 +25,14 @@ import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class StudentRemoveMultipleInClassFragment extends Fragment {
 
-public class StudentDelMultipleFragment extends Fragment {
-
-    public static final String TAG = StudentDelMultipleFragment.class.getName();
+    public static final String TAG = StudentRemoveMultipleInClassFragment.class.getName();
     private View mView;
     private HomeActivity mHomeActivity;
     private RecyclerView rcv_student;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private StudentDelMultipleAdapter studentDelMultipleAdapter;
+    private StudentRemoveMultipleInClassAdapter studentRemoveMultipleInClassAdapter;
 
     private ClassP classP;
     private User user = HomeActivity.user;
@@ -62,15 +57,15 @@ public class StudentDelMultipleFragment extends Fragment {
         mHomeActivity = (HomeActivity) getActivity();
 
         //set title toolbar
-        mHomeActivity.getSupportActionBar().setTitle("Delete multiple student ");
+        mHomeActivity.getSupportActionBar().setTitle("Remove multiple student ");
 
         //init recyclerveiew
         rcv_student = mView.findViewById(R.id.rcv_student);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
         //load adapter
-        studentDelMultipleAdapter = new StudentDelMultipleAdapter(mHomeActivity,studentList);
-        rcv_student.setAdapter(studentDelMultipleAdapter);
+        studentRemoveMultipleInClassAdapter = new StudentRemoveMultipleInClassAdapter(mHomeActivity,studentList);
+        rcv_student.setAdapter(studentRemoveMultipleInClassAdapter);
 
         //reload
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout_student);
@@ -78,7 +73,7 @@ public class StudentDelMultipleFragment extends Fragment {
             @Override
             public void onRefresh() {
 //                getStudent();
-                studentDelMultipleAdapter.notifyDataSetChanged();
+                studentRemoveMultipleInClassAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
