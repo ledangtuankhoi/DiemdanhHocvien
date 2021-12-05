@@ -39,4 +39,10 @@ public interface StudentService {
     //edit student
     @PUT("Student/PutStudent/")
     Call<Student> PutStudent(@Query("id")int id,@Body Student student );
+
+
+    //get student null class
+    //id is id of user
+    @GET("Student/GetstudentsNullClass/")
+    Call<List<Student>> GetstudentsNullClass(@Query("id")int id);
 }

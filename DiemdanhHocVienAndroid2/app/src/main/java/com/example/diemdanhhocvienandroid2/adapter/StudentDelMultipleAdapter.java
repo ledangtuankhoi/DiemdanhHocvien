@@ -170,7 +170,6 @@ public class StudentDelMultipleAdapter extends RecyclerView.Adapter<StudentDelMu
                     };
                     //start  action mode
                     ((AppCompatActivity) v.getContext()).startActionMode(callback);
-//                    ((AppCompatActivity) v.getContext()).startActionMode(callback);
 
                 } else {
                     //when action already enable

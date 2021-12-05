@@ -3,7 +3,6 @@ package com.example.diemdanhhocvienandroid2.fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
-import com.example.diemdanhhocvienandroid2.adapter.StudentDelMultipleAdapter;
+import com.example.diemdanhhocvienandroid2.adapter.StudentAddMultipleInClassAdapter;
 import com.example.diemdanhhocvienandroid2.adapter.StudentRemoveMultipleInClassAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
@@ -32,14 +31,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentRemoveMultipleInClassFragment extends Fragment {
+public class StudentAddMultipleInClassFragment extends Fragment {
 
-    public static final String TAG = StudentRemoveMultipleInClassFragment.class.getName();
+    public static final String TAG = StudentAddMultipleInClassFragment.class.getName();
     private View mView;
     private HomeActivity mHomeActivity;
     private RecyclerView rcv_student;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private StudentRemoveMultipleInClassAdapter studentRemoveMultipleInClassAdapter;
+    private StudentAddMultipleInClassAdapter studentAddMultipleInClassAdapter;
 
     private ClassP classP;
     private User user = HomeActivity.user;
@@ -50,46 +49,71 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+//
         Bundle bundle = getArguments();
         if (bundle != null) {
-            List<Student> studentList = (List<Student>) bundle.get("List_object_student");
-            if (studentList != null) {
-                this.studentList = studentList;
-                Log.w(TAG, "onCreateView: " + this.studentList.size());
+            ClassP a = (ClassP) bundle.get("object_class");
+            if (a != null) {
+                this.classP =a;
+
             }
         }
+
+        GetstudentsNullClass();
+        
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_student_of_class, container, false);
         mHomeActivity = (HomeActivity) getActivity();
 
         //set title toolbar
-        mHomeActivity.getSupportActionBar().setTitle("Remove multiple student ");
+        mHomeActivity.getSupportActionBar().setTitle("Add student to class ");
 
         //init recyclerveiew
         rcv_student = mView.findViewById(R.id.rcv_student);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
-        @MenuRes int m = R.menu.menu_add_multiple;
 
-        //load adapter
-        studentRemoveMultipleInClassAdapter = new StudentRemoveMultipleInClassAdapter(mHomeActivity, studentList );
-        rcv_student.setAdapter(studentRemoveMultipleInClassAdapter);
+
+        //set floating buttun action
+        setFloatingActionButton();
 
         //reload
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout_student);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                getStudent();
-                studentRemoveMultipleInClassAdapter.notifyDataSetChanged();
+                GetstudentsNullClass();
+                studentAddMultipleInClassAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-        setFloatingActionButton();
 
 
         return mView;
+    }
+
+    private void GetstudentsNullClass() {
+        ApiClient.getStudentService().GetstudentsNullClass(user.getUserId()).enqueue(new Callback<List<Student>>() {
+            @Override
+            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                studentList = response.body();
+                Log.w(TAG, "onResponse:     "+response.body().size()+" ="+studentList.size());
+
+                //load adapter
+                studentAddMultipleInClassAdapter = new StudentAddMultipleInClassAdapter(mHomeActivity, studentList, classP, new StudentAddMultipleInClassAdapter.IFinishListener() {
+                    @Override
+                    public void onFinish() {
+                        getFragmentManager().popBackStack();
+                    }
+                });
+                rcv_student.setAdapter(studentAddMultipleInClassAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Student>> call, Throwable t) {
+                Log.w(TAG, "onFailure: "+t.getMessage() );
+            }
+        });
     }
 
 

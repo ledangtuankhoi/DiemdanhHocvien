@@ -19,6 +19,41 @@ namespace DiemdanhHocvien.Controllers.api
 
         // GET: api/Student
         [HttpGet]
+         public List<Student> GetstudentsNullClass(int id)
+        {
+            //id is iduser
+            var u = db.Users.Find(id);
+            string role = u.Roles.FirstOrDefault().RoleName;
+            List<Student> listStudent = new List<Student>();
+            if (role == "teacher" && role != null)
+            {
+                var listClass = db.classes.Where(x => x.userId == id).ToList();
+                
+                //list studetn not class or class null empty
+                foreach (var item in db.students.ToList())
+                {
+                    if (db.classes.Find(item.classId) == null)
+                    {
+                        listStudent.Add(item);
+                    }
+                }
+
+            }
+            else if (role == "admin" || role == "superadmin" || role == "admin" || role == "leader")
+            {
+                listStudent.AddRange(db.students.ToList());
+            }
+            else
+            {
+                listStudent = null;
+            }
+            return listStudent;
+            //return db.students.Where(x => x.Equals(lisdfa)).ToList();
+
+        }
+
+        // GET: api/Student
+        [HttpGet]
         [ActionName("Getstudents")]
         public List<Student> Getstudents(int id)
         {

@@ -122,7 +122,7 @@ public class StudentOfClassFragment extends Fragment {
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mHomeActivity.goToStudentAddMultipleInClassFagment(classP);
             }
         });
         //remove  multiple student in class

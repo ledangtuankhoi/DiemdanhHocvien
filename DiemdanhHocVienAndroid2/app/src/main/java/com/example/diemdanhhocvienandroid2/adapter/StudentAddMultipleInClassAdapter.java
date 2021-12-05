@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
@@ -25,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diemdanhhocvienandroid2.R;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.viewmodel.StudentDelmultipleViewModel;
 
@@ -35,10 +35,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<StudentRemoveMultipleInClassAdapter.StudentViewHolder> {
+public class StudentAddMultipleInClassAdapter extends RecyclerView.Adapter<StudentAddMultipleInClassAdapter.StudentViewHolder> {
 
     List<Student> studentList;
-    public static final String TAG = StudentRemoveMultipleInClassAdapter.class.getName();
+    public static final String TAG = StudentAddMultipleInClassAdapter.class.getName();
 
 
     //select multi
@@ -48,13 +48,18 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
     Activity activity;
     TextView tv_empty;
     List<Student> selectList = new ArrayList<>();
+    public ClassP classP;
+    public IFinishListener mIFinishListener;
 
+    public interface IFinishListener{
+        public void onFinish();
+    }
 
-    public StudentRemoveMultipleInClassAdapter(Activity activity, List<Student> ls ) {
+    public StudentAddMultipleInClassAdapter(Activity activity, List<Student> ls,ClassP a,IFinishListener listener ) {
         this.activity = activity;
         this.studentList = ls;
-
-
+        this.classP = a;
+        this.mIFinishListener = listener;
     }
 
     @NonNull
@@ -139,9 +144,10 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
                                         tv_empty.setVisibility(View.GONE);
                                     }
 
-                                    RemoveStudent(selectList);
+                                    AddStudent(selectList);
 
                                     mode.finish();
+                                    mIFinishListener.onFinish();
                                     break;
 
                                 case R.id.menu_selete_all:
@@ -204,10 +210,10 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
     }
 
 
-    private void RemoveStudent(List<Student> selectList) {
+    private void AddStudent(List<Student> selectList) {
         for (Student a : selectList) {
             //set empty classid
-            a.setClassId(0);
+            a.setClassId(classP.getId());
             //call api
             ApiClient.getStudentService().PutStudent(a.getId(), a).enqueue(new Callback<Student>() {
                 @Override

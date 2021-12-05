@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentAddMultipleInClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentDelMultipleFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentRemoveMultipleInClassFragment;
@@ -106,6 +107,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void goToStudentAddMultipleInClassFagment(ClassP classP) {
+
+        StudentAddMultipleInClassFragment studentAddMultipleInClassFragment = new StudentAddMultipleInClassFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_class", (Serializable) classP);
+        studentAddMultipleInClassFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentAddMultipleInClassFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
+    }
     public void goToStudentRemoveMultipleInClassFagment(List<Student> studentList) {
 
         StudentRemoveMultipleInClassFragment studentRemoveMultipleInClassFragment = new StudentRemoveMultipleInClassFragment();

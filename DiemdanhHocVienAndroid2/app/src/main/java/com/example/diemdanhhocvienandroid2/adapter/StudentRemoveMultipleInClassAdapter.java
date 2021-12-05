@@ -142,7 +142,7 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
                                     RemoveStudent(selectList);
 
                                     mode.finish();
-                                    break;
+                                     break;
 
                                 case R.id.menu_selete_all:
                                     if (selectList.size() == studentList.size()) {
