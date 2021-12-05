@@ -25,8 +25,8 @@ namespace DiemdanhHocvien.Controllers.api
             //id is iduser
             var u = db.Users.Find(id);
             string role = u.Roles.FirstOrDefault().RoleName;
-                List<Student> listStudent = new List<Student>();
-            if(role == "teacher" && role != null)
+             List<Student> listStudent = new List<Student>();
+            if (role == "teacher" && role != null)
             {
                 var listClass = db.classes.Where(x => x.userId == id).ToList();
                 foreach (var item in listClass)
@@ -34,24 +34,34 @@ namespace DiemdanhHocvien.Controllers.api
                     List<Student> students = db.students.Where(x => x.classId == item.id).ToList();
                     listStudent.AddRange(students);
                 }
+                //list studetn not class or class null empty
+                foreach (var item in db.students.ToList())
+                {
+                    if (db.classes.Find(item.classId) == null)
+                    {
+                        listStudent.Add(item);
+                    }
+                }
 
             }
-            else if(role == "admin" || role == "superadmin" || role == "admin" || role == "leader")
+            else if (role == "admin" || role == "superadmin" || role == "admin" || role == "leader")
             {
                 listStudent.AddRange(db.students.ToList());
             }
             else
             {
                 listStudent = null;
-             }
+            }
             return listStudent;
+            //return db.students.Where(x => x.Equals(lisdfa)).ToList();
+
         }
 
         // GET: api/Student/5
         [ResponseType(typeof(Student))]
         [HttpGet]
         [ActionName("GetStudent")]
-         public IHttpActionResult GetStudent(int id)
+        public IHttpActionResult GetStudent(int id)
         {
             Student student = db.students.Find(id);
             if (student == null)
@@ -113,7 +123,7 @@ namespace DiemdanhHocvien.Controllers.api
         }
 
         // DELETE: api/Student/5
-         [HttpDelete]
+        [HttpDelete]
         [ActionName("DeleteStudent")]
         public IHttpActionResult DeleteStudent(int id)
         {

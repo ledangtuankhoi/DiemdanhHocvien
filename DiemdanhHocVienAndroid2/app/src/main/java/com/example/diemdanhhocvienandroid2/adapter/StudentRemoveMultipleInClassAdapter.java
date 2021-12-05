@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
@@ -34,10 +35,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<StudentRemoveMultipleInClassAdapter.StudentViewHolder>  {
+public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<StudentRemoveMultipleInClassAdapter.StudentViewHolder> {
 
     List<Student> studentList;
-     public static final String TAG = StudentRemoveMultipleInClassAdapter.class.getName();
+    public static final String TAG = StudentRemoveMultipleInClassAdapter.class.getName();
 
 
     //select multi
@@ -45,13 +46,17 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
     boolean isEnable = false;
     boolean isSelectAll = false;
     Activity activity;
-     TextView tv_empty;
-     List<Student> selectList = new ArrayList<>();
+    TextView tv_empty;
+    List<Student> selectList = new ArrayList<>();
 
-    public StudentRemoveMultipleInClassAdapter(Activity activity, List<Student> ls){
+
+    public StudentRemoveMultipleInClassAdapter(Activity activity, List<Student> ls ) {
         this.activity = activity;
         this.studentList = ls;
+
+
     }
+
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,11 +96,11 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
                         @Override
                         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 
-                             //init menu inflater
+                            //init menu inflater
                             MenuInflater menuInflater = mode.getMenuInflater();
                             //init menu
-                             menuInflater.inflate(R.menu.menu_delete_multiple, menu);
-                             return true;
+                            menuInflater.inflate(R.menu.menu_delete_multiple, menu);
+                            return true;
                         }
 
                         @Override
@@ -133,10 +138,12 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
                                     if (studentList.isEmpty()) {
                                         tv_empty.setVisibility(View.GONE);
                                     }
+
                                     RemoveStudent(selectList);
 
                                     mode.finish();
                                     break;
+
                                 case R.id.menu_selete_all:
                                     if (selectList.size() == studentList.size()) {
                                         isEnable = false;
@@ -196,15 +203,16 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
         }
     }
 
+
     private void RemoveStudent(List<Student> selectList) {
-        for (Student a :selectList){
+        for (Student a : selectList) {
             //set empty classid
             a.setClassId(0);
             //call api
-            ApiClient.getStudentService().PutStudent(a.getId(),a).enqueue(new Callback<Student>() {
+            ApiClient.getStudentService().PutStudent(a.getId(), a).enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
-                    if(response.isSuccessful()){
+                    if (response.isSuccessful()) {
 //                        Log.w(TAG, "onResponse: "+response.body() );
                         studentList.remove(a);
                     }
@@ -212,12 +220,11 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
 
                 @Override
                 public void onFailure(Call<Student> call, Throwable t) {
-                    Log.w(TAG, "onFailure: "+t.getMessage() );
+                    Log.w(TAG, "onFailure: " + t.getMessage());
                 }
             });
         }
     }
-
     private void clickItem(StudentViewHolder holder) {
         //get select item value
         Student s = studentList.get(holder.getAdapterPosition());
@@ -243,6 +250,7 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
         mainViewModel.setText(String.valueOf(selectList.size()));
 
     }
+
     @Override
     public int getItemCount() {
         if (studentList != null) {
@@ -251,10 +259,11 @@ public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<St
         return 0;
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder{
+    public class StudentViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_fullname, tv_info, tv_order, tv_holyName;
         private ImageView img_student, iv_check_box;
         private RelativeLayout relativeLayout;
+
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_fullname = itemView.findViewById(R.id.tv_fullname);

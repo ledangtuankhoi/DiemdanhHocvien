@@ -3,10 +3,12 @@ package com.example.diemdanhhocvienandroid2.fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.MenuRes;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
 import com.example.diemdanhhocvienandroid2.adapter.StudentDelMultipleAdapter;
 import com.example.diemdanhhocvienandroid2.adapter.StudentRemoveMultipleInClassAdapter;
+import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
@@ -24,6 +27,10 @@ import com.gordonwong.materialsheetfab.MaterialSheetFab;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentRemoveMultipleInClassFragment extends Fragment {
 
@@ -47,9 +54,9 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             List<Student> studentList = (List<Student>) bundle.get("List_object_student");
-             if (studentList != null) {
+            if (studentList != null) {
                 this.studentList = studentList;
-                Log.w(TAG, "onCreateView: "+this.studentList.size() );
+                Log.w(TAG, "onCreateView: " + this.studentList.size());
             }
         }
         // Inflate the layout for this fragment
@@ -63,8 +70,10 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
         rcv_student = mView.findViewById(R.id.rcv_student);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
+        @MenuRes int m = R.menu.menu_add_multiple;
+
         //load adapter
-        studentRemoveMultipleInClassAdapter = new StudentRemoveMultipleInClassAdapter(mHomeActivity,studentList);
+        studentRemoveMultipleInClassAdapter = new StudentRemoveMultipleInClassAdapter(mHomeActivity, studentList );
         rcv_student.setAdapter(studentRemoveMultipleInClassAdapter);
 
         //reload
@@ -83,6 +92,7 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
         return mView;
     }
 
+
     private void setFloatingActionButton() {
 
         //floating action button become a menu
@@ -95,7 +105,7 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
         // Initialize material sheet FAB
         MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-         //show fab func student
+        //show fab func student
         TextView fab_1 = mView.findViewById(R.id.fab_add_student);
         TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
 
@@ -103,13 +113,13 @@ public class StudentRemoveMultipleInClassFragment extends Fragment {
         fab_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             }
+            }
         });
         //add student
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             }
+            }
         });
 
         fab.hide();
