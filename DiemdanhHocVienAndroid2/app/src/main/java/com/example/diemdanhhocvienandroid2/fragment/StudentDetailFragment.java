@@ -138,7 +138,7 @@ public class StudentDetailFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame, studentEditFragment);
-                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.addToBackStack(StudentEditFragment.TAG);
                 fragmentTransaction.commit();
 
                 break;
