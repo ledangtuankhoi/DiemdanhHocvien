@@ -141,7 +141,13 @@ public class StudentOfClassFragment extends Fragment {
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 if (response.isSuccessful()){
                     studentList =response.body();
-                    studentAdapter = new StudentAdapter(studentList);
+                    studentAdapter = new StudentAdapter(studentList, new StudentAdapter.IClickListener() {
+                        @Override
+                        public void onClickDetail(Student student) {
+                            Log.w(TAG, "onClickDetail: "+String.valueOf(student.getId()) );
+                            mHomeActivity.goToStudentDetailFragment(student);
+                        }
+                    });
                     rcv_student.setAdapter(studentAdapter);
                 }
             }

@@ -77,7 +77,7 @@ public class account_login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     User user = response.body();
-                    if(user.getRoleName() == "teacher"){
+                    if(user.getRoleName().equals("teacher")){
                     //goToHomeFragment
                         goToHomeFragment(user);
                     }

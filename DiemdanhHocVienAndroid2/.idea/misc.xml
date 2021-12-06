@@ -26,6 +26,7 @@
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_slideshow.xml" value="0.1925925925925926" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student.xml" value="0.12" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_create.xml" value="0.1" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_detail.xml" value="0.14" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_of_class.xml" value="0.15555555555555556" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/item_class.xml" value="0.2" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/item_student.xml" value="0.2" />
@@ -44,5 +45,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.67" />
+      </ProjectState>
+    </option>
   </component>
 </project>

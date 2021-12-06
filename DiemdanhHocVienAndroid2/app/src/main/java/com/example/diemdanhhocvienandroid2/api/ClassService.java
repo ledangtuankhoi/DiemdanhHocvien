@@ -17,8 +17,7 @@ public interface ClassService {
     @GET("ClassTeacher/Getclasses/")
     Call<List<ClassP>> ClassIndexTeacher(@Query("id") int id);
 
-
-
-//    @POST("register/")
-//    Call<RegisterResponse> RegisterUser(@Body RegisterRequest registerRequest);
+    //detail class
+    @GET("Class/Getclass/")
+    Call<ClassP> GetClass(@Query("id") int id);
 }

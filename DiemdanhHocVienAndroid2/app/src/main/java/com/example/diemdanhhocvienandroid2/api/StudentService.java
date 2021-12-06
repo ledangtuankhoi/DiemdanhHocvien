@@ -45,4 +45,8 @@ public interface StudentService {
     //id is id of user
     @GET("Student/GetstudentsNullClass/")
     Call<List<Student>> GetstudentsNullClass(@Query("id")int id);
+
+    //deteil student id
+    @GET("student/getstudent/")
+    Call<Student> GetStudent (@Query("id")int id);
 }

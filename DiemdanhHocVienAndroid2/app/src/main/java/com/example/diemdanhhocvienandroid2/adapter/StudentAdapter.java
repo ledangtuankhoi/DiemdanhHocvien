@@ -24,10 +24,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     private List<Student> studentList;
     private HomeActivity mHomeActivity;
     public static  final String TAG = StudentAdapter.class.getName();
+    public IClickListener mIClickListener;
+    public interface IClickListener{
+        public void onClickDetail(Student student);
+    }
 
-    public StudentAdapter(List<Student> studentList){
+    public StudentAdapter(List<Student> studentList,IClickListener listener){
         this.studentList = studentList;
-
+        this.mIClickListener = listener;
     }
 
     @NonNull
@@ -55,15 +59,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.itemView.getContext(), "Detail "+holder.tv_fullname, Toast.LENGTH_SHORT).show();
+ //                this.registerForContextMenu();
+                mIClickListener.onClickDetail(student);
+                Log.w(TAG, "onClick: "+String.valueOf(student.getId( )));
             }
         });
-//        holder.del_multi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(holder.itemView.getContext(), "del_multiple", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override

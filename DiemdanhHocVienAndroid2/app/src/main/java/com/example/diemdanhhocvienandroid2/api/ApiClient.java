@@ -13,7 +13,7 @@ public class ApiClient {
 
     public static Retrofit getRetrofit(){
 
-        String link = "http://192.168.1.4:45455/api/";
+        String link = "http://192.168.1.5:45455/api/";
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);

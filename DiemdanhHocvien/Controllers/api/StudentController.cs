@@ -103,6 +103,7 @@ namespace DiemdanhHocvien.Controllers.api
             {
                 return NotFound();
             }
+            //student.classId
 
             return Ok(student);
         }
