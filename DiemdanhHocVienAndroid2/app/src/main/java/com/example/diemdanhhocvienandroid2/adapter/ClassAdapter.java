@@ -76,8 +76,8 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
 
 
         //substring "yyyy-MM-dd'T'HH:mm:ss" to "yyyy-MM-dd"
-        holder.startDate.setText(classP.getStartDate().substring(0,classP.getStartDate().indexOf("T")));
-        holder.endDate.setText(classP.getEndDate().substring(0,classP.getEndDate().indexOf("T")));
+        holder.startDate.setText("startDate"+classP.getStartDate().substring(0,classP.getStartDate().indexOf("T")));
+        holder.endDate.setText("endDate"+classP.getEndDate().substring(0,classP.getEndDate().indexOf("T")));
 
         //day of week classs
         List<String> dayOfWeek = Arrays.asList(classP.getDayOfWeek().split(","));

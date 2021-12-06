@@ -7,13 +7,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.ClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentAddMultipleInClassFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentDelMultipleFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentDetailFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentEditFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentRemoveMultipleInClassFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentcreateFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentOfClassFragment;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
+import com.example.diemdanhhocvienandroid2.models.Student;
 import com.example.diemdanhhocvienandroid2.models.User;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +32,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gordonwong.materialsheetfab.MaterialSheetFab;
+import java.io.Serializable;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,14 +43,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAMGENT_SLIDESSHOW = 3;
     private static final int FRAMGENT_USER = 4;
     private static final int FRAMGENT_CLASS = 5;
+    private static final int FRAMGENT_STUDENT = 6;
     private static final String TAG = HomeActivity.class.getName();
 
-    private int currentFragment = FRAMGENT_CLASS;
+    public int currentFragment = FRAMGENT_CLASS;
     NavigationView navigationView;
     private RecyclerView rcvUser;
 
-    //floating action button become a menu
-    public MaterialSheetFab materialSheetFab;
+
 
     public static User user;
 
@@ -52,8 +59,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -87,16 +93,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         txFullName.setText(user.getLastName() + " " + user.getFirstName());
 
 
-        //floating action button become a menu
-        View sheetView = findViewById(R.id.fab_sheet);
-        View overlay = findViewById(R.id.overlay);
-        int sheetColor = getResources().getColor(R.color.fab_sheet_color);
-        int fabColor = getResources().getColor(R.color.fab_color);
-
-        // Initialize material sheet FAB
-        materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
-                sheetColor, fabColor);
-
 
         //send data object user to classfragment
         ClassFragment classFragment = new ClassFragment();
@@ -111,6 +107,81 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_class);
 
 
+    }
+
+
+    public void goToStudentEditFragment(Student student) {
+
+        StudentEditFragment studentEditFragment = new StudentEditFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_student", (Serializable) student);
+        studentEditFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentEditFragment);
+        fragmentTransaction.addToBackStack(StudentDetailFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void goToStudentDetailFragment(Student student) {
+
+        StudentDetailFragment studentDetailFragment = new StudentDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_student", (Serializable) student);
+        studentDetailFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentDetailFragment);
+        fragmentTransaction.addToBackStack(StudentDetailFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void goToStudentAddMultipleInClassFagment(ClassP classP) {
+
+        StudentAddMultipleInClassFragment studentAddMultipleInClassFragment = new StudentAddMultipleInClassFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_class", (Serializable) classP);
+        studentAddMultipleInClassFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentAddMultipleInClassFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
+    }
+    public void goToStudentRemoveMultipleInClassFagment(List<Student> studentList) {
+
+        StudentRemoveMultipleInClassFragment studentRemoveMultipleInClassFragment = new StudentRemoveMultipleInClassFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("List_object_student", (Serializable) studentList);
+        studentRemoveMultipleInClassFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentRemoveMultipleInClassFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void goToStudentDeleteMultipleFagment(List<Student> studentList) {
+
+        StudentDelMultipleFragment studentDelMultipleFragment = new StudentDelMultipleFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("List_object_student", (Serializable) studentList);
+        studentDelMultipleFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentDelMultipleFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void goToStudentCreateFagment( ) {
+
+        StudentcreateFragment studentFragment = new StudentcreateFragment();
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentFragment);
+        fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
+        fragmentTransaction.commit();
     }
 
 
@@ -141,22 +212,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        materialSheetFab.hideSheet();
-
-    }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (materialSheetFab.isSheetVisible()) {
-            materialSheetFab.hideSheet();
-        } else {
-            super.onBackPressed();
         }
     }
 
@@ -174,6 +235,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             replateFragment(new ClassFragment());
             currentFragment = FRAMGENT_CLASS;
             navigationView.setCheckedItem(R.id.nav_class);
+        }else if (id == R.id.nav_student) {
+            replateFragment(new StudentFragment());
+            currentFragment = FRAMGENT_STUDENT;
+            navigationView.setCheckedItem(R.id.nav_student);
         }
         setTitleToolbar();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -190,10 +255,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case FRAMGENT_CLASS:
                 title = getString(R.string.menu_class);
                 break;
+            case FRAMGENT_STUDENT:
+                title = getString(R.string.menu_student);
+                break;
 
         }
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
     }
+
 }

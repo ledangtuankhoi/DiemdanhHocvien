@@ -1,9 +1,7 @@
 package com.example.diemdanhhocvienandroid2.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -15,25 +13,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.diemdanhhocvienandroid2.AttendanceStudentActivity;
-import com.example.diemdanhhocvienandroid2.api.ApiClient;
-import com.example.diemdanhhocvienandroid2.viewmodel.AttendanceStudentViewModel;
-import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
-import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
+import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.models.Student;
+import com.example.diemdanhhocvienandroid2.viewmodel.StudentDelmultipleViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,28 +35,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStudentAdapter.StudentViewHolder> {
+public class StudentRemoveMultipleInClassAdapter extends RecyclerView.Adapter<StudentRemoveMultipleInClassAdapter.StudentViewHolder> {
 
-    List<AttendanceStudent> studentList;
-    private AttendanceStudentActivity mAttendanceStudentActivity;
-    public static final String TAG = AttendanceStudentAdapter.class.getName();
-    AttendanceStudentAdapter mAttendanceStudentAdapter;
+    List<Student> studentList;
+    public static final String TAG = StudentRemoveMultipleInClassAdapter.class.getName();
+
 
     //select multi
-    AttendanceStudentViewModel mainViewModel;
+    StudentDelmultipleViewModel mainViewModel;
     boolean isEnable = false;
     boolean isSelectAll = false;
     Activity activity;
-    //    ArrayList<String> arrayList = new ArrayList<>();
     TextView tv_empty;
-    //    ArrayList<String> selectList = new ArrayList<>();
-    List<AttendanceStudent> selectList = new ArrayList<>();
+    List<Student> selectList = new ArrayList<>();
 
 
-    public AttendanceStudentAdapter(Activity activity, List<AttendanceStudent> attendanceStudentList, TextView tv_empty) {
+    public StudentRemoveMultipleInClassAdapter(Activity activity, List<Student> ls ) {
         this.activity = activity;
-        this.studentList = attendanceStudentList;
-        this.tv_empty = tv_empty;
+        this.studentList = ls;
+
+
     }
 
     @NonNull
@@ -73,13 +64,13 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
 //
         //init view model
         mainViewModel = ViewModelProviders.of((FragmentActivity) activity)
-                .get(AttendanceStudentViewModel.class);
+                .get(StudentDelmultipleViewModel.class);
         return new StudentViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        AttendanceStudent student = studentList.get(position);
+        Student student = studentList.get(position);
 
 
         holder.tv_holyName.setText(student.getHolyName());
@@ -91,7 +82,6 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         holder.tv_fullname.setText(fullName);
         String info = student.getNumPhone();
         holder.tv_info.setText("numberPhone: " + info);
-        holder.tv_order.setText("order: " + String.valueOf(student.getOrder()));
 
 
         holder.relativeLayout.setBackgroundColor(Color.rgb(191, 174, 177));
@@ -105,12 +95,11 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                     ActionMode.Callback callback = new ActionMode.Callback() {
                         @Override
                         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+
                             //init menu inflater
                             MenuInflater menuInflater = mode.getMenuInflater();
                             //init menu
-                            Log.w(TAG, "onCreateActionMode: menuInflater 1");
-                            menuInflater.inflate(R.menu.menu_attendance, menu);
-                            Log.w(TAG, "onCreateActionMode: menuInflater 2");
+                            menuInflater.inflate(R.menu.menu_delete_multiple, menu);
                             return true;
                         }
 
@@ -127,7 +116,10 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                                         public void onChanged(String s) {
                                             //when text change
                                             //set text on action model title
+
                                             mode.setTitle(String.format("%s/" + studentList.size() + " selected", s));
+
+
                                         }
                                     });
                             return true;
@@ -140,15 +132,18 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
                             int id = item.getItemId();
                             //use swicth
                             switch (id) {
-                                case R.id.menu_attendance:
+                                case R.id.menu_del_multiple:
+//
+                                    // when array list empty
                                     if (studentList.isEmpty()) {
                                         tv_empty.setVisibility(View.GONE);
                                     }
-                                    Attendance(selectList);
-                                    Toast.makeText(v.getContext(), "attandance", Toast.LENGTH_SHORT).show();
+
+                                    RemoveStudent(selectList);
 
                                     mode.finish();
-                                    break;
+                                     break;
+
                                 case R.id.menu_selete_all:
                                     if (selectList.size() == studentList.size()) {
                                         isEnable = false;
@@ -208,38 +203,31 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         }
     }
 
-    private void Attendance(List<AttendanceStudent> selectList) {
-        for (AttendanceStudent a : selectList) {
-            for (AttendanceStudent b : studentList) {
-                if (a.getStudentId() == b.getStudentId()) {
-                    b.setAttendance(true);
-                    break;
+
+    private void RemoveStudent(List<Student> selectList) {
+        for (Student a : selectList) {
+            //set empty classid
+            a.setClassId(0);
+            //call api
+            ApiClient.getStudentService().PutStudent(a.getId(), a).enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    if (response.isSuccessful()) {
+//                        Log.w(TAG, "onResponse: "+response.body() );
+                        studentList.remove(a);
+                    }
                 }
-            }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+                    Log.w(TAG, "onFailure: " + t.getMessage());
+                }
+            });
         }
-        Log.w(TAG, "Attendance: " + selectList);
-
-        ApiClient.getAttendanceService().attendanceStudent(studentList).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
-                    Log.w(TAG, "isSuccessful: " + response.body());
-                    //reload fragment
-                    notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.w(TAG, "onFailure: " + t.getMessage());
-            }
-        });
     }
-
-
     private void clickItem(StudentViewHolder holder) {
         //get select item value
-        AttendanceStudent s = studentList.get(holder.getAdapterPosition());
+        Student s = studentList.get(holder.getAdapterPosition());
         //check condition
         if (holder.iv_check_box.getVisibility() == View.GONE) {
             //when item not select
@@ -260,7 +248,6 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
         }
         //set text on view model
         mainViewModel.setText(String.valueOf(selectList.size()));
-        Log.e("clickItem", "clickItem: " + selectList.size());
 
     }
 
@@ -288,5 +275,4 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             relativeLayout = itemView.findViewById(R.id.item);
         }
     }
-
 }

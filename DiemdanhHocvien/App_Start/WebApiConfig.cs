@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
- 
+
 namespace WebApplication
 {
     public static class WebApiConfig
@@ -15,6 +15,13 @@ namespace WebApplication
 
             config.Formatters.JsonFormatter.SupportedMediaTypes
     .Add(new MediaTypeHeaderValue("text/html"));
+
+
+            config.Routes.MapHttpRoute(
+                name: "ActionApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -11,14 +11,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ClassService {
-    @GET("Class/")
+    @GET("Class/Getclasses/")
     Call<List<ClassP>> ClassIndex();
 
-    @GET("ClassTeacher/")
+    @GET("ClassTeacher/Getclasses/")
     Call<List<ClassP>> ClassIndexTeacher(@Query("id") int id);
 
-
-
-//    @POST("register/")
-//    Call<RegisterResponse> RegisterUser(@Body RegisterRequest registerRequest);
+    //detail class
+    @GET("Class/Getclass/")
+    Call<ClassP> GetClass(@Query("id") int id);
 }

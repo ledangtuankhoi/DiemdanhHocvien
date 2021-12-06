@@ -82,8 +82,8 @@ namespace DiemdanhHocvien.Migrations
                     BOD = c.DateTime(nullable: false),
                     numPhone = c.String(),
                     email = c.String(),
-                    parentId = c.Int(nullable: false),
-                    classId = c.Int(nullable: false),
+                    parentId = c.Int(nullable: true),
+                    classId = c.Int(nullable: true),
                 })
                 .PrimaryKey(t => t.id);
 

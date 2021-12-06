@@ -8,19 +8,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.adapter.AttendanceStudentAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
-import com.example.diemdanhhocvienandroid2.fragment.AttendanceStudentFragment;
 import com.example.diemdanhhocvienandroid2.models.AttendanceStudent;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,6 +64,7 @@ public class AttendanceStudentActivity extends AppCompatActivity {
         mainAdapter = new AttendanceStudentAdapter(AttendanceStudentActivity.this,arrayList,tv_empty);
         recyclerView.setAdapter(mainAdapter);
 
+        //set title toolbar
         getSupportActionBar().setTitle("Attendance Student");
 
         //reload data in fragment
@@ -83,7 +81,7 @@ public class AttendanceStudentActivity extends AppCompatActivity {
 
 
     private void getStudentInClass() {
-        ApiClient.getStudentService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
+        ApiClient.getAttendanceService().AttendanceStudent(classP.getId()).enqueue(new Callback<List<AttendanceStudent>>() {
             @Override
             public void onResponse(Call<List<AttendanceStudent>> call, Response<List<AttendanceStudent>> response) {
                 if(response.isSuccessful()){

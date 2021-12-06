@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
@@ -22,10 +24,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     private List<Student> studentList;
     private HomeActivity mHomeActivity;
     public static  final String TAG = StudentAdapter.class.getName();
+    public IClickListener mIClickListener;
+    public interface IClickListener{
+        public void onClickDetail(Student student);
+    }
 
-    public StudentAdapter(List<Student> studentList){
+    public StudentAdapter(List<Student> studentList,IClickListener listener){
         this.studentList = studentList;
-        Log.w(TAG, "StudentAdapter: studentlist"+studentList.size());
+        this.mIClickListener = listener;
     }
 
     @NonNull
@@ -38,7 +44,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student student = studentList.get(position);
-        Log.w(TAG, "onBindViewHolder: "+studentList.get(position).getId() );
 
         holder.tv_holyName.setText(student.getHolyName());
         String fullName = student.getFirstName()+" "+student.getLastName();
@@ -50,6 +55,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         String info = student.getNumPhone();
         holder.tv_info.setText("Numberphone: "+info);
         holder.tv_order.setText("email: "+student.getEmail());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+ //                this.registerForContextMenu();
+                mIClickListener.onClickDetail(student);
+                Log.w(TAG, "onClick: "+String.valueOf(student.getId( )));
+            }
+        });
     }
 
     @Override
@@ -70,6 +84,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             tv_order = itemView.findViewById(R.id.tv_order);
             tv_holyName =itemView.findViewById(R.id.tv_holyName);
             img = itemView.findViewById(R.id.img_student);
+
         }
     }
 

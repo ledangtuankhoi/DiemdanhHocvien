@@ -1,25 +1,23 @@
 package com.example.diemdanhhocvienandroid2.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.utils.widget.MockView;
+import androidx.annotation.MenuRes;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
-import com.example.diemdanhhocvienandroid2.adapter.StudentAdapter;
+import com.example.diemdanhhocvienandroid2.adapter.StudentDelMultipleAdapter;
+import com.example.diemdanhhocvienandroid2.adapter.StudentRemoveMultipleInClassAdapter;
 import com.example.diemdanhhocvienandroid2.api.ApiClient;
 import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
@@ -29,20 +27,19 @@ import com.gordonwong.materialsheetfab.MaterialSheetFab;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PrimitiveIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentOfClassFragment extends Fragment {
+public class StudentRemoveMultipleInClassFragment extends Fragment {
 
-    public static final String TAG = StudentOfClassFragment.class.getName();
+    public static final String TAG = StudentRemoveMultipleInClassFragment.class.getName();
     private View mView;
     private HomeActivity mHomeActivity;
     private RecyclerView rcv_student;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private StudentAdapter studentAdapter;
+    private StudentRemoveMultipleInClassAdapter studentRemoveMultipleInClassAdapter;
 
     private ClassP classP;
     private User user = HomeActivity.user;
@@ -56,41 +53,45 @@ public class StudentOfClassFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            ClassP classP = (ClassP) bundle.get("object_class");
-            if (classP != null) {
-                this.classP = classP;
+            List<Student> studentList = (List<Student>) bundle.get("List_object_student");
+            if (studentList != null) {
+                this.studentList = studentList;
+                Log.w(TAG, "onCreateView: " + this.studentList.size());
             }
         }
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_student_of_class, container, false);
         mHomeActivity = (HomeActivity) getActivity();
 
+        //set title toolbar
+        mHomeActivity.getSupportActionBar().setTitle("Remove multiple student ");
+
+        //init recyclerveiew
         rcv_student = mView.findViewById(R.id.rcv_student);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcv_student.setLayoutManager(linearLayoutManager);
+        @MenuRes int m = R.menu.menu_add_multiple;
 
-        //get data from api
-        getStudent();
+        //load adapter
+        studentRemoveMultipleInClassAdapter = new StudentRemoveMultipleInClassAdapter(mHomeActivity, studentList );
+        rcv_student.setAdapter(studentRemoveMultipleInClassAdapter);
 
         //reload
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout_student);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getStudent();
-                studentAdapter.notifyDataSetChanged();
+//                getStudent();
+                studentRemoveMultipleInClassAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-
         setFloatingActionButton();
 
 
-        //set title toolbar
-        mHomeActivity.getSupportActionBar().setTitle("student in "+classP.getClassName());
-
         return mView;
     }
+
 
     private void setFloatingActionButton() {
 
@@ -104,58 +105,24 @@ public class StudentOfClassFragment extends Fragment {
         // Initialize material sheet FAB
         MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-//        fab.hide();
         //show fab func student
         TextView fab_1 = mView.findViewById(R.id.fab_add_student);
         TextView fab_2 = mView.findViewById(R.id.fab_attendance_student);
-        TextView fab_3 = mView.findViewById(R.id.fab_del_multiple_student);
-        fab_3.setText("Remove  Student");
 
         //attendance student
         fab_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToAttendanceStudent(classP);
             }
         });
         //add student
         fab_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHomeActivity.goToStudentAddMultipleInClassFagment(classP);
             }
         });
-        //remove  multiple student in class
-        fab_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mHomeActivity.goToStudentRemoveMultipleInClassFagment(studentList);
-            }
-        });
+
+        fab.hide();
     }
 
-    private  void getStudent(){
-        Log.w(TAG, "getStudent: "+classP.getId() );
-        ApiClient.getStudentService().StudentInClass(classP.getId()).enqueue(new Callback<List<Student>>() {
-            @Override
-            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
-                if (response.isSuccessful()){
-                    studentList =response.body();
-                    studentAdapter = new StudentAdapter(studentList, new StudentAdapter.IClickListener() {
-                        @Override
-                        public void onClickDetail(Student student) {
-                            Log.w(TAG, "onClickDetail: "+String.valueOf(student.getId()) );
-                            mHomeActivity.goToStudentDetailFragment(student);
-                        }
-                    });
-                    rcv_student.setAdapter(studentAdapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Student>> call, Throwable t) {
-                Log.w(TAG, "onFailure: "+t.getMessage() );
-            }
-        });
-    }
 }

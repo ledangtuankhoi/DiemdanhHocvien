@@ -28,6 +28,8 @@
     <form action="#" method="post" id="form" name="form">@Html.AntiForgeryToken()</form>
     <input value="@ViewBag.classId" form="form" name="classId" type="number" hidden />
     <button type="submit" value="addStudent" class="btn btn-primary" form="form">  submit  </button>
+    <button class="btn btn-outline-info" onclick="toggle()"><i class="fas fa-check-double"></i>  Select ALL</button>
+
 
     <!-- Row -->
     <div class="row">
@@ -169,25 +171,36 @@
         // set timeout
         var tid = setTimeout(mycode, 0);
         function mycode() {
-            
-                $('.record_table tr').click(function (event) {
-                    if (event.target.type !== 'checkbox') {
-                        $(':checkbox', this).trigger('click');
-                        if ($(':checkbox', this)[0].checked) {
-                            $(this).css("background-color", "#6777ef6b");
-                        } else {
-                            $(this).css("background-color", "");
-                        }
+
+            $('.record_table tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                    if ($(':checkbox', this)[0].checked) {
+                        $(this).css("background-color", "#6777ef6b");
+                    } else {
+                        $(this).css("background-color", "");
                     }
+                }
 
 
-                });
-             
+            });
+
             tid = setTimeout(mycode, 10) // repeat myself
         }
         function abortTimer() { // to be called when you want to stop the timer
             clearTimeout(tid);
         }
-       
+
+    </script>
+
+
+
+    <script>
+        //selete all
+        function toggle() {
+            console.log("toggle");
+            $(":checkbox").prop("checked", true);
+            $('.record_table tr').css("background-color", "#6777ef6b");
+        }
     </script>
 }

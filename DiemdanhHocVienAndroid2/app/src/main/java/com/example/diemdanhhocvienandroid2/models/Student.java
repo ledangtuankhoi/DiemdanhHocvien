@@ -1,10 +1,17 @@
 package com.example.diemdanhhocvienandroid2.models;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student  implements Serializable {
     private int id;
     private String lastName;
     private String firstName;
     private String holyName;
+    private String BOD;
+    private String numPhone;
+    private String email;
+    private int parentId;
+    private int classId;
 
     public int getId() {
         return id;
@@ -78,9 +85,18 @@ public class Student {
         this.classId = classId;
     }
 
-    private String BOD;
-    private String numPhone;
-    private String email;
-    private int parentId;
-    private int classId;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", holyName='" + holyName + '\'' +
+                ", BOD='" + BOD + '\'' +
+                ", numPhone='" + numPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", parentId=" + parentId +
+                ", classId=" + classId +
+                '}';
+    }
 }
