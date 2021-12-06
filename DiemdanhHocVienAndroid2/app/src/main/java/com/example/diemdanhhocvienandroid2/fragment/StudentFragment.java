@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class StudentFragment extends Fragment {
 
-     public static final String TAG = StudentFragment.class.getName();
+    public static final String TAG = StudentFragment.class.getName();
     private View mView;
     private HomeActivity mHomeActivity;
     private RecyclerView rcv_student;
@@ -48,8 +48,7 @@ public class StudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView =  inflater.inflate(R.layout.fragment_student, container, false);
-
+        mView = inflater.inflate(R.layout.fragment_student, container, false);
 
 
         // Inflate the layout for this fragment
@@ -97,7 +96,7 @@ public class StudentFragment extends Fragment {
         // Initialize material sheet FAB
         MaterialSheetFab materialSheetFab = new MaterialSheetFab(fab, sheetView, overlay,
                 sheetColor, fabColor);
-         //show fab func student
+        //show fab func student
         TextView create_student = mView.findViewById(R.id.fab_add_student);
         TextView del_multi = mView.findViewById(R.id.fab_attendance_student);
         TextView fab_3 = mView.findViewById(R.id.fab_del_multiple_student);
@@ -123,13 +122,12 @@ public class StudentFragment extends Fragment {
     }
 
 
-
-    private  void getStudentInClass(){
+    private void getStudentInClass() {
         ApiClient.getStudentService().Getstudents(user.getUserId()).enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
-                if (response.isSuccessful()){
-                    studentList =response.body();
+                if (response.isSuccessful()) {
+                    studentList = response.body();
                     studentAdapter = new StudentAdapter(studentList, new StudentAdapter.IClickListener() {
                         @Override
                         public void onClickDetail(Student student) {
@@ -142,8 +140,10 @@ public class StudentFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
-                Log.w(TAG, "onFailure: "+t.getMessage() );
+                Log.w(TAG, "onFailure: " + t.getMessage());
             }
         });
+
+
     }
 }

@@ -273,7 +273,7 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_fullname, tv_info, tv_order, tv_holyName;
+        private TextView tv_fullname, tv_info, tv_order, tv_holyName, tv_class;
         private ImageView img_student, iv_check_box;
         private RelativeLayout relativeLayout;
 
@@ -286,6 +286,8 @@ public class AttendanceStudentAdapter extends RecyclerView.Adapter<AttendanceStu
             img_student = itemView.findViewById(R.id.img_student);
             iv_check_box = itemView.findViewById(R.id.iv_check_box);
             relativeLayout = itemView.findViewById(R.id.item);
+            tv_class = itemView.findViewById(R.id.tv_class);
+            tv_class.setVisibility(View.GONE);
         }
     }
 
