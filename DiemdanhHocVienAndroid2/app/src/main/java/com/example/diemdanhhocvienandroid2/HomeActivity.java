@@ -12,6 +12,7 @@ import com.example.diemdanhhocvienandroid2.fragment.HomeFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentAddMultipleInClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentDelMultipleFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentDetailFragment;
+import com.example.diemdanhhocvienandroid2.fragment.StudentEditFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentRemoveMultipleInClassFragment;
 import com.example.diemdanhhocvienandroid2.fragment.StudentcreateFragment;
@@ -106,6 +107,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_class);
 
 
+    }
+
+
+    public void goToStudentEditFragment(Student student) {
+
+        StudentEditFragment studentEditFragment = new StudentEditFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_student", (Serializable) student);
+        studentEditFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, studentEditFragment);
+        fragmentTransaction.addToBackStack(StudentDetailFragment.TAG);
+        fragmentTransaction.commit();
     }
 
     public void goToStudentDetailFragment(Student student) {

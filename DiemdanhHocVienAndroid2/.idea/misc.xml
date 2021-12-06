@@ -27,6 +27,7 @@
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student.xml" value="0.12" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_create.xml" value="0.1" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_detail.xml" value="0.14" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_edit.xml" value="0.1" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/fragment_student_of_class.xml" value="0.15555555555555556" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/item_class.xml" value="0.2" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/layout/item_student.xml" value="0.2" />
@@ -36,6 +37,7 @@
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/home.xml" value="0.10925925925925926" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/menu_add_multiple.xml" value="0.1" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/menu_attendance.xml" value="0.1527777777777778" />
+        <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/menu_crud_student.xml" value="0.1" />
         <entry key="..\:/Tuan_Khoi/Homework/Asp.net/Project/CustomerAuthentication-With-ASP.NET-MVC-master/DiemdanhHocvien/DiemdanhHocVienAndroid2/app/src/main/res/menu/menu_delete_multiple.xml" value="0.1" />
       </map>
     </option>

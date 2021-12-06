@@ -85,4 +85,18 @@ public class Student  implements Serializable {
         this.classId = classId;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", holyName='" + holyName + '\'' +
+                ", BOD='" + BOD + '\'' +
+                ", numPhone='" + numPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", parentId=" + parentId +
+                ", classId=" + classId +
+                '}';
+    }
 }

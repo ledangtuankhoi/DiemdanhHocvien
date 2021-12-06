@@ -4,63 +4,114 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.diemdanhhocvienandroid2.R;
+import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.models.Student;
+import com.google.android.material.textfield.TextInputLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StudentEditFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class StudentEditFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final String TAG = StudentDetailFragment.class.getName();
+    private View mView;
+    private TextInputLayout email,numberphone,brithday,lastname,firstname,holyname;
+    Button btn_save, btn_cancel;
+    private ImageView img;
 
-    public StudentEditFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StudentEditFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StudentEditFragment newInstance(String param1, String param2) {
-        StudentEditFragment fragment = new StudentEditFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    //curent student process
+    private Student student;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_edit, container, false);
+        mView =  inflater.inflate(R.layout.fragment_student_edit, container, false);
+
+
+
+        //get data from class of student and student
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            Student student = (Student) bundle.get("object_student");
+            if (student != null) {
+                this.student = student;
+                Log.w(TAG, "onCreateView: "+student.toString() );
+            }
+        }
+
+        //set view
+        setView();
+
+        //action cancel
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
+        //action save
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                student.setEmail(email.getEditText().getText().toString());
+                student.setNumPhone(numberphone.getEditText().getText().toString());
+                student.setBOD(brithday.getEditText().getText().toString());
+                student.setLastName(lastname.getEditText().getText().toString());
+                student.setFirstName(firstname.getEditText().getText().toString());
+                student.setHolyName(holyname.getEditText().getText().toString());
+
+                ApiClient.getStudentService().PutStudent(student.getId(),student).enqueue(new Callback<Student>() {
+                    @Override
+                    public void onResponse(Call<Student> call, Response<Student> response) {
+                        Toast.makeText(mView.getContext(), "Save Success", Toast.LENGTH_SHORT).show();
+                        getFragmentManager().popBackStack();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Student> call, Throwable t) {
+                        Log.w(TAG, "onFailure: "+t.getMessage() );
+                    }
+                });
+            }
+        });
+
+
+        return mView;
+    }
+
+
+
+    private void setView() {
+        holyname = mView.findViewById(R.id.ed_holyname);
+        firstname = mView.findViewById(R.id.ed_firstname);
+        lastname = mView.findViewById(R.id.ed_lastname);
+        brithday = mView.findViewById(R.id.ed_brithday);
+        numberphone = mView.findViewById(R.id.ed_numberphone);
+        email = mView.findViewById(R.id.ed_email);
+
+        btn_cancel = mView.findViewById(R.id.btn_cancel);
+        btn_save = mView.findViewById(R.id.btn_save);
+
+        holyname.getEditText().setText(student.getHolyName());
+        firstname.getEditText().setText(student.getFirstName());
+        lastname.getEditText().setText(student.getLastName());
+        brithday.getEditText().setText(student.getBOD());
+        numberphone.getEditText().setText(student.getNumPhone());
+        email.getEditText().setText(student.getEmail());
     }
 }
