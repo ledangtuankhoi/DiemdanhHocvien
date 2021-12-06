@@ -51,25 +51,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView rcvUser;
 
 
-
     public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        );
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
 
         // response bundle form login
         Intent intent = this.getIntent();
@@ -85,13 +72,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else Toast.makeText(HomeActivity.this, "bundel null", Toast.LENGTH_SHORT).show();
 
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        //set menu home drawer for teacher
+        if (user.getRoleName().equals("teacher")) {
+            navigationView.inflateMenu(R.menu.activity_home_drawer_teacher);
+        }else if(user.getRoleName().equals("leader")){
+            navigationView.inflateMenu(R.menu.activity_home_drawer_leader);
+        }else{
+            navigationView.inflateMenu(R.menu.activity_home_drawer_admin);
+        }
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         //set name header nav
         View header = navigationView.getHeaderView(0);
         TextView txEmail = header.findViewById(R.id.txEmail);
         TextView txFullName = header.findViewById(R.id.txFullName);
         txEmail.setText(user.getEmail());
         txFullName.setText(user.getLastName() + " " + user.getFirstName());
-
 
 
         //send data object user to classfragment
@@ -148,6 +155,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.addToBackStack(StudentcreateFragment.TAG);
         fragmentTransaction.commit();
     }
+
     public void goToStudentRemoveMultipleInClassFagment(List<Student> studentList) {
 
         StudentRemoveMultipleInClassFragment studentRemoveMultipleInClassFragment = new StudentRemoveMultipleInClassFragment();
@@ -174,7 +182,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
-    public void goToStudentCreateFagment( ) {
+    public void goToStudentCreateFagment() {
 
         StudentcreateFragment studentFragment = new StudentcreateFragment();
 
@@ -235,7 +243,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             replateFragment(new ClassFragment());
             currentFragment = FRAMGENT_CLASS;
             navigationView.setCheckedItem(R.id.nav_class);
-        }else if (id == R.id.nav_student) {
+        } else if (id == R.id.nav_student) {
             replateFragment(new StudentFragment());
             currentFragment = FRAMGENT_STUDENT;
             navigationView.setCheckedItem(R.id.nav_student);
