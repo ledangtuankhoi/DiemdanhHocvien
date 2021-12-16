@@ -71,7 +71,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                     if(s==null){
                         holder.tv_class.setText("null");
                     }else {
-                        holder.tv_class.setText(response.body().getClassName());
+                        holder.tv_class.setText("Class: "+response.body().getClassName());
                     }
 
                 }

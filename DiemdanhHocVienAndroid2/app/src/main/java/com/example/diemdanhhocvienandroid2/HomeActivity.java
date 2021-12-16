@@ -220,6 +220,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    public void goToLogin(){
+        user = null;
+        Intent intent = new Intent(getApplicationContext(), account_login.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -232,22 +238,43 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_home) {
-            if (FRAMGENT_HOME != currentFragment) {
-                replateFragment(new HomeFragment());
-                currentFragment = FRAMGENT_HOME;
-                navigationView.setCheckedItem(R.id.nav_home);
 
-            }
-        } else if (id == R.id.nav_class) {
-            replateFragment(new ClassFragment());
-            currentFragment = FRAMGENT_CLASS;
-            navigationView.setCheckedItem(R.id.nav_class);
-        } else if (id == R.id.nav_student) {
-            replateFragment(new StudentFragment());
-            currentFragment = FRAMGENT_STUDENT;
-            navigationView.setCheckedItem(R.id.nav_student);
+
+        switch (id){
+            case R.id.nav_home:
+                if (FRAMGENT_HOME != currentFragment) {
+                    replateFragment(new HomeFragment());
+                    currentFragment = FRAMGENT_HOME;
+                    navigationView.setCheckedItem(R.id.nav_home);
+                }
+                break;
+            case R.id.nav_class:
+                    replateFragment(new ClassFragment());
+                    currentFragment = FRAMGENT_CLASS;
+                    navigationView.setCheckedItem(R.id.nav_class);
+                break;
+            case R.id.nav_student:
+                replateFragment(new StudentFragment());
+                currentFragment = FRAMGENT_STUDENT;
+                navigationView.setCheckedItem(R.id.nav_student);
+                break;
+            case R.id.nav_statistical:
+
+                break;
+            case R.id.nav_teacher:
+
+                break;
+            case R.id.nav_user:
+
+                break;
+            case R.id.nav_acount:
+
+                break;
+            case R.id.nav_logout:
+                goToLogin();
+                 break;
         }
+
         setTitleToolbar();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
