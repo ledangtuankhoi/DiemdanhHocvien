@@ -16,6 +16,13 @@
             android:id="@+id/nav_student"
             android:icon="@drawable/ic_check_attendance"
             android:title="Student" />
-
+        <item
+            android:id="@+id/nav_acount"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="Account" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
     </group>
 </menu>

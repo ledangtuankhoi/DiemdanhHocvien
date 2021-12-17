@@ -50,7 +50,7 @@ public class ClassFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mHomeActivity);
         rcvClass.setLayoutManager(linearLayoutManager);
 
-
+        // authen get list class
         if (user.getRoleName().equals("teacher")) {
             getListClassOfTeacher(user.getUserId());
             Log.d(TAG, "getListClassOfTeacher--------- ");

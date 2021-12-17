@@ -1,11 +1,15 @@
 ﻿using DiemdanhHocvien.CustomAuthentication;
 using DiemdanhHocvien.DataAccess;
+using DiemdanhHocvien.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DiemdanhHocvien.Controllers
 {
@@ -19,7 +23,52 @@ namespace DiemdanhHocvien.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            return View(db.students.ToList());
+            List<Student> listStudent = new List<Student>();
+
+            HttpCookie authCookie = Request.Cookies["Cookie1"];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+                var serializeModel = JsonConvert.DeserializeObject<CustomSerializeModel>(authTicket.UserData);
+                CustomPrincipal principal = new CustomPrincipal(authTicket.Name);
+                principal.UserId = serializeModel.UserId;
+                
+                //id is iduser
+                var u = db.Users.Find(principal.UserId);
+                string role = u.Roles.FirstOrDefault().RoleName;
+                //set authen 
+                if (role == "teacher" && role != null)
+                {
+                    var listClass = db.classes.Where(x => x.userId == u.UserId).ToList();
+                    foreach (var item in listClass)
+                    {
+                        List<Student> students = db.students.Where(x => x.classId == item.id).ToList();
+                        listStudent.AddRange(students);
+                    }
+                    //list studetn not class or class null empty
+                    foreach (var item in db.students.ToList())
+                    {
+                        if (db.classes.Find(item.classId) == null)
+                        {
+                            listStudent.Add(item);
+                        }
+                    }
+
+                }
+                else if (role == "admin" || role == "superadmin" || role == "admin" || role == "leader")
+                {
+                    listStudent.AddRange(db.students.ToList());
+                }
+                else
+                {
+                    listStudent = null;
+                }
+                //return listStudent;
+            }
+
+
+            return View(listStudent);
         }
 
         // GET: Student/Details/5

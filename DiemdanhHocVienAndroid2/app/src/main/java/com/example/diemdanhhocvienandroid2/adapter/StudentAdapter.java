@@ -6,22 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diemdanhhocvienandroid2.HomeActivity;
 import com.example.diemdanhhocvienandroid2.R;
+import com.example.diemdanhhocvienandroid2.api.ApiClient;
+import com.example.diemdanhhocvienandroid2.models.ClassP;
 import com.example.diemdanhhocvienandroid2.models.Student;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     private List<Student> studentList;
+    public String classname;
     private HomeActivity mHomeActivity;
     public static  final String TAG = StudentAdapter.class.getName();
     public IClickListener mIClickListener;
@@ -56,6 +60,31 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.tv_info.setText("Numberphone: "+info);
         holder.tv_order.setText("email: "+student.getEmail());
 
+
+        //set class name
+        ApiClient.getClassService().GetClass(student.getClassId()).enqueue(new Callback<ClassP>() {
+            @Override
+            public void onResponse(Call<ClassP> call, Response<ClassP> response) {
+                if(response.isSuccessful()){
+                    ClassP s = new ClassP();
+                    s = response.body();
+                    if(s==null){
+                        holder.tv_class.setText("null");
+                    }else {
+                        holder.tv_class.setText("Class: "+response.body().getClassName());
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClassP> call, Throwable t) {
+                Log.w(TAG, "onFailure: "+t.getMessage() );
+            }
+        });
+
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +104,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_fullname,tv_info,tv_order,tv_holyName;
+        private TextView tv_fullname,tv_info,tv_order,tv_holyName, tv_class;
         private ImageView img;
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,8 +113,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             tv_order = itemView.findViewById(R.id.tv_order);
             tv_holyName =itemView.findViewById(R.id.tv_holyName);
             img = itemView.findViewById(R.id.img_student);
-
+            tv_class = itemView.findViewById(R.id.tv_class);
         }
+    }
+
+    public String getClassname(int idclass){
+         String[] classname = new String[1];
+
+        return classname[0];
     }
 
 }

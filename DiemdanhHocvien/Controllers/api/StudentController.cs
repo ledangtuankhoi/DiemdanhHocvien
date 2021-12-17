@@ -61,6 +61,7 @@ namespace DiemdanhHocvien.Controllers.api
             var u = db.Users.Find(id);
             string role = u.Roles.FirstOrDefault().RoleName;
              List<Student> listStudent = new List<Student>();
+            //set authen 
             if (role == "teacher" && role != null)
             {
                 var listClass = db.classes.Where(x => x.userId == id).ToList();
