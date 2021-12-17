@@ -4,66 +4,155 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ActivationCode)
-        </th>
-        <th></th>
-    </tr>
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+        @*<h1 class="h3 mb-0 text-gray-800">DataTables</h1>*@
+        <script>
+            $("#actionName").text("user")
+        </script>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active" aria-current="page">DataTables</li>
+        </ol>
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-start">
+            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+                Create
+            </a>
+            <a href="@Url.Action("Create")" class="btn btn-outline-success ml-2">
+                Create
+            </a>
+            <a class="btn btn-outline-success ml-2">
+                Count: @Model.Count()
+            </a>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActivationCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
-    </tr>
-}
+    </div>
 
-</table>
+
+    <!-- Row -->
+    <div class="row">
+
+        <!-- DataTable with Hover -->
+        <div class="col-lg-12">
+            <div class="card mb-4">
+
+
+                <div class="table-responsive p-3">
+                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Username)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsActive)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Username)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsActive)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Username)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Password)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-fw fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a title="Edit" href="@Url.Action("Edit",new { id = item.UserId})" class="btn btn-secondary">
+                                                    <i class="fas fa-fw fa-edit"></i>
+                                                </a>
+                                                <a title="Details" href="@Url.Action("details",new { id = item.UserId})" class="btn btn-warning">
+                                                    <i class="fas fa-fw fa-fingerprint"></i>
+                                                </a>
+                                                <a title="Delete" href="@Url.Action("delete",new { id = item.UserId})" class="btn btn-danger">
+                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Row-->
+
+
+    @section _Footer{
+
+        <!-- Page level plugins -->
+        <script src="~/Assets/dashboard/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/Assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script>
+            $("#actionName").text("User list")
+        </script>
+        <!-- Page level custom scripts -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+            });
+        </script>
+    }

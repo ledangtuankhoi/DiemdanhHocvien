@@ -6,10 +6,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />
@@ -83,3 +83,20 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section _Footer{
+
+    <script>
+            $("#actionName").text("User Create")
+    </script>
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="~/Areas/admin/Assets/#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+}

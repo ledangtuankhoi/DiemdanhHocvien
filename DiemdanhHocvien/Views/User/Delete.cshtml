@@ -69,7 +69,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -78,3 +79,19 @@
         </div>
     }
 </div>
+
+@section _Footer{
+
+    <script>
+            $("#actionName").text("User Delete")
+    </script>
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="~/Areas/admin/Assets/#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+}
