@@ -1,4 +1,4 @@
-![Realm](https://github.com/realm/realm-dotnet/raw/main/logo.png)
+<img src="https://repository-images.githubusercontent.com/157736989/8368dd00-410d-11eb-9a91-461178e643f8" width="400">
 
 Nhằm giúp cho việc điểm danh học viên giáo xứ trở nên nhanh gọn hơn, việc xuất dữ liệu và sự dụng trên hệ điều hành android giúp cho việc này ngày càng trở nên thuận tiện hơn bao giờ hêt.
 
@@ -67,4 +67,8 @@ The API reference is located at [docs.mongodb.com/realm-sdks/dotnet/latest/](htt
 
 ### WEB
 
+<img src="https://github.com/ledangtuankhoi/DiemdanhHocvien/blob/3b0d4486579ecc5290c55094b9234498f8680ca7/image/web%20-%20diemdang.png" >
+
 ### ANDROID
+
+<img src="https://github.com/ledangtuankhoi/DiemdanhHocvien/blob/3b0d4486579ecc5290c55094b9234498f8680ca7/image/android%20home.png" >
